@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>krga® — Contacto</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+#contacto {
+  min-height: 100dvh;
+  display: flex; align-items: center;
+  padding-top: 100px;
+  padding-bottom: var(--section-pad);
+  background: var(--taupe);
+}
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--gap);
+  align-items: start;
+}
+.contact-form {
+  background: var(--taupe-card);
+  border-radius: var(--r-lg);
+  padding: clamp(1.5rem, 3vw, 2.5rem);
+}
+.form-group { margin-bottom: 1.1rem; }
+.form-group label {
+  display: block;
+  font-size: 0.82rem; font-weight: 700;
+  margin-bottom: 0.4rem; color: var(--black);
+}
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  background: var(--taupe-lt);
+  border: none; border-radius: var(--r-sm);
+  padding: 0.85em 1em;
+  font-family: inherit; font-size: 0.95rem;
+  color: var(--black);
+  outline: none;
+  transition: box-shadow .2s;
+}
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  box-shadow: 0 0 0 2px var(--black);
+}
+.form-group textarea { resize: vertical; min-height: 100px; }
+.form-group select { appearance: none; cursor: pointer; }
+
+.info-cards { display: flex; flex-direction: column; gap: 1rem; }
+.info-card {
+  background: var(--taupe-card);
+  border-radius: var(--r-md);
+  padding: 1.4rem 1.5rem;
+  display: flex; gap: 1rem; align-items: flex-start;
+}
+.info-card-icon {
+  width: 44px; height: 44px; flex-shrink: 0;
+  background: var(--taupe-lt);
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.2rem;
+}
+.info-card h4 { font-size: 0.9rem; font-weight: 700; margin-bottom: 0.2rem; }
+.info-card p { font-size: 0.85rem; color: var(--muted); }
+</style>
+</head>
+<body>
+
+<!-- ══ NAVBAR ══ -->
+<nav id="nav">
+  <div class="container nav-inner">
+    <a class="nav-logo" href="index.html">
+      <img src="assets/logo-black.png" alt="krga">
+    </a>
+    <ul class="nav-links">
+      <li><a href="establecimientos.html">Establecimientos</a></li>
+      <li><a href="marcas.html">Marcas</a></li>
+      <li><a href="la-maquina.html">La máquina</a></li>
+      <li><a href="contacto.html" class="active">Contacto</a></li>
+      <li><a href="contacto.html" class="nav-cta">Contáctanos</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Menú">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="establecimientos.html" onclick="closeMobile()">Establecimientos</a>
+  <a href="marcas.html"           onclick="closeMobile()">Marcas</a>
+  <a href="la-maquina.html"       onclick="closeMobile()">La máquina</a>
+  <a href="contacto.html"         onclick="closeMobile()">Contacto</a>
+</div>
+
+<!-- ══ CONTACTO ══ -->
+<section id="contacto">
+  <div class="container">
+    <div class="two-col">
+
+      <div class="reveal">
+        <span class="tag">Contáctanos</span>
+        <h2>Hablemos.</h2>
+        <p class="lead" style="margin-top:1rem; margin-bottom:2rem;">
+          Cuéntanos sobre tu negocio o tu marca. Nos ponemos en
+          contacto contigo en menos de 24 horas.
+        </p>
+
+        <div class="info-cards">
+          <div class="info-card">
+            <div class="info-card-icon">📍</div>
+            <div>
+              <h4>Guadalajara, México</h4>
+              <p>Chapultepec, Providencia, Andares y más zonas premium.</p>
+            </div>
+          </div>
+          <div class="info-card">
+            <div class="info-card-icon">✉️</div>
+            <div>
+              <h4>hola@krga.mx</h4>
+              <p>Respondemos en menos de 24 horas.</p>
+            </div>
+          </div>
+          <div class="info-card">
+            <div class="info-card-icon">📱</div>
+            <div>
+              <h4>WhatsApp</h4>
+              <p>Escríbenos directo para una respuesta más rápida.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="reveal">
+        <div class="contact-form">
+          <div class="form-group">
+            <label>Nombre</label>
+            <input type="text" placeholder="Tu nombre">
+          </div>
+          <div class="form-group">
+            <label>Email</label>
+            <input type="email" placeholder="tu@email.com">
+          </div>
+          <div class="form-group">
+            <label>Teléfono</label>
+            <input type="tel" placeholder="+52 33 0000 0000">
+          </div>
+          <div class="form-group">
+            <label>Soy</label>
+            <select>
+              <option value="">Selecciona una opción</option>
+              <option>Un establecimiento</option>
+              <option>Una marca / anunciante</option>
+              <option>Otro</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Mensaje</label>
+            <textarea placeholder="Cuéntanos sobre tu negocio..."></textarea>
+          </div>
+          <button type="submit" class="btn-primary" style="width:100%;">Enviar mensaje</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-logo">
+        <img src="assets/logo-black.png" alt="krga">
+        <p>Powerbank sharing para negocios en Guadalajara.</p>
+      </div>
+      <div class="footer-links">
+        <h5>Para ti</h5>
+        <ul>
+          <li><a href="establecimientos.html">Establecimientos</a></li>
+          <li><a href="marcas.html">Marcas</a></li>
+          <li><a href="la-maquina.html">La máquina</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h5>Empresa</h5>
+        <ul>
+          <li><a href="contacto.html">Contacto</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 krga®. Todos los derechos reservados.</span>
+      <span>Guadalajara, México</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 40));
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobileMenu');
+hamburger.addEventListener('click', () => mobileMenu.classList.toggle('open'));
+function closeMobile() { mobileMenu.classList.remove('open'); }
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.12 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

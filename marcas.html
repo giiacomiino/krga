@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>krga® — Marcas y Anunciantes</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+body { background: var(--dark-bg); color: var(--white); }
+
+#nav { background: transparent; }
+#nav.scrolled {
+  background: rgba(21, 21, 18, 0.9) !important;
+  backdrop-filter: blur(16px);
+  box-shadow: 0 2px 24px rgba(0,0,0,.2);
+}
+.nav-links a { color: var(--white) !important; }
+.nav-cta { background: var(--white) !important; color: var(--black) !important; }
+
+.mobile-menu { background: var(--dark-bg) !important; }
+.mobile-menu a { color: var(--white) !important; }
+.hamburger span { background: var(--white) !important; }
+
+#hero-marcas {
+  min-height: 100dvh;
+  display: flex; align-items: center;
+  padding-top: 100px;
+  padding-bottom: var(--section-pad);
+  background: var(--dark-bg);
+}
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--gap);
+  align-items: center;
+}
+.benefits-list { display: flex; flex-direction: column; gap: 0.85rem; margin-top: 1.75rem; }
+
+h2 { color: var(--white); }
+p, .lead { color: rgba(255,255,255,.55); }
+
+.stats-dark {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem;
+  margin-top: 1.5rem;
+}
+.stat-dark {
+  background: var(--dark-card);
+  border-radius: var(--r-md);
+  padding: 1.2rem;
+  text-align: center;
+}
+.stat-dark .snum {
+  font-size: clamp(1.8rem, 3vw, 2.5rem);
+  font-weight: 900; letter-spacing: -0.03em;
+  line-height: 1; margin-bottom: 0.2rem;
+  color: var(--lime);
+}
+.stat-dark p { font-size: 0.78rem; color: rgba(255,255,255,.4); }
+
+#reach {
+  padding: var(--section-pad) 0;
+  background: #0e0e0c;
+}
+.reach-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--gap);
+  margin-top: clamp(2.5rem, 5vw, 4rem);
+}
+.reach-card {
+  background: var(--dark-card);
+  border-radius: var(--r-md);
+  padding: clamp(1.5rem, 2.5vw, 2rem);
+}
+.reach-card h3 { color: var(--white); margin-bottom: 0.5rem; }
+.reach-card p { color: rgba(255,255,255,.45); font-size: 0.9rem; }
+.reach-icon { font-size: 2rem; margin-bottom: 1rem; }
+
+footer { background: #0a0a08; }
+footer .footer-logo p { color: rgba(255,255,255,.4); }
+</style>
+</head>
+<body>
+
+<!-- ══ NAVBAR ══ -->
+<nav id="nav">
+  <div class="container nav-inner">
+    <a class="nav-logo" href="index.html">
+      <img src="assets/logo-black.png" alt="krga" style="filter:invert(1);">
+    </a>
+    <ul class="nav-links">
+      <li><a href="establecimientos.html">Establecimientos</a></li>
+      <li><a href="marcas.html" class="active" style="opacity:1!important;">Marcas</a></li>
+      <li><a href="la-maquina.html">La máquina</a></li>
+      <li><a href="contacto.html">Contacto</a></li>
+      <li><a href="contacto.html" class="nav-cta">Contáctanos</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Menú">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="establecimientos.html" onclick="closeMobile()">Establecimientos</a>
+  <a href="marcas.html"           onclick="closeMobile()">Marcas</a>
+  <a href="la-maquina.html"       onclick="closeMobile()">La máquina</a>
+  <a href="contacto.html"         onclick="closeMobile()">Contacto</a>
+</div>
+
+<!-- ══ HERO ══ -->
+<section id="hero-marcas">
+  <div class="container">
+    <div class="two-col">
+
+      <div class="reveal">
+        <span class="tag-outline">Para marcas y anunciantes</span>
+        <h2>Tu marca en el<br>momento exacto.</h2>
+        <p class="lead" style="margin-top:1rem;">
+          Mientras una persona carga su celular, tiene la pantalla
+          frente a ella. Es un momento de atención completa, sin
+          competencia, en un contexto relajado. Eso es publicidad krga.
+        </p>
+        <div class="benefits-list">
+          <div class="benefit-card">
+            <div class="benefit-icon">📺</div>
+            <div>
+              <h4>Red de pantallas 10.1" en establecimientos premium</h4>
+              <p>Tu contenido aparece en máquinas en restaurantes, bares, centros comerciales y hoteles de Guadalajara.</p>
+            </div>
+          </div>
+          <div class="benefit-card">
+            <div class="benefit-icon">🎯</div>
+            <div>
+              <h4>Audiencia cautiva y de alta atención</h4>
+              <p>El usuario está parado frente a la máquina por varios minutos. No hay scroll, no hay competencia. Solo tu anuncio.</p>
+            </div>
+          </div>
+          <div class="benefit-card">
+            <div class="benefit-icon">📊</div>
+            <div>
+              <h4>Reportes de impresiones en tiempo real</h4>
+              <p>Conoce cuántas personas vieron tu anuncio, en qué ubicaciones y a qué hora.</p>
+            </div>
+          </div>
+        </div>
+        <div style="margin-top:2rem;">
+          <a href="contacto.html" class="btn-primary-lime">Anunciate con krga</a>
+        </div>
+      </div>
+
+      <div class="reveal visual-right" style="display:flex; flex-direction:column; align-items:center; gap:1.5rem;">
+        <!-- Ad mockup -->
+        <div class="ad-standalone">
+          <div class="ad-badge">AD</div>
+          <div class="ad-standalone-logo">🚀 Tu Marca</div>
+          <div class="ad-standalone-title">Nueva colección</div>
+          <div class="ad-standalone-sub">Encuéntranos aquí cerca</div>
+        </div>
+        <p class="screen-caption" style="color:rgba(255,255,255,.35);">Pantalla 10.1" · Rotación automática</p>
+
+        <div class="stats-dark">
+          <div class="stat-dark">
+            <div class="snum">+5K</div>
+            <p>impresiones diarias en red</p>
+          </div>
+          <div class="stat-dark">
+            <div class="snum">3-5min</div>
+            <p>tiempo promedio frente a pantalla</p>
+          </div>
+          <div class="stat-dark">
+            <div class="snum">10+</div>
+            <p>ubicaciones premium GDL</p>
+          </div>
+          <div class="stat-dark">
+            <div class="snum">100%</div>
+            <p>audiencia captiva, sin scroll</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ FORMATOS ══ -->
+<section id="reach">
+  <div class="container">
+    <div class="reveal" style="text-align:center;">
+      <span class="tag-outline">Formatos</span>
+      <h2>Elige cómo<br>aparecer</h2>
+    </div>
+    <div class="reach-grid">
+      <div class="reach-card reveal">
+        <div class="reach-icon">🖼️</div>
+        <h3>Banner estático</h3>
+        <p>Imagen fija de tu marca en pantalla. Simple, directo, efectivo.</p>
+      </div>
+      <div class="reach-card reveal">
+        <div class="reach-icon">🎬</div>
+        <h3>Video corto</h3>
+        <p>Clips de hasta 15 segundos con audio. Máximo impacto en el momento.</p>
+      </div>
+      <div class="reach-card reveal">
+        <div class="reach-icon">📍</div>
+        <h3>Segmentación por ubicación</h3>
+        <p>Aparece solo en las zonas que te interesan: Chapultepec, Providencia, Andares y más.</p>
+      </div>
+      <div class="reach-card reveal">
+        <div class="reach-icon">🕐</div>
+        <h3>Segmentación horaria</h3>
+        <p>Elige en qué horario del día quieres aparecer. Happy hour, mediodía, noche.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-logo">
+        <img src="assets/logo-black.png" alt="krga">
+        <p>Powerbank sharing para negocios en Guadalajara.</p>
+      </div>
+      <div class="footer-links">
+        <h5>Para ti</h5>
+        <ul>
+          <li><a href="establecimientos.html">Establecimientos</a></li>
+          <li><a href="marcas.html">Marcas</a></li>
+          <li><a href="la-maquina.html">La máquina</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h5>Empresa</h5>
+        <ul>
+          <li><a href="contacto.html">Contacto</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 krga®. Todos los derechos reservados.</span>
+      <span>Guadalajara, México</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 40));
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobileMenu');
+hamburger.addEventListener('click', () => mobileMenu.classList.toggle('open'));
+function closeMobile() { mobileMenu.classList.remove('open'); }
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.12 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

@@ -3,676 +3,56 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>krga® — Carga sin límites</title>
+<title>krga® — Tu celular, donde sea</title>
+<link rel="stylesheet" href="styles.css">
 <style>
-/* ─── TOKENS ─────────────────────────────────────────── */
-:root {
-  --taupe:      #BEBCAF;
-  --taupe-dk:   #A9A89C;
-  --taupe-lt:   #CCCBBE;
-  --taupe-card: #C8C7BA;
-  --lime:       #E8EDB5;
-  --black:      #111111;
-  --white:      #FFFFFF;
-  --muted:      #5A594F;
-
-  --r-sm: 12px;
-  --r-md: 20px;
-  --r-lg: 32px;
-  --gap:  clamp(1.5rem, 4vw, 3rem);
-  --section-pad: clamp(4rem, 8vw, 8rem);
-}
-
-/* ─── RESET ──────────────────────────────────────────── */
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
-body {
-  font-family: 'Helvetica Neue', Arial, sans-serif;
-  background: var(--taupe);
-  color: var(--black);
-  line-height: 1.6;
-  overflow-x: hidden;
-}
-img { display: block; max-width: 100%; }
-a  { color: inherit; text-decoration: none; }
-ul { list-style: none; }
-
-/* ─── TYPOGRAPHY ─────────────────────────────────────── */
-h1 { font-size: clamp(2.6rem, 6vw, 5rem); font-weight: 900; letter-spacing: -0.03em; line-height: 1.05; }
-h2 { font-size: clamp(1.8rem, 3.5vw, 3rem); font-weight: 800; letter-spacing: -0.02em; line-height: 1.15; }
-h3 { font-size: clamp(1.2rem, 2vw, 1.6rem); font-weight: 700; line-height: 1.25; }
-p  { font-size: clamp(1rem, 1.4vw, 1.15rem); color: var(--muted); }
-.lead { font-size: clamp(1.1rem, 1.8vw, 1.35rem); color: var(--muted); max-width: 52ch; }
-
-/* ─── UTILITIES ──────────────────────────────────────── */
-.container { width: min(1180px, 92vw); margin-inline: auto; }
-.tag {
-  display: inline-block;
-  padding: 0.35em 1em;
-  border-radius: 999px;
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  background: var(--lime);
-  color: var(--muted);
-  margin-bottom: 1.25rem;
-}
-.card {
-  background: var(--taupe-card);
-  border-radius: var(--r-md);
-  padding: clamp(1.5rem, 3vw, 2.5rem);
-}
-.reveal {
-  opacity: 0;
-  transform: translateY(28px);
-  transition: opacity .6s ease, transform .6s ease;
-}
-.reveal.visible { opacity: 1; transform: none; }
-
-/* ─── NAVBAR ──────────────────────────────────────────── */
-#nav {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 999;
-  padding: 0.9rem 0;
-  transition: background .35s, backdrop-filter .35s, box-shadow .35s;
-}
-#nav.scrolled {
-  background: rgba(190, 188, 175, 0.85);
-  backdrop-filter: blur(14px);
-  box-shadow: 0 2px 20px rgba(0,0,0,.09);
-}
-.nav-inner {
-  display: flex; align-items: center; justify-content: space-between;
-}
-.nav-logo img { height: 32px; }
-.nav-links {
-  display: flex; gap: 2rem; align-items: center;
-}
-.nav-links a {
-  font-size: 0.9rem; font-weight: 600;
-  color: var(--black); opacity: .7;
-  transition: opacity .2s;
-}
-.nav-links a:hover { opacity: 1; }
-.nav-cta {
-  background: var(--black); color: var(--lime) !important;
-  padding: 0.55em 1.3em; border-radius: 999px; opacity: 1 !important;
-  transition: transform .2s, opacity .2s !important;
-}
-.nav-cta:hover { transform: scale(1.04); }
-.hamburger {
-  display: none; flex-direction: column; gap: 5px;
-  cursor: pointer; padding: 6px; border: none; background: none;
-}
-.hamburger span {
-  display: block; width: 24px; height: 2px;
-  background: var(--black); border-radius: 2px;
-  transition: transform .3s, opacity .3s;
-}
-.mobile-menu {
-  display: none;
-  position: fixed; inset: 0; z-index: 998;
-  background: var(--taupe);
-  flex-direction: column; align-items: center; justify-content: center;
-  gap: 2rem;
-}
-.mobile-menu.open { display: flex; }
-.mobile-menu a {
-  font-size: 1.5rem; font-weight: 700;
-  color: var(--black);
-}
-
-/* ─── SECTION BASE ────────────────────────────────────── */
-section { padding: var(--section-pad) 0; }
-section:nth-child(even) { background: var(--taupe-lt); }
-
-/* ─── 1. HERO ─────────────────────────────────────────── */
+/* ─── HOME-SPECIFIC ─────────────────────────────────── */
 #hero {
   min-height: 100dvh;
   display: flex; align-items: center;
-  padding-top: calc(var(--section-pad) + 60px);
+  padding-top: 100px;
   padding-bottom: var(--section-pad);
   background: var(--taupe);
   position: relative; overflow: hidden;
 }
+
+/* topographic wave lines background */
+#hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='600' viewBox='0 0 800 600'%3E%3Cg fill='none' stroke='%23A5A296' stroke-width='1' opacity='0.35'%3E%3Cpath d='M600,0 Q750,100 800,200 Q820,300 750,400 Q680,500 700,600'/%3E%3Cpath d='M650,0 Q800,120 830,240 Q850,350 780,450 Q710,550 730,650'/%3E%3Cpath d='M700,0 Q840,140 860,280 Q870,400 800,500 Q730,600 760,700'/%3E%3Cpath d='M550,0 Q700,80 760,180 Q790,280 720,380 Q650,480 680,580'/%3E%3Cpath d='M500,0 Q650,60 720,160 Q760,260 690,360 Q620,460 650,560'/%3E%3C/g%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right center;
+  background-size: 65% auto;
+  pointer-events: none;
+}
+
 .hero-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1.1fr 0.9fr;
   gap: var(--gap);
   align-items: center;
 }
-.hero-text .tag { margin-bottom: 1.5rem; }
-.hero-text h1 { margin-bottom: 1.5rem; }
-.hero-text .lead { margin-bottom: 2.5rem; }
+
+.hero-h1 {
+  font-size: clamp(3.2rem, 7.5vw, 6rem);
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  line-height: 1.0;
+  margin-bottom: 1.5rem;
+}
+.hero-h1 .white-word { color: var(--white); }
+
 .hero-ctas {
   display: flex; flex-wrap: wrap; gap: 1rem;
+  margin-top: 2rem;
 }
-.btn-primary {
-  background: var(--black); color: var(--lime);
-  padding: 0.8em 2em; border-radius: 999px;
-  font-weight: 700; font-size: 1rem;
-  transition: transform .2s;
-  cursor: pointer; border: none;
-  display: inline-block;
-}
-.btn-primary:hover { transform: scale(1.04); }
-.btn-outline {
-  border: 2px solid var(--black); color: var(--black);
-  padding: 0.8em 2em; border-radius: 999px;
-  font-weight: 700; font-size: 1rem;
-  transition: background .2s, color .2s;
-  cursor: pointer; background: transparent;
-  display: inline-block;
-}
-.btn-outline:hover { background: var(--black); color: var(--lime); }
 
-/* hero visual */
 .hero-visual {
-  display: flex; align-items: center; justify-content: center;
-  position: relative; min-height: 420px;
-}
-.hero-mascot {
-  width: clamp(240px, 32vw, 380px);
-  animation: machineBob 4s ease-in-out infinite;
-  filter: drop-shadow(0 20px 40px rgba(0,0,0,.12));
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 1rem;
   position: relative; z-index: 2;
-}
-@keyframes machineBob {
-  0%, 100% { transform: translateY(0); }
-  50%       { transform: translateY(-14px); }
-}
-.hero-blob {
-  position: absolute;
-  width: 400px; height: 400px;
-  background: var(--lime);
-  border-radius: 50%;
-  opacity: .45;
-  filter: blur(60px);
-  animation: blobPulse 6s ease-in-out infinite;
-}
-@keyframes blobPulse {
-  0%, 100% { transform: scale(1); }
-  50%       { transform: scale(1.12); }
-}
-
-/* ticker */
-.ticker-wrap {
-  margin-top: 3rem;
-  overflow: hidden;
-  background: var(--black);
-  border-radius: var(--r-sm);
-  padding: 0.7rem 0;
-}
-.ticker-track {
-  display: flex; gap: 3rem;
-  white-space: nowrap;
-  animation: tickerScroll 22s linear infinite;
-}
-@keyframes tickerScroll {
-  from { transform: translateX(0); }
-  to   { transform: translateX(-50%); }
-}
-.ticker-item {
-  font-size: 0.85rem; font-weight: 700;
-  color: var(--lime); letter-spacing: .08em; text-transform: uppercase;
-  flex-shrink: 0;
-}
-.ticker-dot {
-  color: var(--taupe-dk); margin: 0 0.5rem;
-}
-
-/* ─── 2. CÓMO FUNCIONA ────────────────────────────────── */
-#como {
-  background: var(--taupe-lt);
-}
-.section-header {
-  text-align: center;
-  margin-bottom: clamp(2.5rem, 5vw, 4rem);
-}
-.section-header h2 { margin-bottom: 1rem; }
-.steps-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: var(--gap);
-}
-.step-card {
-  background: var(--taupe-card);
-  border-radius: var(--r-md);
-  padding: clamp(1.5rem, 2.5vw, 2.2rem);
-  position: relative;
-  overflow: hidden;
-}
-.step-num {
-  font-size: 5rem; font-weight: 900;
-  color: var(--taupe-dk);
-  line-height: 1;
-  position: absolute; top: -0.2em; right: 0.2em;
-  user-select: none;
-}
-.step-icon {
-  font-size: 2.2rem; margin-bottom: 1.25rem; position: relative; z-index: 1;
-}
-.step-card h3 { margin-bottom: 0.6rem; position: relative; z-index: 1; }
-.step-card p  { position: relative; z-index: 1; }
-
-/* ─── 3. RENTA FIJA ───────────────────────────────────── */
-#renta {
-  background: var(--taupe);
-}
-.model-layout {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--gap);
-  align-items: start;
-}
-.model-benefits {
-  display: flex; flex-direction: column; gap: 1rem;
-  margin-top: 1.5rem;
-}
-.benefit-item {
-  display: flex; align-items: flex-start; gap: 1rem;
-  background: var(--taupe-card);
-  border-radius: var(--r-sm);
-  padding: 1.1rem 1.3rem;
-}
-.benefit-icon {
-  font-size: 1.4rem; flex-shrink: 0; line-height: 1;
-}
-.benefit-item h4 { font-size: 1rem; font-weight: 700; margin-bottom: 0.2rem; }
-.benefit-item p  { font-size: 0.9rem; }
-
-.model-visual {
-  background: var(--taupe-card);
-  border-radius: var(--r-lg);
-  padding: clamp(1.5rem, 3vw, 2.5rem);
-  display: flex; flex-direction: column; gap: 1.5rem;
-}
-.model-stat {
-  text-align: center;
-  padding: 1.5rem;
-  background: var(--taupe-lt);
-  border-radius: var(--r-md);
-}
-.model-stat .stat-num {
-  font-size: clamp(2.4rem, 4vw, 3.5rem);
-  font-weight: 900;
-  color: var(--black);
-  line-height: 1;
-  margin-bottom: 0.4rem;
-}
-.model-stat p { font-size: 0.9rem; }
-
-.venue-logos {
-  display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem;
-}
-.venue-chip {
-  background: var(--taupe-lt);
-  border-radius: var(--r-sm);
-  padding: 0.75rem;
-  text-align: center;
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: var(--muted);
-}
-.venue-chip span { display: block; font-size: 1.5rem; margin-bottom: 0.3rem; }
-
-/* ─── 4. PUBLICIDAD ───────────────────────────────────── */
-#publicidad {
-  background: var(--taupe-lt);
-}
-.ad-model-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--gap);
-  align-items: center;
-}
-
-/* machine mockup */
-.machine-mockup {
-  position: relative;
-  display: flex; justify-content: center; align-items: flex-end;
-}
-.machine-body-smart {
-  width: 190px;
-  background: var(--black);
-  border-radius: 16px 16px 10px 10px;
-  padding: 10px 10px 14px;
-  box-shadow: 0 20px 60px rgba(0,0,0,.25);
-  position: relative;
-}
-.machine-screen {
-  background: #1a1a1a;
-  border-radius: 8px;
-  overflow: hidden;
-  aspect-ratio: 16/10;
-  position: relative;
-  margin-bottom: 10px;
-}
-.machine-ad-slide {
-  position: absolute; inset: 0;
-  display: flex; align-items: center; justify-content: center;
-  opacity: 0;
-  transition: opacity .7s;
-  font-size: 0.65rem;
-  font-weight: 700;
-  text-align: center;
-  padding: 0.4rem;
-  color: var(--white);
-}
-.machine-ad-slide.active { opacity: 1; }
-.mad-0 { background: linear-gradient(135deg, #c0392b, #e74c3c); }
-.mad-1 { background: linear-gradient(135deg, #1a4a78, #2980b9); }
-.mad-2 { background: linear-gradient(135deg, #1a5c3a, #27ae60); }
-
-.machine-slots-row {
-  display: flex; gap: 5px; justify-content: center;
-  margin-bottom: 8px;
-}
-.slot {
-  width: 22px; height: 32px;
-  background: #2a2a2a;
-  border-radius: 6px;
-  position: relative;
-  overflow: hidden;
-}
-.slot::after {
-  content: '';
-  position: absolute; bottom: 3px; left: 50%; transform: translateX(-50%);
-  width: 6px; height: 6px;
-  background: #3a3a3a;
-  border-radius: 50%;
-  animation: slotBlink 2.4s ease-in-out infinite;
-}
-.slot.charged::after { background: var(--lime); }
-@keyframes slotBlink {
-  0%,100%{ opacity: 1; } 50%{ opacity: .3; }
-}
-.machine-base {
-  width: 110%; margin-left: -5%;
-  height: 10px; background: #1a1a1a;
-  border-radius: 0 0 8px 8px;
-}
-
-.ad-benefits { display: flex; flex-direction: column; gap: 1rem; margin-top: 1.5rem; }
-
-.reach-stats {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem;
-  margin-top: 1.5rem;
-}
-.reach-stat {
-  background: var(--taupe-card);
-  border-radius: var(--r-sm);
-  padding: 1rem;
-  text-align: center;
-}
-.reach-stat .rnum {
-  font-size: 1.8rem; font-weight: 900;
-  line-height: 1; margin-bottom: 0.2rem;
-}
-.reach-stat p { font-size: 0.8rem; }
-
-/* ─── 5. MÁQUINAS ─────────────────────────────────────── */
-#maquinas {
-  background: var(--taupe);
-}
-.machines-intro {
-  text-align: center;
-  margin-bottom: clamp(2.5rem, 5vw, 4.5rem);
-}
-.machines-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--gap);
-  align-items: start;
-}
-.machine-card {
-  background: var(--taupe-card);
-  border-radius: var(--r-lg);
-  overflow: hidden;
-}
-.machine-card-header {
-  background: var(--black);
-  color: var(--lime);
-  padding: 1.5rem 2rem;
-}
-.machine-card-header .model-tag {
-  font-size: 0.7rem; font-weight: 700; letter-spacing: .12em;
-  text-transform: uppercase; color: var(--taupe-dk);
-  margin-bottom: 0.5rem; display: block;
-}
-.machine-card-header h3 { color: var(--lime); font-size: 1.4rem; }
-.machine-card-body {
-  padding: clamp(1.5rem, 2.5vw, 2rem);
-}
-.machine-visual-area {
-  display: flex; justify-content: center; padding: 1.5rem 0;
-}
-
-/* SMART+ tall machine mockup */
-.machine-body-smart-plus {
-  width: 130px;
-  background: var(--black);
-  border-radius: 14px 14px 8px 8px;
-  padding: 8px 8px 12px;
-  box-shadow: 0 20px 60px rgba(0,0,0,.25);
-  position: relative;
-}
-.machine-screen-lg {
-  background: #1a1a1a;
-  border-radius: 7px;
-  overflow: hidden;
-  aspect-ratio: 9/16;
-  position: relative;
-  margin-bottom: 8px;
-}
-.sp-ad-slide {
-  position: absolute; inset: 0;
-  display: flex; align-items: center; justify-content: center;
-  opacity: 0;
-  transition: opacity .7s;
-  font-size: 0.6rem;
-  font-weight: 700;
-  text-align: center;
-  padding: 0.5rem;
-  color: var(--white);
-}
-.sp-ad-slide.active { opacity: 1; }
-.sp-ad-0 { background: linear-gradient(160deg, #8B0000, #e74c3c); }
-.sp-ad-1 { background: linear-gradient(160deg, #0a2d55, #2980b9); }
-.sp-ad-2 { background: linear-gradient(160deg, #1a5c3a, #27ae60); }
-
-.machine-slots-grid {
-  display: grid; grid-template-columns: repeat(4, 1fr); gap: 3px;
-  margin-bottom: 8px;
-}
-.slot-sm {
-  height: 22px;
-  background: #2a2a2a;
-  border-radius: 4px;
-  position: relative; overflow: hidden;
-}
-.slot-sm::after {
-  content: '';
-  position: absolute; bottom: 2px; left: 50%; transform: translateX(-50%);
-  width: 4px; height: 4px;
-  background: #3a3a3a;
-  border-radius: 50%;
-  animation: slotBlink 2.4s ease-in-out infinite;
-  animation-delay: calc(var(--i, 0) * 0.15s);
-}
-.slot-sm.charged::after { background: var(--lime); }
-
-.specs-list {
-  display: flex; flex-direction: column; gap: 0.6rem; margin-top: 0.5rem;
-}
-.spec-row {
-  display: flex; align-items: center; gap: 0.75rem;
-  font-size: 0.9rem;
-}
-.spec-icon { font-size: 1rem; flex-shrink: 0; width: 1.5rem; text-align: center; }
-.spec-label { font-weight: 600; color: var(--black); }
-.spec-val   { color: var(--muted); margin-left: auto; font-size: 0.85rem; font-weight: 500; }
-
-.compare-table {
-  margin-top: clamp(2rem, 4vw, 3.5rem);
-  background: var(--taupe-card);
-  border-radius: var(--r-md);
-  overflow: hidden;
-}
-.compare-table table {
-  width: 100%; border-collapse: collapse;
-}
-.compare-table th, .compare-table td {
-  padding: 1rem 1.25rem;
-  text-align: left;
-  font-size: 0.9rem;
-  border-bottom: 1px solid var(--taupe-lt);
-}
-.compare-table th {
-  background: var(--black); color: var(--lime);
-  font-weight: 700; letter-spacing: .04em;
-}
-.compare-table tr:last-child td { border-bottom: none; }
-.compare-table td:not(:first-child) { text-align: center; font-weight: 600; }
-
-/* ─── 6. TU CIUDAD ────────────────────────────────────── */
-#ciudad {
-  background: var(--taupe-lt);
-}
-.ciudad-layout {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--gap);
-  align-items: start;
-}
-.contact-form {
-  background: var(--taupe-card);
-  border-radius: var(--r-lg);
-  padding: clamp(1.5rem, 3vw, 2.5rem);
-  display: flex; flex-direction: column; gap: 1rem;
-}
-.contact-form h3 { margin-bottom: 0.5rem; }
-.form-group { display: flex; flex-direction: column; gap: 0.4rem; }
-.form-group label { font-size: 0.85rem; font-weight: 600; color: var(--muted); }
-.form-group input,
-.form-group select,
-.form-group textarea {
-  background: var(--taupe-lt);
-  border: 1.5px solid var(--taupe-dk);
-  border-radius: var(--r-sm);
-  padding: 0.7rem 1rem;
-  font-size: 0.95rem;
-  color: var(--black);
-  font-family: inherit;
-  transition: border-color .2s;
-  outline: none;
-  width: 100%;
-}
-.form-group input:focus,
-.form-group select:focus,
-.form-group textarea:focus { border-color: var(--black); }
-.form-group textarea { resize: vertical; min-height: 90px; }
-.form-submit {
-  background: var(--black); color: var(--lime);
-  border: none; border-radius: 999px;
-  padding: 0.85em 2em; font-size: 1rem; font-weight: 700;
-  cursor: pointer; transition: transform .2s; align-self: flex-start;
-}
-.form-submit:hover { transform: scale(1.04); }
-.form-success {
-  display: none;
-  text-align: center; padding: 2rem 1rem;
-}
-.form-success .check { font-size: 3rem; margin-bottom: 1rem; }
-.form-success h3 { margin-bottom: 0.5rem; }
-
-.ciudad-info { display: flex; flex-direction: column; gap: 2rem; }
-.info-card {
-  background: var(--taupe-card);
-  border-radius: var(--r-md);
-  padding: 1.5rem;
-}
-.info-card h4 { font-size: 1rem; font-weight: 700; margin-bottom: 0.75rem; }
-.city-chips {
-  display: flex; flex-wrap: wrap; gap: 0.5rem;
-}
-.city-chip {
-  background: var(--taupe-lt);
-  border-radius: 999px;
-  padding: 0.3em 0.9em;
-  font-size: 0.85rem; font-weight: 600;
-  color: var(--muted);
-}
-.city-chip.active {
-  background: var(--black); color: var(--lime);
-}
-.partner-perks {
-  display: flex; flex-direction: column; gap: 0.5rem;
-}
-.perk {
-  display: flex; align-items: center; gap: 0.7rem;
-  font-size: 0.9rem; font-weight: 500; color: var(--muted);
-}
-.perk::before {
-  content: '\2713';
-  background: var(--black); color: var(--lime);
-  width: 1.3em; height: 1.3em;
-  border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 0.75rem; font-weight: 800;
-  flex-shrink: 0;
-}
-
-/* ─── FOOTER ──────────────────────────────────────────── */
-footer {
-  background: var(--black);
-  color: var(--taupe-dk);
-  padding: 3rem 0 2rem;
-}
-.footer-inner {
-  display: flex; flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 2rem;
-}
-.footer-logo img { height: 28px; filter: invert(1); margin-bottom: 0.75rem; }
-.footer-logo p { font-size: 0.85rem; max-width: 28ch; }
-.footer-links h5 {
-  font-size: 0.8rem; font-weight: 700;
-  letter-spacing: .1em; text-transform: uppercase;
-  color: var(--taupe-lt); margin-bottom: 0.75rem;
-}
-.footer-links ul { display: flex; flex-direction: column; gap: 0.4rem; }
-.footer-links a { font-size: 0.9rem; transition: color .2s; }
-.footer-links a:hover { color: var(--lime); }
-.footer-bottom {
-  margin-top: 2.5rem;
-  padding-top: 1.5rem;
-  border-top: 1px solid #2a2a2a;
-  display: flex; justify-content: space-between; align-items: center;
-  flex-wrap: wrap; gap: 0.5rem;
-  font-size: 0.8rem;
-}
-
-/* ─── RESPONSIVE ──────────────────────────────────────── */
-@media (max-width: 960px) {
-  .hero-grid,
-  .model-layout,
-  .ad-model-grid,
-  .machines-grid,
-  .ciudad-layout { grid-template-columns: 1fr; }
-  .hero-visual { order: -1; min-height: 300px; }
-  .nav-links { display: none; }
-  .hamburger { display: flex; }
-}
-
-@media (max-width: 560px) {
-  .steps-grid { grid-template-columns: 1fr; }
-  .reach-stats { grid-template-columns: 1fr; }
-  .venue-logos { grid-template-columns: repeat(2, 1fr); }
-  .compare-table th, .compare-table td { padding: 0.75rem; font-size: 0.8rem; }
-  .footer-inner { flex-direction: column; }
-  .footer-bottom { flex-direction: column; align-items: flex-start; }
 }
 </style>
 </head>
@@ -681,17 +61,17 @@ footer {
 <!-- ══ NAVBAR ══ -->
 <nav id="nav">
   <div class="container nav-inner">
-    <a class="nav-logo" href="#hero">
+    <a class="nav-logo" href="index.html">
       <img src="assets/logo-black.png" alt="krga">
     </a>
     <ul class="nav-links">
-      <li><a href="#como">Como funciona</a></li>
-      <li><a href="#renta">Renta fija</a></li>
-      <li><a href="#publicidad">Publicidad</a></li>
-      <li><a href="#maquinas">Maquinas</a></li>
-      <li><a href="#ciudad" class="nav-cta">Unete</a></li>
+      <li><a href="establecimientos.html">Establecimientos</a></li>
+      <li><a href="marcas.html">Marcas</a></li>
+      <li><a href="la-maquina.html">La máquina</a></li>
+      <li><a href="contacto.html">Contacto</a></li>
+      <li><a href="contacto.html" class="nav-cta">Contáctanos</a></li>
     </ul>
-    <button class="hamburger" id="hamburger" aria-label="Menu">
+    <button class="hamburger" id="hamburger" aria-label="Menú">
       <span></span><span></span><span></span>
     </button>
   </div>
@@ -699,650 +79,113 @@ footer {
 
 <!-- Mobile menu -->
 <div class="mobile-menu" id="mobileMenu">
-  <a href="#como"       onclick="closeMobile()">Como funciona</a>
-  <a href="#renta"      onclick="closeMobile()">Renta fija</a>
-  <a href="#publicidad" onclick="closeMobile()">Publicidad</a>
-  <a href="#maquinas"   onclick="closeMobile()">Maquinas</a>
-  <a href="#ciudad"     onclick="closeMobile()">Unete</a>
+  <a href="establecimientos.html" onclick="closeMobile()">Establecimientos</a>
+  <a href="marcas.html"           onclick="closeMobile()">Marcas</a>
+  <a href="la-maquina.html"       onclick="closeMobile()">La máquina</a>
+  <a href="contacto.html"         onclick="closeMobile()">Contacto</a>
 </div>
 
-<!-- ══ 1. HERO ══ -->
+<!-- ══ HERO ══ -->
 <section id="hero">
   <div class="container">
     <div class="hero-grid">
-      <div class="hero-text reveal">
-        <span class="tag">Powerbank Sharing</span>
-        <h1>Siempre con carga.<br>En donde estes.</h1>
+
+      <div class="reveal">
+        <span class="tag">Powerbank Sharing · Guadalajara</span>
+        <h1 class="hero-h1">
+          ¿Tus clientes<br>se quedan<br><span class="white-word">sin pila?</span>
+        </h1>
         <p class="lead">
-          krga lleva estaciones de carga a restaurantes, bares, hoteles y mas.
-          Tus clientes cargan gratis. Tu negocio se destaca.
+          krga instala estaciones de carga en tu negocio. Tus
+          clientes cargan su celular mientras disfrutan. Tú te
+          enfocas en lo que importa.
         </p>
         <div class="hero-ctas">
-          <a href="#como" class="btn-primary">Como funciona</a>
-          <a href="#ciudad" class="btn-outline">Unete a krga</a>
-        </div>
-      </div>
-      <div class="hero-visual reveal">
-        <div class="hero-blob"></div>
-        <img class="hero-mascot" src="assets/monito-bolt.png" alt="krga mascot" onerror="this.style.display='none'">
-      </div>
-    </div>
-
-    <div class="ticker-wrap reveal">
-      <div class="ticker-track" id="tickerTrack"></div>
-    </div>
-  </div>
-</section>
-
-<!-- ══ 2. COMO FUNCIONA ══ -->
-<section id="como">
-  <div class="container">
-    <div class="section-header reveal">
-      <span class="tag">Paso a paso</span>
-      <h2>Asi de facil</h2>
-      <p class="lead" style="margin: 0.75rem auto 0;">En segundos tienes una bateria en la mano y tu sigues tu dia.</p>
-    </div>
-
-    <div class="steps-grid">
-      <div class="step-card reveal">
-        <div class="step-num">1</div>
-        <div class="step-icon">&#x1F4CD;</div>
-        <h3>Encuentra una estacion</h3>
-        <p>Localiza el kiosko krga en el establecimiento. Lo veras de lejos.</p>
-      </div>
-      <div class="step-card reveal">
-        <div class="step-num">2</div>
-        <div class="step-icon">&#x1F4F1;</div>
-        <h3>Escanea el QR</h3>
-        <p>Abre la app o escanea el codigo. Sin filas, sin complicaciones.</p>
-      </div>
-      <div class="step-card reveal">
-        <div class="step-num">3</div>
-        <div class="step-icon">&#x26A1;</div>
-        <h3>Retira tu powerbank</h3>
-        <p>Toma la bateria y conecta tu cable favorito: USB-C, Lightning o Micro.</p>
-      </div>
-      <div class="step-card reveal">
-        <div class="step-num">4</div>
-        <div class="step-icon">&#x1F504;</div>
-        <h3>Devuelvela cuando quieras</h3>
-        <p>En cualquier estacion krga de la ciudad. Sin prisa.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══ 3. RENTA FIJA ══ -->
-<section id="renta">
-  <div class="container">
-    <div class="model-layout">
-      <div class="reveal">
-        <span class="tag">Para establecimientos</span>
-        <h2>Modelo de<br>Renta Fija</h2>
-        <p class="lead" style="margin-top: 0.75rem;">
-          Paga una cuota mensual fija y tus clientes cargan sus telefonos completamente gratis.
-          Sin cobros adicionales, sin friccion.
-        </p>
-
-        <div class="model-benefits">
-          <div class="benefit-item">
-            <div class="benefit-icon">&#x1F3C6;</div>
-            <div>
-              <h4>Diferenciador competitivo</h4>
-              <p>Ofrece un servicio exclusivo que muy pocos lugares tienen.</p>
-            </div>
-          </div>
-          <div class="benefit-item">
-            <div class="benefit-icon">&#x23F1;&#xFE0F;</div>
-            <div>
-              <h4>Mayor permanencia</h4>
-              <p>Clientes que cargan su telefono se quedan mas tiempo en tu espacio.</p>
-            </div>
-          </div>
-          <div class="benefit-item">
-            <div class="benefit-icon">&#x1F60A;</div>
-            <div>
-              <h4>Experiencia sin costo para el cliente</h4>
-              <p>Cero cobros al usuario final. Tu absorbes el costo y el lo agradece.</p>
-            </div>
-          </div>
-          <div class="benefit-item">
-            <div class="benefit-icon">&#x1F4CA;</div>
-            <div>
-              <h4>Dashboard de uso</h4>
-              <p>Monitorea usos, horarios pico y popularidad desde tu panel.</p>
-            </div>
-          </div>
+          <a href="establecimientos.html" class="btn-primary">Soy un establecimiento</a>
+          <a href="marcas.html" class="btn-outline">Soy una marca</a>
         </div>
       </div>
 
-      <div class="reveal">
-        <div class="model-visual">
-          <div class="model-stat">
-            <div class="stat-num"><span class="counter" data-target="87" data-suf="%">0%</span></div>
-            <p>de las personas abandona un lugar cuando su bateria llega a 20%</p>
-          </div>
-          <div class="model-stat">
-            <div class="stat-num"><span class="counter" data-target="40" data-suf="%">0%</span></div>
-            <p>mas de permanencia en espacios que ofrecen carga gratuita</p>
-          </div>
-          <div>
-            <p style="font-size:.85rem; font-weight:700; margin-bottom:.75rem; color:var(--black);">Ideal para</p>
-            <div class="venue-logos">
-              <div class="venue-chip"><span>&#x1F37D;&#xFE0F;</span>Restaurantes</div>
-              <div class="venue-chip"><span>&#x1F37A;</span>Bares</div>
-              <div class="venue-chip"><span>&#x2615;</span>Cafeterias</div>
-              <div class="venue-chip"><span>&#x1F3E8;</span>Hoteles</div>
-              <div class="venue-chip"><span>&#x1F6D2;</span>Retail</div>
-              <div class="venue-chip"><span>&#x2708;&#xFE0F;</span>Aeropuertos</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══ 4. PUBLICIDAD ══ -->
-<section id="publicidad">
-  <div class="container">
-    <div class="ad-model-grid">
-      <div class="reveal" style="display:flex; justify-content:center; padding: 2rem 0;">
-        <div class="machine-mockup">
-          <div class="machine-body-smart">
-            <div class="machine-screen">
-              <div class="machine-ad-slide mad-0 active">
-                <span>Tu marca<br>aqui</span>
-              </div>
-              <div class="machine-ad-slide mad-1">
-                <span>Alcanza<br>miles</span>
-              </div>
-              <div class="machine-ad-slide mad-2">
-                <span>Alto<br>impacto</span>
+      <div class="hero-visual reveal visual-right">
+        <!-- Machine mockup -->
+        <div class="machine-wrap">
+          <div class="machine-body">
+            <div class="machine-screen machine-screen-ad">
+              <div class="ad-card">
+                <div class="ad-badge">AD</div>
+                <div class="ad-card-title">TU RESTAURANTE</div>
+                <div class="ad-card-sub">Menú del día<br>Reserva tu mesa hoy</div>
               </div>
             </div>
-            <div class="machine-slots-row">
-              <div class="slot charged"></div>
-              <div class="slot charged"></div>
+            <div class="machine-label">
+              <img src="assets/logo-black.png" alt="krga" class="machine-label-logo">
+              <span class="machine-model-tag">SMART</span>
+            </div>
+            <div class="machine-slots">
+              <div class="slot on"></div>
               <div class="slot"></div>
-              <div class="slot charged"></div>
+              <div class="slot on"></div>
+              <div class="slot on"></div>
               <div class="slot"></div>
-              <div class="slot charged"></div>
+              <div class="slot on"></div>
             </div>
-            <div class="machine-base"></div>
+            <div class="machine-footer"></div>
           </div>
         </div>
       </div>
 
-      <div class="reveal">
-        <span class="tag">Para marcas y agencias</span>
-        <h2>Modelo de<br>Publicidad</h2>
-        <p class="lead" style="margin-top: 0.75rem;">
-          Muestra tu marca en las pantallas digitales integradas de cada maquina krga.
-          Impacto visual en el momento exacto en que el cliente esta de pie, mirando.
-        </p>
-
-        <div class="ad-benefits">
-          <div class="benefit-item">
-            <div class="benefit-icon">&#x1F3AF;</div>
-            <div>
-              <h4>Audiencia captiva</h4>
-              <p>El usuario esta de pie frente a la maquina. Atencion garantizada.</p>
-            </div>
-          </div>
-          <div class="benefit-item">
-            <div class="benefit-icon">&#x1F3D9;&#xFE0F;</div>
-            <div>
-              <h4>Red de ubicaciones premium</h4>
-              <p>Restaurantes, hoteles, centros comerciales en las mejores ciudades.</p>
-            </div>
-          </div>
-          <div class="benefit-item">
-            <div class="benefit-icon">&#x1F4C8;</div>
-            <div>
-              <h4>Metricas reales</h4>
-              <p>Impresiones, horarios de mayor visibilidad y analisis por ubicacion.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="reach-stats">
-          <div class="reach-stat">
-            <div class="rnum"><span class="counter" data-target="10" data-suf='"'>0"</span></div>
-            <p>Pantalla SMART</p>
-          </div>
-          <div class="reach-stat">
-            <div class="rnum"><span class="counter" data-target="32" data-suf='"'>0"</span></div>
-            <p>Pantalla SMART+</p>
-          </div>
-          <div class="reach-stat">
-            <div class="rnum"><span class="counter" data-target="6">0</span></div>
-            <p>Baterias SMART</p>
-          </div>
-          <div class="reach-stat">
-            <div class="rnum"><span class="counter" data-target="24">0</span></div>
-            <p>Baterias SMART+</p>
-          </div>
-        </div>
-      </div>
     </div>
   </div>
 </section>
 
-<!-- ══ 5. MAQUINAS ══ -->
-<section id="maquinas">
-  <div class="container">
-    <div class="machines-intro reveal">
-      <span class="tag">Hardware</span>
-      <h2>Nuestras maquinas</h2>
-      <p class="lead" style="margin: 0.75rem auto 0;">
-        Dos modelos para cada espacio y escala de negocio.
-      </p>
-    </div>
-
-    <div class="machines-grid">
-
-      <!-- SMART -->
-      <div class="machine-card reveal">
-        <div class="machine-card-header">
-          <span class="model-tag">Modelo compacto</span>
-          <h3>krga SMART</h3>
-        </div>
-        <div class="machine-card-body">
-          <div class="machine-visual-area">
-            <div class="machine-body-smart" style="width:160px;">
-              <div class="machine-screen">
-                <div class="machine-ad-slide sp-a0 active" style="background:linear-gradient(135deg,#1a1a1a,#333);">
-                  <span style="color:var(--lime);">krga<br>SMART</span>
-                </div>
-                <div class="machine-ad-slide sp-a1" style="background:linear-gradient(135deg,#0a2d55,#2980b9);">
-                  <span>10.1"<br>pantalla</span>
-                </div>
-                <div class="machine-ad-slide sp-a2" style="background:linear-gradient(135deg,#1a5c3a,#27ae60);">
-                  <span>6<br>baterias</span>
-                </div>
-              </div>
-              <div class="machine-slots-row">
-                <div class="slot charged"></div>
-                <div class="slot charged"></div>
-                <div class="slot"></div>
-                <div class="slot charged"></div>
-                <div class="slot charged"></div>
-                <div class="slot"></div>
-              </div>
-              <div class="machine-base"></div>
-            </div>
-          </div>
-
-          <div class="specs-list">
-            <div class="spec-row">
-              <span class="spec-icon">&#x1F50B;</span>
-              <span class="spec-label">Baterias</span>
-              <span class="spec-val">6 powerbanks</span>
-            </div>
-            <div class="spec-row">
-              <span class="spec-icon">&#x1F5A5;&#xFE0F;</span>
-              <span class="spec-label">Pantalla</span>
-              <span class="spec-val">10.1 pulgadas</span>
-            </div>
-            <div class="spec-row">
-              <span class="spec-icon">&#x1F4F6;</span>
-              <span class="spec-label">Conectividad</span>
-              <span class="spec-val">WiFi + 4G</span>
-            </div>
-            <div class="spec-row">
-              <span class="spec-icon">&#x2699;&#xFE0F;</span>
-              <span class="spec-label">Operacion</span>
-              <span class="spec-val">100% autonoma</span>
-            </div>
-            <div class="spec-row">
-              <span class="spec-icon">&#x1F4CF;</span>
-              <span class="spec-label">Formato</span>
-              <span class="spec-val">Sobremesa / counter</span>
-            </div>
-            <div class="spec-row">
-              <span class="spec-icon">&#x1F50C;</span>
-              <span class="spec-label">Cables</span>
-              <span class="spec-val">USB-C · Lightning · Micro USB</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- SMART+ -->
-      <div class="machine-card reveal">
-        <div class="machine-card-header">
-          <span class="model-tag">Modelo premium</span>
-          <h3>krga SMART+</h3>
-        </div>
-        <div class="machine-card-body">
-          <div class="machine-visual-area">
-            <div class="machine-body-smart-plus">
-              <div class="machine-screen-lg">
-                <div class="sp-ad-slide sp-ad-0 active">
-                  <span>krga<br>SMART+</span>
-                </div>
-                <div class="sp-ad-slide sp-ad-1">
-                  <span>32"<br>pantalla</span>
-                </div>
-                <div class="sp-ad-slide sp-ad-2">
-                  <span>24<br>baterias</span>
-                </div>
-              </div>
-              <div class="machine-slots-grid">
-                <div class="slot-sm charged" style="--i:0"></div>
-                <div class="slot-sm charged" style="--i:1"></div>
-                <div class="slot-sm" style="--i:2"></div>
-                <div class="slot-sm charged" style="--i:3"></div>
-                <div class="slot-sm charged" style="--i:4"></div>
-                <div class="slot-sm" style="--i:5"></div>
-                <div class="slot-sm charged" style="--i:6"></div>
-                <div class="slot-sm charged" style="--i:7"></div>
-                <div class="slot-sm" style="--i:8"></div>
-                <div class="slot-sm charged" style="--i:9"></div>
-                <div class="slot-sm charged" style="--i:10"></div>
-                <div class="slot-sm" style="--i:11"></div>
-                <div class="slot-sm" style="--i:12"></div>
-                <div class="slot-sm charged" style="--i:13"></div>
-                <div class="slot-sm charged" style="--i:14"></div>
-                <div class="slot-sm" style="--i:15"></div>
-                <div class="slot-sm charged" style="--i:16"></div>
-                <div class="slot-sm" style="--i:17"></div>
-                <div class="slot-sm charged" style="--i:18"></div>
-                <div class="slot-sm charged" style="--i:19"></div>
-                <div class="slot-sm" style="--i:20"></div>
-                <div class="slot-sm charged" style="--i:21"></div>
-                <div class="slot-sm charged" style="--i:22"></div>
-                <div class="slot-sm" style="--i:23"></div>
-              </div>
-              <div class="machine-base"></div>
-            </div>
-          </div>
-
-          <div class="specs-list">
-            <div class="spec-row">
-              <span class="spec-icon">&#x1F50B;</span>
-              <span class="spec-label">Baterias</span>
-              <span class="spec-val">24 powerbanks</span>
-            </div>
-            <div class="spec-row">
-              <span class="spec-icon">&#x1F5A5;&#xFE0F;</span>
-              <span class="spec-label">Pantalla</span>
-              <span class="spec-val">32 pulgadas</span>
-            </div>
-            <div class="spec-row">
-              <span class="spec-icon">&#x1F4F6;</span>
-              <span class="spec-label">Conectividad</span>
-              <span class="spec-val">WiFi + 4G</span>
-            </div>
-            <div class="spec-row">
-              <span class="spec-icon">&#x2699;&#xFE0F;</span>
-              <span class="spec-label">Operacion</span>
-              <span class="spec-val">100% autonoma</span>
-            </div>
-            <div class="spec-row">
-              <span class="spec-icon">&#x1F4CF;</span>
-              <span class="spec-label">Altura</span>
-              <span class="spec-val">180 cm (torre independiente)</span>
-            </div>
-            <div class="spec-row">
-              <span class="spec-icon">&#x1F50C;</span>
-              <span class="spec-label">Cables</span>
-              <span class="spec-val">USB-C · Lightning · Micro USB</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-    </div><!-- /machines-grid -->
-
-    <div class="compare-table reveal">
-      <table>
-        <thead>
-          <tr>
-            <th>Caracteristica</th>
-            <th>SMART</th>
-            <th>SMART+</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><td>Baterias simultaneas</td><td>6</td><td>24</td></tr>
-          <tr><td>Pantalla publicitaria</td><td>10.1"</td><td>32"</td></tr>
-          <tr><td>Formato</td><td>Sobremesa</td><td>Torre 180 cm</td></tr>
-          <tr><td>Conectividad</td><td>WiFi + 4G</td><td>WiFi + 4G</td></tr>
-          <tr><td>Operacion autonoma</td><td>&#x2713;</td><td>&#x2713;</td></tr>
-          <tr><td>Ideal para</td><td>Mesas / counters</td><td>Lobbies / pasillos</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-</section>
-
-<!-- ══ 6. TU CIUDAD ══ -->
-<section id="ciudad">
-  <div class="container">
-    <div class="section-header reveal">
-      <span class="tag">Expansion</span>
-      <h2>Pon krga en tu ciudad</h2>
-      <p class="lead" style="margin: 0.75rem auto 0;">
-        Somos aliados de negocios locales. Si quieres operar krga en tu ciudad o instalar una maquina, hablemos.
-      </p>
-    </div>
-
-    <div class="ciudad-layout">
-      <div class="reveal">
-        <div class="contact-form" id="contactForm">
-          <h3>Escribenos</h3>
-          <div class="form-group">
-            <label for="f-name">Nombre completo</label>
-            <input type="text" id="f-name" placeholder="Tu nombre">
-          </div>
-          <div class="form-group">
-            <label for="f-email">Correo electronico</label>
-            <input type="email" id="f-email" placeholder="tu@correo.com">
-          </div>
-          <div class="form-group">
-            <label for="f-biz">Tipo de negocio o interes</label>
-            <select id="f-biz">
-              <option value="">Selecciona una opcion</option>
-              <option>Restaurante / Bar</option>
-              <option>Hotel</option>
-              <option>Centro comercial</option>
-              <option>Operador de ciudad</option>
-              <option>Marca / Anunciante</option>
-              <option>Otro</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="f-city">Ciudad</label>
-            <input type="text" id="f-city" placeholder="Desde donde nos escribes?">
-          </div>
-          <div class="form-group">
-            <label for="f-msg">Mensaje (opcional)</label>
-            <textarea id="f-msg" placeholder="Cuentanos un poco mas..."></textarea>
-          </div>
-          <button class="form-submit" onclick="submitForm()">Enviar mensaje</button>
-        </div>
-        <div class="form-success" id="formSuccess">
-          <div class="check">&#x2705;</div>
-          <h3>Mensaje recibido!</h3>
-          <p>Nos pondremos en contacto contigo muy pronto.</p>
-        </div>
-      </div>
-
-      <div class="ciudad-info reveal">
-        <div class="info-card">
-          <h4>Ciudades donde ya operamos</h4>
-          <div class="city-chips">
-            <span class="city-chip active">CDMX</span>
-            <span class="city-chip active">Guadalajara</span>
-            <span class="city-chip active">Monterrey</span>
-            <span class="city-chip">Cancun</span>
-            <span class="city-chip">Puebla</span>
-            <span class="city-chip">Leon</span>
-            <span class="city-chip">+ proximamente</span>
-          </div>
-        </div>
-
-        <div class="info-card">
-          <h4>Por que ser socio krga?</h4>
-          <div class="partner-perks">
-            <span class="perk">Instalacion y mantenimiento incluidos</span>
-            <span class="perk">Dashboard de metricas en tiempo real</span>
-            <span class="perk">Soporte tecnico dedicado</span>
-            <span class="perk">Modelo de ingresos compartido disponible</span>
-            <span class="perk">Capacitacion para tu equipo</span>
-            <span class="perk">Material de comunicacion para tus clientes</span>
-          </div>
-        </div>
-
-        <div class="info-card" style="background: var(--black);">
-          <h4 style="color: var(--lime);">Tambien puedes escribirnos directo</h4>
-          <p style="color: var(--taupe-dk); margin-top: 0.5rem; font-size: 0.9rem;">hola@krga.mx</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══ FOOTER ══ -->
+<!-- ─── FOOTER ─── -->
 <footer>
   <div class="container">
     <div class="footer-inner">
       <div class="footer-logo">
-        <img src="assets/logo-black.png" alt="krga" onerror="this.style.display='none'">
-        <p>Powerbank sharing para la generacion siempre conectada.</p>
+        <img src="assets/logo-black.png" alt="krga">
+        <p>Powerbank sharing para negocios en Guadalajara.</p>
       </div>
       <div class="footer-links">
-        <h5>Soluciones</h5>
+        <h5>Para ti</h5>
         <ul>
-          <li><a href="#renta">Renta fija para establecimientos</a></li>
-          <li><a href="#publicidad">Publicidad en maquinas</a></li>
-          <li><a href="#maquinas">Nuestras maquinas</a></li>
+          <li><a href="establecimientos.html">Establecimientos</a></li>
+          <li><a href="marcas.html">Marcas</a></li>
+          <li><a href="la-maquina.html">La máquina</a></li>
         </ul>
       </div>
       <div class="footer-links">
         <h5>Empresa</h5>
         <ul>
-          <li><a href="#ciudad">Expansion a nuevas ciudades</a></li>
-          <li><a href="https://www.krga.mx" target="_blank" rel="noopener">www.krga.mx</a></li>
-          <li><a href="mailto:hola@krga.mx">hola@krga.mx</a></li>
+          <li><a href="contacto.html">Contacto</a></li>
         </ul>
       </div>
     </div>
     <div class="footer-bottom">
-      <span>2024 krga - Todos los derechos reservados</span>
-      <span style="color: var(--taupe-dk);">Carga sin limites</span>
+      <span>© 2025 krga®. Todos los derechos reservados.</span>
+      <span>Guadalajara, México</span>
     </div>
   </div>
 </footer>
 
-<!-- ══ JS ══ -->
 <script>
-/* Navbar scroll */
+// Navbar scroll
 const nav = document.getElementById('nav');
-window.addEventListener('scroll', function() {
-  nav.classList.toggle('scrolled', window.scrollY > 30);
-}, { passive: true });
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 40);
+});
 
-/* Hamburger */
-const ham = document.getElementById('hamburger');
-const mob = document.getElementById('mobileMenu');
-ham.addEventListener('click', function() { mob.classList.toggle('open'); });
-function closeMobile() { mob.classList.remove('open'); }
+// Hamburger
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobileMenu');
+hamburger.addEventListener('click', () => mobileMenu.classList.toggle('open'));
+function closeMobile() { mobileMenu.classList.remove('open'); }
 
-/* Ticker */
-var tickerItems = [
-  'Powerbank Sharing',
-  'Renta Fija',
-  'Publicidad Digital',
-  'krga SMART 6 baterias',
-  'krga SMART+ 24 baterias',
-  '100% Autonomo',
-  'WiFi & 4G',
-  'Pantalla 32"',
-  'Siempre con carga',
-];
-(function buildTicker() {
-  var track = document.getElementById('tickerTrack');
-  var all = tickerItems.concat(tickerItems);
-  track.innerHTML = all.map(function(t) {
-    return '<span class="ticker-item">' + t + '<span class="ticker-dot"> · </span></span>';
-  }).join('');
-})();
-
-/* Reveal */
-var revealObs = new IntersectionObserver(function(entries) {
-  entries.forEach(function(e) {
-    if (e.isIntersecting) {
-      e.target.classList.add('visible');
-      revealObs.unobserve(e.target);
-    }
-  });
+// Reveal on scroll
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
 }, { threshold: 0.12 });
-document.querySelectorAll('.reveal').forEach(function(el) { revealObs.observe(el); });
-
-/* Counter */
-function animateNum(el) {
-  var target = +el.dataset.target;
-  var suf = el.dataset.suf || '';
-  var dur = 1700;
-  var t0 = performance.now();
-  (function tick(now) {
-    var p = Math.min((now - t0) / dur, 1);
-    var ease = 1 - Math.pow(1 - p, 3);
-    el.textContent = Math.floor(ease * target) + suf;
-    if (p < 1) requestAnimationFrame(tick);
-  })(t0);
-}
-var counterObs = new IntersectionObserver(function(entries) {
-  entries.forEach(function(e) {
-    if (e.isIntersecting) {
-      e.target.querySelectorAll('.counter').forEach(animateNum);
-      counterObs.unobserve(e.target);
-    }
-  });
-}, { threshold: 0.3 });
-document.querySelectorAll('#renta, #publicidad').forEach(function(s) { counterObs.observe(s); });
-
-/* SMART ads (publicidad section) */
-var smartAds = ['mad-0', 'mad-1', 'mad-2'];
-var smartIdx = 0;
-setInterval(function() {
-  document.getElementById(smartAds[smartIdx]).classList.remove('active');
-  smartIdx = (smartIdx + 1) % smartAds.length;
-  document.getElementById(smartAds[smartIdx]).classList.add('active');
-}, 3000);
-
-/* SMART card screens (machines section) */
-var spAClasses = ['sp-a0', 'sp-a1', 'sp-a2'];
-var spAIdx = 0;
-setInterval(function() {
-  document.querySelectorAll('.' + spAClasses[spAIdx]).forEach(function(el) { el.classList.remove('active'); });
-  spAIdx = (spAIdx + 1) % spAClasses.length;
-  document.querySelectorAll('.' + spAClasses[spAIdx]).forEach(function(el) { el.classList.add('active'); });
-}, 2800);
-
-/* SMART+ screens */
-var spBClasses = ['sp-ad-0', 'sp-ad-1', 'sp-ad-2'];
-var spBIdx = 0;
-setInterval(function() {
-  document.querySelectorAll('.' + spBClasses[spBIdx]).forEach(function(el) { el.classList.remove('active'); });
-  spBIdx = (spBIdx + 1) % spBClasses.length;
-  document.querySelectorAll('.' + spBClasses[spBIdx]).forEach(function(el) { el.classList.add('active'); });
-}, 2500);
-
-/* Form */
-function submitForm() {
-  var name  = document.getElementById('f-name').value.trim();
-  var email = document.getElementById('f-email').value.trim();
-  if (!name || !email) {
-    alert('Por favor ingresa tu nombre y correo.');
-    return;
-  }
-  document.getElementById('contactForm').style.display = 'none';
-  document.getElementById('formSuccess').style.display = 'block';
-}
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 </script>
 </body>
 </html>

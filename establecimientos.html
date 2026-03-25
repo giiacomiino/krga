@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>krga® — Establecimientos</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+#hero-estab {
+  min-height: 100dvh;
+  display: flex; align-items: center;
+  padding-top: 100px;
+  padding-bottom: var(--section-pad);
+  background: var(--taupe);
+}
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--gap);
+  align-items: center;
+}
+.benefits-list { display: flex; flex-direction: column; gap: 0.85rem; margin-top: 1.75rem; }
+
+.stats-box {
+  background: var(--taupe-card);
+  border-radius: var(--r-lg);
+  padding: clamp(1.5rem, 3vw, 2.5rem);
+  display: flex; flex-direction: column; gap: 1rem;
+}
+.stat-row {
+  background: var(--taupe-lt);
+  border-radius: var(--r-md);
+  padding: 1.5rem;
+  text-align: center;
+}
+.stat-num {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 900; letter-spacing: -0.03em;
+  line-height: 1; margin-bottom: 0.3rem;
+}
+.venue-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.6rem;
+  margin-top: 0.25rem;
+}
+.venue-chip {
+  background: var(--taupe-lt);
+  border-radius: var(--r-sm);
+  padding: 0.7rem 0.5rem;
+  text-align: center;
+  font-size: 0.78rem; font-weight: 600; color: var(--muted);
+}
+.venue-chip span { display: block; font-size: 1.3rem; margin-bottom: 0.2rem; }
+
+#como {
+  padding: var(--section-pad) 0;
+  background: var(--taupe-lt);
+}
+.section-header { text-align: center; margin-bottom: clamp(2.5rem, 5vw, 4rem); }
+.section-header h2 { margin-bottom: 0.75rem; }
+.steps-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: var(--gap);
+}
+.step-card {
+  background: var(--taupe-card);
+  border-radius: var(--r-md);
+  padding: clamp(1.5rem, 2.5vw, 2rem);
+  position: relative; overflow: hidden;
+}
+.step-num {
+  font-size: 4.5rem; font-weight: 900;
+  color: var(--taupe-dk); line-height: 1;
+  position: absolute; top: -0.15em; right: 0.2em;
+  user-select: none;
+}
+.step-icon { font-size: 2rem; margin-bottom: 1rem; position: relative; z-index: 1; }
+.step-card h3 { margin-bottom: 0.5rem; position: relative; z-index: 1; }
+.step-card p { position: relative; z-index: 1; }
+</style>
+</head>
+<body>
+
+<!-- ══ NAVBAR ══ -->
+<nav id="nav">
+  <div class="container nav-inner">
+    <a class="nav-logo" href="index.html">
+      <img src="assets/logo-black.png" alt="krga">
+    </a>
+    <ul class="nav-links">
+      <li><a href="establecimientos.html" class="active">Establecimientos</a></li>
+      <li><a href="marcas.html">Marcas</a></li>
+      <li><a href="la-maquina.html">La máquina</a></li>
+      <li><a href="contacto.html">Contacto</a></li>
+      <li><a href="contacto.html" class="nav-cta">Contáctanos</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Menú">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="establecimientos.html" onclick="closeMobile()">Establecimientos</a>
+  <a href="marcas.html"           onclick="closeMobile()">Marcas</a>
+  <a href="la-maquina.html"       onclick="closeMobile()">La máquina</a>
+  <a href="contacto.html"         onclick="closeMobile()">Contacto</a>
+</div>
+
+<!-- ══ HERO ══ -->
+<section id="hero-estab">
+  <div class="container">
+    <div class="two-col">
+
+      <div class="reveal">
+        <span class="tag">Para establecimientos</span>
+        <h2>Dale a tus<br>clientes una<br>razón para<br>quedarse.</h2>
+        <p class="lead" style="margin-top:1rem;">
+          krga instala una estación de carga en tu negocio. Tus clientes
+          cargan su celular gratis mientras consumen. Tú pagas una renta
+          fija mensual, sin complicaciones.
+        </p>
+        <div class="benefits-list">
+          <div class="benefit-card-light">
+            <div class="benefit-icon-light">🏆</div>
+            <div>
+              <h4>Diferenciador competitivo</h4>
+              <p>Un servicio que muy pocos lugares ofrecen todavía.</p>
+            </div>
+          </div>
+          <div class="benefit-card-light">
+            <div class="benefit-icon-light">⏱️</div>
+            <div>
+              <h4>Mayor permanencia</h4>
+              <p>Clientes que cargan su celular se quedan más tiempo.</p>
+            </div>
+          </div>
+          <div class="benefit-card-light">
+            <div class="benefit-icon-light">😊</div>
+            <div>
+              <h4>Cero cobros al usuario</h4>
+              <p>El cliente carga gratis. Tú absorbes el costo, él lo agradece.</p>
+            </div>
+          </div>
+          <div class="benefit-card-light">
+            <div class="benefit-icon-light">📊</div>
+            <div>
+              <h4>Dashboard de uso</h4>
+              <p>Monitorea usos, horarios pico y popularidad desde tu panel.</p>
+            </div>
+          </div>
+        </div>
+        <div style="margin-top:2rem;">
+          <a href="contacto.html" class="btn-primary">Quiero krga en mi negocio</a>
+        </div>
+      </div>
+
+      <div class="reveal visual-right">
+        <div class="stats-box">
+          <div class="stat-row">
+            <div class="stat-num">87%</div>
+            <p>de las personas abandona un lugar cuando su batería llega a 20%</p>
+          </div>
+          <div class="stat-row">
+            <div class="stat-num">+40%</div>
+            <p>más de permanencia en espacios que ofrecen carga gratuita</p>
+          </div>
+          <div>
+            <p style="font-size:.82rem; font-weight:700; margin-bottom:.6rem; color:var(--black);">Ideal para</p>
+            <div class="venue-grid">
+              <div class="venue-chip"><span>🍽️</span>Restaurantes</div>
+              <div class="venue-chip"><span>🍺</span>Bares</div>
+              <div class="venue-chip"><span>☕</span>Cafeterías</div>
+              <div class="venue-chip"><span>🏨</span>Hoteles</div>
+              <div class="venue-chip"><span>🛒</span>Retail</div>
+              <div class="venue-chip"><span>✈️</span>Aeropuertos</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ CÓMO FUNCIONA ══ -->
+<section id="como">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="tag">Paso a paso</span>
+      <h2>Así de fácil</h2>
+      <p class="lead" style="margin:.5rem auto 0;">En segundos el cliente tiene una batería en la mano.</p>
+    </div>
+    <div class="steps-grid">
+      <div class="step-card reveal">
+        <div class="step-num">1</div>
+        <div class="step-icon">📍</div>
+        <h3>Encuentra la estación</h3>
+        <p>El kiosko krga está visible en tu establecimiento.</p>
+      </div>
+      <div class="step-card reveal">
+        <div class="step-num">2</div>
+        <div class="step-icon">📱</div>
+        <h3>Escanea el QR</h3>
+        <p>Sin filas, sin complicaciones. Solo abre la app o escanea.</p>
+      </div>
+      <div class="step-card reveal">
+        <div class="step-num">3</div>
+        <div class="step-icon">⚡</div>
+        <h3>Retira el powerbank</h3>
+        <p>Compatible con USB-C, Lightning y Micro USB.</p>
+      </div>
+      <div class="step-card reveal">
+        <div class="step-num">4</div>
+        <div class="step-icon">🔄</div>
+        <h3>Devuélvelo cuando quieras</h3>
+        <p>En cualquier estación krga de la ciudad.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-logo">
+        <img src="assets/logo-black.png" alt="krga">
+        <p>Powerbank sharing para negocios en Guadalajara.</p>
+      </div>
+      <div class="footer-links">
+        <h5>Para ti</h5>
+        <ul>
+          <li><a href="establecimientos.html">Establecimientos</a></li>
+          <li><a href="marcas.html">Marcas</a></li>
+          <li><a href="la-maquina.html">La máquina</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h5>Empresa</h5>
+        <ul>
+          <li><a href="contacto.html">Contacto</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 krga®. Todos los derechos reservados.</span>
+      <span>Guadalajara, México</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 40));
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobileMenu');
+hamburger.addEventListener('click', () => mobileMenu.classList.toggle('open'));
+function closeMobile() { mobileMenu.classList.remove('open'); }
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.12 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

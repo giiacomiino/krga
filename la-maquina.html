@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>krga® — La máquina</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+#hero-maquina {
+  min-height: 100dvh;
+  display: flex; align-items: center;
+  padding-top: 100px;
+  padding-bottom: var(--section-pad);
+  background: var(--taupe);
+}
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--gap);
+  align-items: center;
+}
+.benefits-list { display: flex; flex-direction: column; gap: 0.85rem; margin-top: 1.75rem; }
+
+/* phone with mascot */
+.phone-device {
+  display: flex; flex-direction: column; align-items: center; gap: 0;
+}
+.phone-top {
+  width: 220px;
+  background: var(--taupe-lt);
+  border-radius: 28px 28px 0 0;
+  overflow: hidden;
+  aspect-ratio: 9/14;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  padding: 1.5rem 1rem;
+  text-align: center;
+  position: relative;
+  box-shadow: 0 0 0 12px var(--taupe-card), 0 0 0 14px #1a1a18;
+}
+.phone-top img { width: 90px; margin-bottom: 0.75rem; }
+.phone-top-title {
+  font-size: 0.75rem; font-weight: 900;
+  letter-spacing: -0.01em; color: var(--black);
+  line-height: 1.3;
+}
+.phone-top .phone-badge {
+  position: absolute; bottom: 14px; left: 50%; transform: translateX(-50%);
+  background: rgba(0,0,0,0.1);
+  border-radius: 999px;
+  padding: 3px 12px;
+  font-size: 0.5rem; font-weight: 700;
+  letter-spacing: .1em; text-transform: uppercase;
+  color: rgba(0,0,0,0.45); white-space: nowrap;
+}
+
+.machine-bottom {
+  width: 240px;
+  background: var(--black);
+  border-radius: 0 0 20px 20px;
+  padding: 10px 14px 14px;
+  box-shadow: 0 20px 60px rgba(0,0,0,.25);
+}
+.machine-bottom-label {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 8px;
+}
+.machine-bottom-logo { height: 11px; filter: invert(1); opacity: .5; }
+.machine-bottom-tag {
+  font-size: 0.52rem; font-weight: 800; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--lime);
+  background: rgba(255,255,255,.1);
+  padding: 2px 7px; border-radius: 999px;
+}
+.machine-slots-6 {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 5px;
+}
+.machine-footer-bar {
+  width: 108%; margin-left: -4%; margin-top: 10px;
+  height: 8px; background: #0a0a08;
+  border-radius: 0 0 8px 8px;
+}
+
+#specs {
+  padding: var(--section-pad) 0;
+  background: var(--taupe-lt);
+}
+.specs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: var(--gap);
+  margin-top: clamp(2.5rem, 5vw, 4rem);
+}
+.spec-card {
+  background: var(--taupe-card);
+  border-radius: var(--r-md);
+  padding: clamp(1.5rem, 2.5vw, 2rem);
+}
+.spec-card-icon { font-size: 2rem; margin-bottom: 1rem; }
+.spec-card h3 { margin-bottom: 0.5rem; }
+.spec-card p { font-size: 0.9rem; }
+</style>
+</head>
+<body>
+
+<!-- ══ NAVBAR ══ -->
+<nav id="nav">
+  <div class="container nav-inner">
+    <a class="nav-logo" href="index.html">
+      <img src="assets/logo-black.png" alt="krga">
+    </a>
+    <ul class="nav-links">
+      <li><a href="establecimientos.html">Establecimientos</a></li>
+      <li><a href="marcas.html">Marcas</a></li>
+      <li><a href="la-maquina.html" class="active">La máquina</a></li>
+      <li><a href="contacto.html">Contacto</a></li>
+      <li><a href="contacto.html" class="nav-cta">Contáctanos</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Menú">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="establecimientos.html" onclick="closeMobile()">Establecimientos</a>
+  <a href="marcas.html"           onclick="closeMobile()">Marcas</a>
+  <a href="la-maquina.html"       onclick="closeMobile()">La máquina</a>
+  <a href="contacto.html"         onclick="closeMobile()">Contacto</a>
+</div>
+
+<!-- ══ HERO ══ -->
+<section id="hero-maquina">
+  <div class="container">
+    <div class="two-col">
+
+      <div class="reveal">
+        <span class="tag">La tecnología</span>
+        <h2>krga SMART</h2>
+        <p class="lead" style="margin-top:1rem;">
+          Una máquina autónoma con pantalla digital integrada. No
+          requiere mantenimiento de tu parte ni un empleado a cargo.
+        </p>
+        <div class="benefits-list">
+          <div class="benefit-card-light">
+            <div class="benefit-icon-light">📺</div>
+            <div>
+              <h4>Pantalla digital de 10.1"</h4>
+              <p>Pantalla Full HD integrada para publicidad o contenido propio. Visible de día y de noche, actualizable de forma remota.</p>
+            </div>
+          </div>
+          <div class="benefit-card-light">
+            <div class="benefit-icon-light">🔋</div>
+            <div>
+              <h4>6 powerbanks simultáneos</h4>
+              <p>Atiende a seis personas a la vez. Compatible con Lightning, USB-C y Micro USB.</p>
+            </div>
+          </div>
+          <div class="benefit-card-light">
+            <div class="benefit-icon-light">📡</div>
+            <div>
+              <h4>WiFi + 4G integrado</h4>
+              <p>Doble conectividad para garantizar disponibilidad total. Siempre en línea, siempre monitorada.</p>
+            </div>
+          </div>
+          <div class="benefit-card-light">
+            <div class="benefit-icon-light">🔧</div>
+            <div>
+              <h4>Mantenimiento incluido</h4>
+              <p>Si algo falla, nosotros lo atendemos. Sin costo ni coordinación de tu parte.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="reveal visual-right" style="display:flex; justify-content:center;">
+        <div class="phone-device">
+          <div class="phone-top">
+            <img src="assets/monito-bolt.png" alt="krga mascot" onerror="this.style.display='none'">
+            <div class="phone-top-title">¿TE QUEDASTE<br>SIN PILA?</div>
+            <div class="phone-badge">Pantalla 10.1"</div>
+          </div>
+          <div class="machine-bottom">
+            <div class="machine-bottom-label">
+              <img src="assets/logo-black.png" alt="krga" class="machine-bottom-logo">
+              <span class="machine-bottom-tag">SMART</span>
+            </div>
+            <div class="machine-slots-6">
+              <div class="slot on"></div>
+              <div class="slot"></div>
+              <div class="slot on"></div>
+              <div class="slot on"></div>
+              <div class="slot"></div>
+              <div class="slot on"></div>
+            </div>
+            <div class="machine-footer-bar"></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ SPECS ══ -->
+<section id="specs">
+  <div class="container">
+    <div class="reveal" style="text-align:center;">
+      <span class="tag">Especificaciones</span>
+      <h2>Todo lo que<br>necesitas saber</h2>
+    </div>
+    <div class="specs-grid">
+      <div class="spec-card reveal">
+        <div class="spec-card-icon">📐</div>
+        <h3>Dimensiones compactas</h3>
+        <p>Diseñada para no ocupar espacio. Cabe en cualquier rincón de tu negocio.</p>
+      </div>
+      <div class="spec-card reveal">
+        <div class="spec-card-icon">⚡</div>
+        <h3>Carga rápida</h3>
+        <p>Los powerbanks se recargan automáticamente dentro de la máquina. Siempre listos.</p>
+      </div>
+      <div class="spec-card reveal">
+        <div class="spec-card-icon">🔒</div>
+        <h3>Sistema antirrobo</h3>
+        <p>Mecanismo de bloqueo y monitoreo GPS en cada powerbank.</p>
+      </div>
+      <div class="spec-card reveal">
+        <div class="spec-card-icon">🌐</div>
+        <h3>Actualización remota</h3>
+        <p>Actualizamos el software y el contenido de pantalla de forma remota. Sin visitas.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-logo">
+        <img src="assets/logo-black.png" alt="krga">
+        <p>Powerbank sharing para negocios en Guadalajara.</p>
+      </div>
+      <div class="footer-links">
+        <h5>Para ti</h5>
+        <ul>
+          <li><a href="establecimientos.html">Establecimientos</a></li>
+          <li><a href="marcas.html">Marcas</a></li>
+          <li><a href="la-maquina.html">La máquina</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h5>Empresa</h5>
+        <ul>
+          <li><a href="contacto.html">Contacto</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 krga®. Todos los derechos reservados.</span>
+      <span>Guadalajara, México</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 40));
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobileMenu');
+hamburger.addEventListener('click', () => mobileMenu.classList.toggle('open'));
+function closeMobile() { mobileMenu.classList.remove('open'); }
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.12 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
