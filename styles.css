@@ -9,7 +9,7 @@
   --lime:       #E8EDB5;
   --black:      #111111;
   --white:      #FFFFFF;
-  --muted:      #5A594F;
+  --muted:      #47453D;
   --dark-bg:    #151512;
   --dark-card:  #1E1E1B;
   --dark-card2: #252520;
@@ -130,7 +130,7 @@ p  { font-size: clamp(0.95rem, 1.3vw, 1.1rem); color: var(--muted); }
 }
 .nav-logo img { height: 42px; }
 .nav-links {
-  display: flex; gap: 2.2rem; align-items: center;
+  display: flex; gap: 1.6rem; align-items: center;
 }
 .nav-links a {
   font-size: 0.9rem; font-weight: 600;
@@ -417,6 +417,45 @@ footer {
   display: flex; justify-content: space-between; align-items: center;
   flex-wrap: wrap; gap: 0.5rem;
   font-size: 0.8rem;
+}
+
+/* ─── BENEFIT FLIP CARDS ─────────────────────────────── */
+.benefit-flip {
+  background: var(--taupe-card);
+  border-radius: var(--r-lg);
+  padding: 2rem 1.75rem;
+  transition: background .3s, transform .25s, box-shadow .25s;
+  cursor: default;
+}
+.benefit-flip:hover {
+  background: var(--black);
+  transform: translateY(-6px);
+  box-shadow: 0 24px 60px rgba(0,0,0,.2);
+}
+.benefit-flip .bc-icon {
+  width: 44px; height: 44px;
+  background: var(--black);
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 1.25rem;
+  transition: background .3s;
+}
+.benefit-flip:hover .bc-icon { background: var(--lime); }
+.benefit-flip .bc-icon svg { fill: var(--lime); width: 22px; height: 22px; transition: fill .3s; }
+.benefit-flip:hover .bc-icon svg { fill: var(--black); }
+.benefit-flip h3 { color: var(--black); transition: color .3s; font-size: 1rem; font-weight: 800; margin-bottom: 0.5rem; }
+.benefit-flip:hover h3 { color: var(--white); }
+.benefit-flip .flip-desc {
+  max-height: 0; overflow: hidden; opacity: 0;
+  font-size: 0.85rem; color: rgba(255,255,255,.6);
+  line-height: 1.6; margin-top: 0;
+  transition: max-height .35s ease, opacity .3s ease, margin-top .3s ease;
+}
+.benefit-flip:hover .flip-desc {
+  max-height: 120px; opacity: 1; margin-top: 0.75rem;
+}
+@media (max-width: 960px) {
+  .benefit-flip .flip-desc { max-height: none; opacity: 1; margin-top: 0.5rem; color: var(--muted); }
 }
 
 /* ─── RESPONSIVE ──────────────────────────────────────── */

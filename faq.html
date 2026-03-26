@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>krga® — Preguntas Frecuentes</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+/* ─── HERO ─── */
+#faq-hero {
+  min-height: 52vh;
+  background: var(--taupe);
+  display: flex; align-items: center;
+  padding-top: 110px;
+  padding-bottom: 0;
+  overflow: hidden;
+}
+.faq-hero-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--gap);
+  align-items: flex-end;
+  width: 100%;
+  padding-bottom: 0;
+}
+.faq-hero-left {
+  padding-bottom: clamp(3rem, 6vw, 5rem);
+}
+.faq-hero-right {
+  display: flex; justify-content: flex-end; align-items: flex-end;
+}
+.faq-hero-right img {
+  height: clamp(220px, 30vw, 400px);
+  width: auto;
+  object-fit: contain;
+  object-position: bottom;
+  display: block;
+}
+
+/* ─── FAQ SECTIONS ─── */
+.faq-section {
+  padding: var(--section-pad) 0;
+}
+.faq-section-taupe { background: var(--taupe-lt); }
+.faq-section-black { background: var(--black); }
+.faq-section-card  { background: var(--taupe-card); }
+
+.faq-section-black .tag-faq {
+  background: rgba(255,255,255,.12);
+  color: rgba(255,255,255,.75);
+}
+.faq-section-black h2 { color: var(--white); }
+.faq-section-black .section-lead { color: rgba(255,255,255,.5); }
+
+.faq-section-taupe .tag-faq,
+.faq-section-card .tag-faq {
+  background: var(--black);
+  color: var(--white);
+}
+
+.tag-faq {
+  display: inline-block;
+  padding: 0.4em 1.1em;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 1.25rem;
+}
+
+.section-lead {
+  font-size: clamp(0.95rem, 1.3vw, 1.1rem);
+  color: var(--muted);
+  max-width: 48ch;
+  margin-top: 0.75rem;
+}
+
+/* ─── ACCORDION ─── */
+.faq-list {
+  display: flex; flex-direction: column; gap: 0.6rem;
+  margin-top: 2.5rem;
+}
+
+/* Light accordion items */
+.faq-item-light {
+  background: var(--taupe-card);
+  border-radius: var(--r-md);
+  overflow: hidden;
+}
+.faq-section-card .faq-item-light {
+  background: var(--taupe-lt);
+}
+
+/* Dark accordion items */
+.faq-item-dark {
+  background: #1E1E1B;
+  border-radius: var(--r-md);
+  overflow: hidden;
+}
+
+/* Shared button styles */
+.faq-q-btn {
+  width: 100%; text-align: left;
+  background: none; border: none; cursor: pointer;
+  padding: 1.3rem 1.6rem;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 1rem; font-family: inherit;
+  font-size: 0.95rem; font-weight: 700;
+}
+.faq-item-light .faq-q-btn { color: var(--black); }
+.faq-item-dark  .faq-q-btn { color: var(--white); }
+
+.faq-q-btn svg { flex-shrink: 0; transition: transform .3s; }
+.faq-item-light.open .faq-q-btn svg { transform: rotate(45deg); }
+.faq-item-dark.open  .faq-q-btn svg { transform: rotate(45deg); }
+
+.faq-ans {
+  max-height: 0; overflow: hidden;
+  transition: max-height .38s ease, padding .3s ease;
+  font-size: 0.88rem; line-height: 1.75;
+  padding: 0 1.6rem;
+}
+.faq-item-light .faq-ans { color: var(--muted); }
+.faq-item-dark  .faq-ans { color: rgba(255,255,255,.55); }
+.faq-item-light.open .faq-ans { max-height: 300px; padding: 0 1.6rem 1.4rem; }
+.faq-item-dark.open  .faq-ans { max-height: 300px; padding: 0 1.6rem 1.4rem; }
+
+/* ─── CTA BOTTOM ─── */
+#faq-cta {
+  padding: var(--section-pad) 0;
+  background: var(--black);
+  text-align: center;
+}
+#faq-cta h2 { color: var(--white); margin-bottom: 0.75rem; }
+#faq-cta p  { color: rgba(255,255,255,.5); margin-bottom: 2rem; }
+.cta-buttons { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
+
+.btn-wa {
+  display: inline-flex; align-items: center; gap: 0.6em;
+  background: #25D366; color: var(--white);
+  padding: 0.85em 2.2em; border-radius: 999px;
+  font-weight: 700; font-size: 1rem;
+  transition: transform .2s;
+}
+.btn-wa:hover { transform: scale(1.04); }
+
+@media (max-width: 960px) {
+  .faq-hero-grid { grid-template-columns: 1fr; }
+  .faq-hero-right { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- ══ NAVBAR ══ -->
+<nav id="nav">
+  <div class="container nav-inner">
+    <a class="nav-logo" href="index.html">
+      <img src="assets/logo-black.png" alt="krga">
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="establecimientos.html">Negocios</a></li>
+      <li><a href="marcas.html">Publicidad</a></li>
+      <li><a href="la-maquina.html">La Máquina</a></li>
+      <li><a href="faq.html" style="opacity:1;font-weight:800;">FAQ's</a></li>
+      <li><a href="https://wa.me/523311148901" target="_blank" class="nav-wa" aria-label="WhatsApp"><svg viewBox="0 0 24 24" width="17" height="17" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a></li>
+    </ul>
+    <a href="#" class="nav-webapp">Web-app</a>
+    <button class="hamburger" id="hamburger" aria-label="Menú">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html"            onclick="closeMobile()">Inicio</a>
+  <a href="establecimientos.html" onclick="closeMobile()">Negocios</a>
+  <a href="marcas.html"           onclick="closeMobile()">Publicidad</a>
+  <a href="la-maquina.html"       onclick="closeMobile()">La Máquina</a>
+  <a href="faq.html"              onclick="closeMobile()">FAQ's</a>
+  <a href="https://wa.me/523311148901" target="_blank" onclick="closeMobile()">WhatsApp</a>
+  <a href="#" onclick="closeMobile()" style="background:var(--black);color:#fff;padding:0.6em 2em;border-radius:10px;margin-top:1rem;">Web-app</a>
+</div>
+
+<!-- ══ HERO ══ -->
+<section id="faq-hero">
+  <div class="container">
+    <div class="faq-hero-grid">
+      <div class="faq-hero-left reveal">
+        <span class="tag">Preguntas Frecuentes</span>
+        <h1>Todo lo que<br>necesitas saber.</h1>
+        <p class="lead" style="margin-top:1rem;">Encuentra respuesta a las preguntas más comunes sobre el servicio krga para usuarios, negocios y anunciantes.</p>
+      </div>
+      <div class="faq-hero-right">
+        <img src="assets/monito-phone.png" alt="Personaje krga con teléfono">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ SECCIÓN: PARA USUARIOS ══ -->
+<section class="faq-section faq-section-taupe">
+  <div class="container">
+    <div class="reveal">
+      <span class="tag-faq">Para usuarios</span>
+      <h2>Cómo usar krga</h2>
+      <p class="section-lead">Todo lo que necesitas saber para rentar, cargar y devolver.</p>
+    </div>
+    <div class="faq-list" id="faq-usuarios">
+
+      <div class="faq-item-light reveal">
+        <button class="faq-q-btn" data-group="usuarios">
+          ¿Cómo funciona krga?
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </button>
+        <div class="faq-ans">Encuentra una estación krga en el lugar donde estás, escanea el QR en la pantalla con la cámara de tu celular, toma el powerbank, cárgalo y devuélvelo en cualquier estación cuando termines.</div>
+      </div>
+
+      <div class="faq-item-light reveal">
+        <button class="faq-q-btn" data-group="usuarios">
+          ¿Necesito descargar una app?
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </button>
+        <div class="faq-ans">No. Todo funciona desde el navegador de tu celular escaneando el QR. Sin descargas, sin registros complicados.</div>
+      </div>
+
+      <div class="faq-item-light reveal">
+        <button class="faq-q-btn" data-group="usuarios">
+          ¿Cuánto cuesta usar un powerbank?
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </button>
+        <div class="faq-ans">Depende del establecimiento. En algunos lugares el tiempo inicial es gratuito. La tarifa estándar es desde $20 MXN por cada 30 minutos. El precio exacto se muestra en la pantalla antes de confirmar.</div>
+      </div>
+
+      <div class="faq-item-light reveal">
+        <button class="faq-q-btn" data-group="usuarios">
+          ¿Puedo devolver el powerbank en otro lugar diferente al que lo tomé?
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </button>
+        <div class="faq-ans">Sí. Puedes devolverlo en cualquier estación krga activa en Guadalajara, no necesariamente donde lo rentaste.</div>
+      </div>
+
+      <div class="faq-item-light reveal">
+        <button class="faq-q-btn" data-group="usuarios">
+          ¿Qué tipo de cables incluye el powerbank?
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </button>
+        <div class="faq-ans">Cada powerbank krga incluye tres cables: Lightning (iPhone), USB-C y Micro-USB. Compatible con prácticamente todos los celulares.</div>
+      </div>
+
+      <div class="faq-item-light reveal">
+        <button class="faq-q-btn" data-group="usuarios">
+          ¿Cuánto dura la carga del powerbank?
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </button>
+        <div class="faq-ans">Nuestros powerbanks tienen capacidad para cargar un celular completo. El tiempo varía según el modelo de tu celular y tu nivel de batería inicial.</div>
+      </div>
+
+      <div class="faq-item-light reveal">
+        <button class="faq-q-btn" data-group="usuarios">
+          ¿Cómo pago?
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </button>
+        <div class="faq-ans">El pago se realiza con tarjeta desde la web-app en tu celular. En establecimientos donde el servicio es gratuito, no necesitas pagar nada.</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ SECCIÓN: PARA NEGOCIOS ══ -->
+<section class="faq-section faq-section-black">
+  <div class="container">
+    <div class="reveal">
+      <span class="tag-faq">Para negocios</span>
+      <h2>Instala krga en<br>tu establecimiento.</h2>
+      <p class="section-lead">Resuelve las dudas más comunes antes de contactarnos.</p>
+    </div>
+    <div class="faq-list" id="faq-negocios">
+
+      <div class="faq-item-dark reveal">
+        <button class="faq-q-btn" data-group="negocios">
+          ¿Cuánto cuesta instalar krga en mi negocio?
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </button>
+        <div class="faq-ans">Se negocia una renta mensual fija contigo según el modelo de máquina, tu volumen esperado y zona. Contáctanos para una cotización personalizada.</div>
+      </div>
+
+      <div class="faq-item-dark reveal">
+        <button class="faq-q-btn" data-group="negocios">
+          ¿Qué modelos de máquina hay disponibles?
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </button>
+        <div class="faq-ans">Tenemos diferentes tipos de máquinas para diferentes espacios: desde estaciones compactas para bares y cafeterías hasta totems de alto tráfico para centros comerciales y hoteles. Consulta la sección "La Máquina" para ver las especificaciones.</div>
+      </div>
+
+      <div class="faq-item-dark reveal">
+        <button class="faq-q-btn" data-group="negocios">
+          ¿Necesito hacer obra o instalaciones especiales?
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </button>
+        <div class="faq-ans">No. La máquina solo requiere una toma de corriente estándar. Sin cableado especial, sin obra.</div>
+      </div>
+
+      <div class="faq-item-dark reveal">
+        <button class="faq-q-btn" data-group="negocios">
+          ¿Quién se encarga del mantenimiento?
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </button>
+        <div class="faq-ans">Nosotros. krga gestiona de forma remota el estado de las máquinas y se encarga del mantenimiento, la recarga de powerbanks y cualquier incidencia.</div>
+      </div>
+
+      <div class="faq-item-dark reveal">
+        <button class="faq-q-btn" data-group="negocios">
+          ¿La máquina ocupa mucho espacio?
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </button>
+        <div class="faq-ans">El modelo compacto (SMART) ocupa el espacio de una tablet de sobremesa. El modelo totem (SMART+) requiere algo más de espacio de suelo pero no necesita instalación en pared.</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ SECCIÓN: PARA MARCAS ══ -->
+<section class="faq-section faq-section-card">
+  <div class="container">
+    <div class="reveal">
+      <span class="tag-faq">Para anunciantes y marcas</span>
+      <h2>Publicidad que<br>no se puede ignorar.</h2>
+      <p class="section-lead">Descubre cómo funciona la publicidad en la red krga.</p>
+    </div>
+    <div class="faq-list" id="faq-marcas">
+
+      <div class="faq-item-light reveal">
+        <button class="faq-q-btn" data-group="marcas">
+          ¿En qué formatos puedo anunciarme?
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </button>
+        <div class="faq-ans">Disponemos de dos formatos: pantalla SMART de 10.1" horizontal en bares y restaurantes, y pantalla SMART+ de 32" vertical (totem) en centros comerciales y hoteles. Imagen o video en loop.</div>
+      </div>
+
+      <div class="faq-item-light reveal">
+        <button class="faq-q-btn" data-group="marcas">
+          ¿Cuánto cuesta una campaña publicitaria?
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </button>
+        <div class="faq-ans">El costo depende del número de pantallas, ubicaciones y duración de la campaña. Contáctanos para una propuesta personalizada.</div>
+      </div>
+
+      <div class="faq-item-light reveal">
+        <button class="faq-q-btn" data-group="marcas">
+          ¿Cómo se mide el impacto de mi anuncio?
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </button>
+        <div class="faq-ans">Proporcionamos reportes de impresiones por pantalla. Cada interacción con la máquina representa un usuario que estuvo frente a tu anuncio en promedio 3–5 minutos.</div>
+      </div>
+
+      <div class="faq-item-light reveal">
+        <button class="faq-q-btn" data-group="marcas">
+          ¿Puedo elegir en qué establecimientos aparece mi anuncio?
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </button>
+        <div class="faq-ans">Sí. Puedes seleccionar ubicaciones específicas de nuestra red según tu target y zona geográfica.</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ CTA ══ -->
+<section id="faq-cta">
+  <div class="container">
+    <div class="reveal">
+      <span class="tag" style="background:rgba(255,255,255,.15);color:rgba(255,255,255,.8);">¿Más dudas?</span>
+      <h2 style="margin-top:0.5rem;">¿No encontraste<br>tu respuesta?</h2>
+      <p>Escríbenos directamente y te respondemos en menos de 24 horas.</p>
+      <div class="cta-buttons">
+        <a href="https://wa.me/523311148901" target="_blank" class="btn-wa">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Escríbenos por WhatsApp
+        </a>
+        <a href="contacto.html" class="btn-primary-lime">Ir a Contacto</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-logo">
+        <img src="assets/logo-black.png" alt="krga">
+        <p>Powerbank sharing en Guadalajara.</p>
+      </div>
+      <div class="footer-links">
+        <h5>Navegar</h5>
+        <ul>
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="establecimientos.html">Negocios</a></li>
+          <li><a href="marcas.html">Marcas</a></li>
+          <li><a href="la-maquina.html">La máquina</a></li>
+          <li><a href="contacto.html">Contacto</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h5>Contacto</h5>
+        <ul>
+          <li><a href="https://instagram.com/krga.mx" target="_blank">@krga.mx</a></li>
+          <li><a href="https://wa.me/523311148901" target="_blank">+52 33 1114 8901</a></li>
+          <li><a href="mailto:krgaenergy@gmail.com">krgaenergy@gmail.com</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 krga®. Todos los derechos reservados.</span>
+      <span>Guadalajara, México</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 40));
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobileMenu');
+hamburger.addEventListener('click', () => mobileMenu.classList.toggle('open'));
+function closeMobile() { mobileMenu.classList.remove('open'); }
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// Accordion — one open at a time per section group
+document.querySelectorAll('.faq-q-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const item = btn.closest('.faq-item-light, .faq-item-dark');
+    const group = btn.dataset.group;
+    const isOpen = item.classList.contains('open');
+    // Close all in same group
+    document.querySelectorAll(`[data-group="${group}"]`).forEach(b => {
+      b.closest('.faq-item-light, .faq-item-dark').classList.remove('open');
+    });
+    if (!isOpen) item.classList.add('open');
+  });
+});
+</script>
+</body>
+</html>
