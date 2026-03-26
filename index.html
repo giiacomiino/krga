@@ -152,9 +152,9 @@
   z-index: 2;
 }
 
-/* ─── PRECIO (lime band) ─────────────────────────────── */
+/* ─── PRECIO ─────────────────────────────────────────── */
 #precios {
-  background: var(--lime);
+  background: var(--taupe-lt);
   padding: var(--section-pad) 0;
 }
 #precios .tag { background: var(--black); color: var(--white); }
@@ -175,70 +175,26 @@
   font-weight: 900; letter-spacing: -0.05em; line-height: 1;
   color: var(--black);
 }
-.precio-unit { font-size: 1rem; font-weight: 600; color: rgba(0,0,0,.5); }
+.precio-unit { font-size: 1rem; font-weight: 600; color: var(--muted); }
 .precio-details {
   display: flex; flex-direction: column; gap: 0.8rem;
   margin-top: 1.5rem;
 }
 .precio-detail {
   display: flex; align-items: center; gap: 0.75rem;
-  font-size: 0.95rem; color: rgba(0,0,0,.7); font-weight: 500;
+  font-size: 0.95rem; color: var(--muted); font-weight: 500;
 }
 .precio-dot {
   width: 8px; height: 8px; border-radius: 50%;
   background: var(--black); flex-shrink: 0;
 }
 .precio-note-card {
-  background: rgba(0,0,0,.08);
+  background: var(--taupe-card);
   border-radius: var(--r-lg);
   padding: clamp(2rem, 4vw, 2.8rem);
 }
 .precio-note-card h3 { font-size: 1.2rem; font-weight: 800; color: var(--black); margin-bottom: 0.75rem; }
-.precio-note-card p { font-size: 0.9rem; color: rgba(0,0,0,.6); line-height: 1.7; margin-bottom: 1.5rem; }
-
-/* ─── FAQ ─────────────────────────────────────────────── */
-#faq {
-  padding: var(--section-pad) 0;
-  background: var(--taupe-lt);
-}
-.faq-grid {
-  display: grid;
-  grid-template-columns: 1fr 1.3fr;
-  gap: var(--gap);
-  align-items: start;
-  margin-top: 3rem;
-}
-.faq-visual {
-  position: sticky; top: 110px;
-  display: flex; align-items: flex-end; justify-content: center;
-}
-.faq-visual img {
-  height: clamp(200px, 28vw, 360px); width: auto;
-}
-.faq-list {
-  display: flex; flex-direction: column; gap: 0.55rem;
-}
-.faq-item {
-  background: var(--taupe-card);
-  border-radius: var(--r-md); overflow: hidden;
-}
-.faq-q {
-  width: 100%; text-align: left;
-  background: none; border: none; cursor: pointer;
-  padding: 1.25rem 1.5rem;
-  display: flex; align-items: center; justify-content: space-between;
-  gap: 1rem; font-family: inherit;
-  font-size: 0.95rem; font-weight: 700; color: var(--black);
-}
-.faq-q svg { flex-shrink: 0; transition: transform .3s; }
-.faq-item.open .faq-q svg { transform: rotate(45deg); }
-.faq-a {
-  max-height: 0; overflow: hidden;
-  transition: max-height .35s ease, padding .3s ease;
-  font-size: 0.88rem; color: var(--muted); line-height: 1.7;
-  padding: 0 1.5rem;
-}
-.faq-item.open .faq-a { max-height: 200px; padding: 0 1.5rem 1.3rem; }
+.precio-note-card p { font-size: 0.9rem; color: var(--muted); line-height: 1.7; margin-bottom: 1.5rem; }
 
 /* ─── CTA FINAL ───────────────────────────────────────── */
 #cta-final {
@@ -272,8 +228,6 @@
   .steps-grid { grid-template-columns: repeat(2,1fr); }
   .step-arrow { display: none; }
   .precio-grid { grid-template-columns: 1fr; }
-  .faq-grid { grid-template-columns: 1fr; }
-  .faq-visual { display: none; }
   .cta-inner { grid-template-columns: 1fr; }
   .cta-monito { justify-content: center; }
 }
@@ -452,82 +406,13 @@
           <div class="precio-detail"><span class="precio-dot"></span>Compatible con iPhone, USB-C y Micro-USB</div>
         </div>
         <div style="margin-top:2rem;">
-          <a href="#" class="btn-primary">Ir a la Web-app</a>
+          <a href="https://webapp.krga.mx/home/map" target="_blank" class="btn-primary">Ir a la Web-app</a>
         </div>
       </div>
       <div class="precio-note-card reveal" style="transition-delay:.1s;">
         <h3>¿En qué establecimientos es gratis?</h3>
         <p>Algunos negocios ofrecen krga como cortesía para sus clientes y absorben el costo. La app y la pantalla de la máquina te muestran las condiciones exactas de cada lugar antes de que confirmes.</p>
         <a href="establecimientos.html" style="font-size:0.9rem;font-weight:700;color:var(--black);text-decoration:underline;">¿Tienes un negocio? Instala krga →</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══ FAQ ══ -->
-<section id="faq">
-  <div class="container">
-    <div class="reveal">
-      <span class="tag">Preguntas frecuentes</span>
-      <h2>¿Tienes dudas?<br>Te respondemos.</h2>
-    </div>
-
-    <div class="faq-grid">
-
-      <div class="faq-visual reveal">
-        <img src="assets/monito-phone.png" alt="Personaje usando krga">
-      </div>
-
-      <div class="faq-list">
-
-        <div class="faq-item reveal">
-          <button class="faq-q">
-            ¿Necesito descargar una app?
-            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-          </button>
-          <div class="faq-a">No. Solo necesitas escanear el QR en la pantalla de la máquina con la cámara de tu celular. No hace falta descargar nada.</div>
-        </div>
-
-        <div class="faq-item reveal">
-          <button class="faq-q">
-            ¿Cuánto dura la batería del powerbank?
-            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-          </button>
-          <div class="faq-a">Nuestros powerbanks tienen capacidad para cargar un celular completo. El tiempo exacto depende del modelo de tu celular y tu nivel de batería al momento.</div>
-        </div>
-
-        <div class="faq-item reveal">
-          <button class="faq-q">
-            ¿Puedo devolver el powerbank en otro lugar?
-            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-          </button>
-          <div class="faq-a">Sí. Puedes devolver el powerbank en cualquier estación krga en Guadalajara. No tienes que regresar al mismo lugar donde lo rentaste.</div>
-        </div>
-
-        <div class="faq-item reveal">
-          <button class="faq-q">
-            ¿Qué tipo de cable incluye?
-            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-          </button>
-          <div class="faq-a">Cada powerbank krga incluye cable Lightning (iPhone), USB-C y Micro-USB. Compatible con prácticamente todos los celulares del mercado.</div>
-        </div>
-
-        <div class="faq-item reveal">
-          <button class="faq-q">
-            ¿Cómo pago?
-            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-          </button>
-          <div class="faq-a">El pago se realiza desde la web-app con tarjeta. En establecimientos donde el servicio es gratuito, no necesitas pagar nada.</div>
-        </div>
-
-        <div class="faq-item reveal">
-          <button class="faq-q">
-            ¿Quiero instalar krga en mi negocio, cómo lo hago?
-            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-          </button>
-          <div class="faq-a">Contáctanos por WhatsApp o visita la sección Negocios. Te explicamos los modelos disponibles y hacemos la instalación sin obra ni inversión de tu parte.</div>
-        </div>
-
       </div>
     </div>
   </div>
@@ -542,7 +427,7 @@
         <h2>Empieza a<br>cargar ahora.</h2>
         <p class="lead">Encuentra la estación krga más cercana y carga tu celular en segundos.</p>
         <div style="display:flex;gap:1rem;flex-wrap:wrap;margin-top:2rem;">
-          <a href="#" class="btn-primary-lime">Ir a la Web-app</a>
+          <a href="https://webapp.krga.mx/home/map" target="_blank" class="btn-primary-lime">Ir a la Web-app</a>
           <a href="contacto.html" style="color:rgba(255,255,255,.6);font-weight:600;font-size:0.95rem;align-self:center;">Contacto →</a>
         </div>
       </div>
@@ -600,14 +485,6 @@ const observer = new IntersectionObserver(entries => {
 }, { threshold: 0.1 });
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-document.querySelectorAll('.faq-q').forEach(btn => {
-  btn.addEventListener('click', () => {
-    const item = btn.closest('.faq-item');
-    const isOpen = item.classList.contains('open');
-    document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
-    if (!isOpen) item.classList.add('open');
-  });
-});
 </script>
 </body>
 </html>
