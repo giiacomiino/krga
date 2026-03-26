@@ -21,17 +21,29 @@
   min-height: 100dvh;
 }
 .hero-left {
+  position: relative;
   display: flex; align-items: flex-end;
-  padding-left: clamp(1.5rem, 5vw, 5rem);
+  padding-left: clamp(1rem, 4vw, 4rem);
+}
+.hero-bolt-bg {
+  position: absolute;
+  left: clamp(-2rem, -1vw, 0rem);
+  bottom: 0;
+  width: clamp(260px, 42vw, 540px);
+  height: auto;
+  z-index: 0;
+  pointer-events: none;
 }
 .hero-left img {
+  position: relative; z-index: 1;
   height: clamp(58vh, 72vh, 82vh);
   width: auto;
   object-fit: contain;
-  object-position: bottom left;
+  object-position: bottom;
   display: block;
 }
 .hero-right {
+  position: relative; z-index: 1;
   display: flex; flex-direction: column;
   justify-content: flex-end; align-items: flex-end;
   padding-bottom: clamp(3.5rem, 7vw, 7rem);
@@ -40,7 +52,7 @@
   text-align: right;
 }
 .hero-q {
-  font-size: clamp(3rem, 6.5vw, 6.4rem);
+  font-size: clamp(3rem, 6.2vw, 6.4rem);
   font-weight: 900;
   letter-spacing: -0.04em;
   line-height: 0.88;
@@ -50,32 +62,56 @@
 }
 .hero-brand-line {
   display: flex; align-items: baseline; justify-content: flex-end;
-  gap: 0.3em; flex-wrap: wrap;
+  gap: 0.28em; flex-wrap: wrap;
 }
 .hero-brand {
-  font-size: clamp(3.2rem, 7vw, 6.8rem);
-  font-weight: 900;
-  letter-spacing: -0.05em;
-  line-height: 1;
+  font-size: clamp(3rem, 6.8vw, 6.8rem);
+  font-weight: 900; letter-spacing: -0.05em; line-height: 1;
   color: var(--black);
 }
 .hero-tagline {
-  font-size: clamp(1.8rem, 3.8vw, 3.7rem);
-  font-weight: 700;
-  letter-spacing: -0.03em;
+  font-size: clamp(1.7rem, 3.6vw, 3.8rem);
+  font-weight: 700; letter-spacing: -0.03em;
   color: var(--muted);
 }
 .hero-ctas {
   display: flex; gap: 0.9rem; flex-wrap: wrap;
-  justify-content: flex-end;
-  margin-top: 2.2rem;
+  justify-content: flex-end; margin-top: 2.2rem;
 }
 
-/* ─── COMO FUNCIONA ─────────────────────────────────── */
+/* ─── STATS BAND ────────────────────────────────────── */
+#stats-band {
+  background: var(--black);
+  padding: 3.5rem 0;
+}
+.stats-band-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+.stat-band-item {
+  padding: 0 2rem;
+  border-left: 1px solid rgba(255,255,255,.1);
+}
+.stat-band-item:first-child { border-left: none; padding-left: 0; }
+.stat-band-num {
+  font-size: clamp(2.8rem, 4.5vw, 4.2rem);
+  font-weight: 900; letter-spacing: -0.05em; line-height: 1;
+  color: var(--lime);
+  margin-bottom: 0.35rem;
+}
+.stat-band-label {
+  font-size: 0.88rem; color: rgba(255,255,255,.45);
+  line-height: 1.4;
+}
+
+/* ─── COMO FUNCIONA (dark) ──────────────────────────── */
 #como-funciona {
   padding: var(--section-pad) 0;
-  background: var(--taupe-lt);
+  background: var(--black);
 }
+#como-funciona .tag { background: rgba(255,255,255,.12); color: rgba(255,255,255,.75); }
+#como-funciona h2 { color: var(--white); }
 .steps-grid {
   display: grid;
   grid-template-columns: repeat(4,1fr);
@@ -83,7 +119,7 @@
   margin-top: 3rem;
 }
 .step-card {
-  background: var(--taupe-card);
+  background: #1E1E1B;
   border-radius: var(--r-md);
   padding: 1.8rem 1.5rem 1.6rem;
   position: relative;
@@ -91,90 +127,68 @@
 .step-num {
   font-size: 3rem; font-weight: 900;
   letter-spacing: -0.05em; line-height: 1;
-  color: var(--taupe-lt); margin-bottom: 1rem;
+  color: rgba(255,255,255,.07);
+  margin-bottom: 1rem;
 }
 .step-icon-wrap {
-  width: 42px; height: 42px;
-  background: var(--black); border-radius: 12px;
+  width: 44px; height: 44px;
+  background: var(--lime); border-radius: 12px;
   display: flex; align-items: center; justify-content: center;
   margin-bottom: 1rem;
 }
-.step-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 0.35rem; }
-.step-card p  { font-size: 0.85rem; color: var(--muted); }
+.step-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 0.35rem; color: var(--white); }
+.step-card p  { font-size: 0.85rem; color: rgba(255,255,255,.45); line-height: 1.6; }
 .step-arrow {
   position: absolute; top: 1.5rem; right: -0.75rem;
   width: 22px; height: 22px;
-  background: var(--taupe-dk); border-radius: 50%;
+  background: #2a2a26; border-radius: 50%;
   display: flex; align-items: center; justify-content: center;
   z-index: 2;
 }
-.step-arrow svg { width: 10px; height: 10px; }
 
-/* ─── PRECIOS ─────────────────────────────────────────── */
+/* ─── PRECIO (lime band) ─────────────────────────────── */
 #precios {
+  background: var(--lime);
   padding: var(--section-pad) 0;
-  background: var(--taupe);
 }
-.pricing-wrap {
+#precios .tag { background: var(--black); color: var(--white); }
+#precios h2 { color: var(--black); }
+.precio-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: var(--gap);
-  align-items: stretch;
+  align-items: center;
   margin-top: 3rem;
 }
-.price-card {
-  background: var(--taupe-card);
-  border-radius: var(--r-lg);
-  padding: clamp(2rem, 4vw, 2.8rem);
-  display: flex; flex-direction: column;
-}
-.price-card.featured { background: var(--black); }
-.price-label {
-  font-size: 0.72rem; font-weight: 700;
-  letter-spacing: .12em; text-transform: uppercase;
-  color: var(--muted);
-}
-.price-card.featured .price-label { color: rgba(255,255,255,.4); }
-.price-amount-wrap {
+.precio-main {
   display: flex; align-items: baseline; gap: 0.3em;
-  margin: 1.2rem 0 0.4rem;
+  margin-bottom: 0.5rem;
 }
-.price-amount {
-  font-size: clamp(3.5rem, 6vw, 5rem);
+.precio-amount {
+  font-size: clamp(4rem, 7vw, 6rem);
   font-weight: 900; letter-spacing: -0.05em; line-height: 1;
   color: var(--black);
 }
-.price-card.featured .price-amount { color: var(--lime); }
-.price-unit {
-  font-size: 0.95rem; font-weight: 600; color: var(--muted);
+.precio-unit { font-size: 1rem; font-weight: 600; color: rgba(0,0,0,.5); }
+.precio-details {
+  display: flex; flex-direction: column; gap: 0.8rem;
+  margin-top: 1.5rem;
 }
-.price-card.featured .price-unit { color: rgba(255,255,255,.45); }
-.price-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 0.4rem; color: var(--black); }
-.price-card.featured h3 { color: var(--white); }
-.price-card > p { font-size: 0.88rem; color: var(--muted); margin-bottom: 1.8rem; }
-.price-card.featured > p { color: rgba(255,255,255,.5); }
-.price-perks {
-  margin-top: auto;
-  display: flex; flex-direction: column; gap: 0.65rem;
-}
-.price-perk {
+.precio-detail {
   display: flex; align-items: center; gap: 0.75rem;
-  font-size: 0.88rem; color: var(--black);
+  font-size: 0.95rem; color: rgba(0,0,0,.7); font-weight: 500;
 }
-.price-card.featured .price-perk { color: rgba(255,255,255,.75); }
-.perk-dot {
-  width: 7px; height: 7px; border-radius: 50%;
+.precio-dot {
+  width: 8px; height: 8px; border-radius: 50%;
   background: var(--black); flex-shrink: 0;
 }
-.price-card.featured .perk-dot { background: var(--lime); }
-.price-disclaimer {
-  margin-top: 2rem;
-  padding: 1.2rem 1.6rem;
-  background: var(--taupe-card);
-  border-radius: var(--r-md);
-  font-size: 0.85rem; color: var(--muted);
-  text-align: center;
+.precio-note-card {
+  background: rgba(0,0,0,.08);
+  border-radius: var(--r-lg);
+  padding: clamp(2rem, 4vw, 2.8rem);
 }
+.precio-note-card h3 { font-size: 1.2rem; font-weight: 800; color: var(--black); margin-bottom: 0.75rem; }
+.precio-note-card p { font-size: 0.9rem; color: rgba(0,0,0,.6); line-height: 1.7; margin-bottom: 1.5rem; }
 
 /* ─── FAQ ─────────────────────────────────────────────── */
 #faq {
@@ -183,31 +197,29 @@
 }
 .faq-grid {
   display: grid;
-  grid-template-columns: 1fr 1.2fr;
+  grid-template-columns: 1fr 1.3fr;
   gap: var(--gap);
   align-items: start;
   margin-top: 3rem;
 }
 .faq-visual {
-  display: flex; align-items: flex-end; justify-content: center;
   position: sticky; top: 110px;
+  display: flex; align-items: flex-end; justify-content: center;
 }
 .faq-visual img {
-  height: clamp(200px, 28vw, 360px);
-  width: auto;
+  height: clamp(200px, 28vw, 360px); width: auto;
 }
 .faq-list {
-  display: flex; flex-direction: column; gap: 0.6rem;
+  display: flex; flex-direction: column; gap: 0.55rem;
 }
 .faq-item {
   background: var(--taupe-card);
-  border-radius: var(--r-md);
-  overflow: hidden;
+  border-radius: var(--r-md); overflow: hidden;
 }
 .faq-q {
   width: 100%; text-align: left;
   background: none; border: none; cursor: pointer;
-  padding: 1.3rem 1.5rem;
+  padding: 1.25rem 1.5rem;
   display: flex; align-items: center; justify-content: space-between;
   gap: 1rem; font-family: inherit;
   font-size: 0.95rem; font-weight: 700; color: var(--black);
@@ -225,37 +237,35 @@
 /* ─── CTA FINAL ───────────────────────────────────────── */
 #cta-final {
   padding: var(--section-pad) 0 0;
-  background: var(--taupe);
+  background: var(--black);
   overflow: hidden;
 }
 .cta-inner {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  align-items: flex-end;
-  gap: var(--gap);
+  align-items: flex-end; gap: var(--gap);
 }
 .cta-text { padding-bottom: clamp(3rem, 6vw, 6rem); }
-.cta-text h2 { margin-bottom: 1rem; }
-.cta-text p { margin-bottom: 2rem; }
-.cta-monito {
-  display: flex; justify-content: flex-end; align-items: flex-end;
-}
-.cta-monito img {
-  height: clamp(240px, 32vw, 420px);
-  width: auto;
-}
+.cta-text h2 { color: var(--white); margin-bottom: 1rem; }
+.cta-text p { color: rgba(255,255,255,.5); margin-bottom: 2rem; }
+.cta-monito { display: flex; justify-content: flex-end; align-items: flex-end; }
+.cta-monito img { height: clamp(240px, 32vw, 420px); width: auto; }
 
 /* ─── RESPONSIVE ──────────────────────────────────────── */
 @media (max-width: 960px) {
   .hero-grid { grid-template-columns: 1fr; min-height: unset; }
   .hero-left { justify-content: center; padding-left: 0; }
+  .hero-bolt-bg { left: 50%; transform: translateX(-50%); width: 70vw; }
   .hero-left img { height: 44vh; }
   .hero-right { align-items: center; text-align: center; padding-right: 1.5rem; padding-left: 1.5rem; padding-top: 80px; }
   .hero-brand-line { justify-content: center; }
   .hero-ctas { justify-content: center; }
+  .stats-band-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+  .stat-band-item { border-left: none; padding-left: 0; border-top: 1px solid rgba(255,255,255,.1); padding-top: 1.5rem; }
+  .stat-band-item:first-child { border-top: none; padding-top: 0; }
   .steps-grid { grid-template-columns: repeat(2,1fr); }
   .step-arrow { display: none; }
-  .pricing-wrap { grid-template-columns: 1fr; }
+  .precio-grid { grid-template-columns: 1fr; }
   .faq-grid { grid-template-columns: 1fr; }
   .faq-visual { display: none; }
   .cta-inner { grid-template-columns: 1fr; }
@@ -294,7 +304,7 @@
 <div class="mobile-menu" id="mobileMenu">
   <a href="index.html"           onclick="closeMobile()">Inicio</a>
   <a href="establecimientos.html" onclick="closeMobile()">Negocios</a>
-  <a href="index.html#faq"        onclick="closeMobile()">FAQ's</a>
+  <a href="#faq"                  onclick="closeMobile()">FAQ's</a>
   <a href="contacto.html"         onclick="closeMobile()">Contacto</a>
   <a href="https://wa.me/523311148901" target="_blank" onclick="closeMobile()">WhatsApp</a>
   <a href="#" onclick="closeMobile()" style="background:var(--black);color:#fff;padding:0.6em 2em;border-radius:10px;margin-top:1rem;">Web-app</a>
@@ -305,6 +315,10 @@
   <div class="hero-grid">
 
     <div class="hero-left">
+      <!-- Lime lightning bolt background decoration -->
+      <svg class="hero-bolt-bg" viewBox="0 0 300 500" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <polygon points="190,0 65,270 155,270 115,500 240,230 150,230" fill="#E8EDB5" opacity="0.95"/>
+      </svg>
       <img src="assets/monito-bolt.png" alt="Personaje krga con rayo">
     </div>
 
@@ -325,6 +339,26 @@
   </div>
 </section>
 
+<!-- ══ STATS BAND ══ -->
+<section id="stats-band">
+  <div class="container">
+    <div class="stats-band-grid">
+      <div class="stat-band-item reveal">
+        <div class="stat-band-num">5+</div>
+        <div class="stat-band-label">Zonas activas en Guadalajara</div>
+      </div>
+      <div class="stat-band-item reveal" style="transition-delay:.06s;">
+        <div class="stat-band-num">24/7</div>
+        <div class="stat-band-label">Disponible sin operadores ni cables</div>
+      </div>
+      <div class="stat-band-item reveal" style="transition-delay:.12s;">
+        <div class="stat-band-num">$20</div>
+        <div class="stat-band-label">MXN desde por cada 30 min de uso</div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ══ CÓMO FUNCIONA ══ -->
 <section id="como-funciona">
   <div class="container">
@@ -338,49 +372,49 @@
       <div class="step-card reveal" style="transition-delay:.05s;">
         <div class="step-num">01</div>
         <div class="step-icon-wrap">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
             <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/>
           </svg>
         </div>
         <h3>Encuentra una estación</h3>
         <p>Busca krga en restaurantes, bares, hoteles y centros comerciales de Guadalajara.</p>
         <span class="step-arrow">
-          <svg viewBox="0 0 12 12" fill="white"><path d="M2 6h8M6 2l4 4-4 4"/></svg>
+          <svg viewBox="0 0 12 12" width="10" height="10" fill="none" stroke="rgba(255,255,255,.4)" stroke-width="1.5"><path d="M2 6h8M7 3l3 3-3 3"/></svg>
         </span>
       </div>
 
       <div class="step-card reveal" style="transition-delay:.1s;">
         <div class="step-num">02</div>
         <div class="step-icon-wrap">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
             <rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/>
           </svg>
         </div>
         <h3>Escanea el QR</h3>
         <p>Usa la cámara de tu celular directo en la pantalla de la máquina. Sin apps, sin descarga.</p>
         <span class="step-arrow">
-          <svg viewBox="0 0 12 12" fill="white"><path d="M2 6h8M6 2l4 4-4 4"/></svg>
+          <svg viewBox="0 0 12 12" width="10" height="10" fill="none" stroke="rgba(255,255,255,.4)" stroke-width="1.5"><path d="M2 6h8M7 3l3 3-3 3"/></svg>
         </span>
       </div>
 
       <div class="step-card reveal" style="transition-delay:.15s;">
         <div class="step-num">03</div>
         <div class="step-icon-wrap">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
             <rect x="6" y="2" width="12" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/>
           </svg>
         </div>
         <h3>Toma el powerbank</h3>
         <p>El slot se abre automáticamente. Conecta el cable incluido y carga en movimiento.</p>
         <span class="step-arrow">
-          <svg viewBox="0 0 12 12" fill="white"><path d="M2 6h8M6 2l4 4-4 4"/></svg>
+          <svg viewBox="0 0 12 12" width="10" height="10" fill="none" stroke="rgba(255,255,255,.4)" stroke-width="1.5"><path d="M2 6h8M7 3l3 3-3 3"/></svg>
         </span>
       </div>
 
       <div class="step-card reveal" style="transition-delay:.2s;">
         <div class="step-num">04</div>
         <div class="step-icon-wrap">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
             <rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/>
           </svg>
         </div>
@@ -397,47 +431,32 @@
   <div class="container">
     <div class="reveal">
       <span class="tag">Precios</span>
-      <h2>Transparente<br>y sin sorpresas.</h2>
-      <p class="lead" style="margin-top:1rem;">
-        El costo depende del establecimiento donde rentas el powerbank.
-      </p>
+      <h2>Sin sorpresas.</h2>
     </div>
-
-    <div class="pricing-wrap">
-
-      <div class="price-card reveal" style="transition-delay:.05s;">
-        <span class="price-label">Opción estándar</span>
-        <div class="price-amount-wrap">
-          <span class="price-amount">$20</span>
-          <span class="price-unit">MXN / 30 min</span>
+    <div class="precio-grid">
+      <div class="reveal" style="transition-delay:.05s;">
+        <div class="precio-main">
+          <span class="precio-amount">$20</span>
+          <span class="precio-unit">MXN / 30 min</span>
         </div>
-        <h3>Cobra por uso</h3>
-        <p>El tiempo inicial puede ser gratuito dependiendo del lugar. Después se cobra por bloques de 30 minutos.</p>
-        <div class="price-perks">
-          <div class="price-perk"><span class="perk-dot"></span>Tiempo gratis inicial (varía por lugar)</div>
-          <div class="price-perk"><span class="perk-dot"></span>Pago desde la web-app</div>
-          <div class="price-perk"><span class="perk-dot"></span>Devuelve en cualquier estación</div>
+        <p style="font-size:1rem;color:rgba(0,0,0,.65);max-width:38ch;line-height:1.65;">
+          El precio depende del establecimiento donde rentas. En algunos lugares el tiempo inicial es <strong style="color:var(--black);">completamente gratis</strong>.
+        </p>
+        <div class="precio-details">
+          <div class="precio-detail"><span class="precio-dot"></span>El precio se muestra antes de confirmar tu renta</div>
+          <div class="precio-detail"><span class="precio-dot"></span>Pago desde la web-app, sin efectivo</div>
+          <div class="precio-detail"><span class="precio-dot"></span>Devuelve en cualquier estación krga</div>
+          <div class="precio-detail"><span class="precio-dot"></span>Compatible con iPhone, USB-C y Micro-USB</div>
+        </div>
+        <div style="margin-top:2rem;">
+          <a href="#" class="btn-primary">Ir a la Web-app</a>
         </div>
       </div>
-
-      <div class="price-card featured reveal" style="transition-delay:.1s;">
-        <span class="price-label">Establecimientos colaboradores</span>
-        <div class="price-amount-wrap">
-          <span class="price-amount">Gratis</span>
-        </div>
-        <h3 style="color:var(--white);">100% gratuito para ti</h3>
-        <p>En algunos lugares el negocio cubre el costo y tú cargas sin pagar nada.</p>
-        <div class="price-perks">
-          <div class="price-perk"><span class="perk-dot"></span>Sin costo para el usuario</div>
-          <div class="price-perk"><span class="perk-dot"></span>El negocio lo ofrece como cortesía</div>
-          <div class="price-perk"><span class="perk-dot"></span>Misma experiencia, cero pesos</div>
-        </div>
+      <div class="precio-note-card reveal" style="transition-delay:.1s;">
+        <h3>¿En qué establecimientos es gratis?</h3>
+        <p>Algunos negocios ofrecen krga como cortesía para sus clientes y absorben el costo. La app y la pantalla de la máquina te muestran las condiciones exactas de cada lugar antes de que confirmes.</p>
+        <a href="establecimientos.html" style="font-size:0.9rem;font-weight:700;color:var(--black);text-decoration:underline;">¿Tienes un negocio? Instala krga →</a>
       </div>
-
-    </div>
-
-    <div class="price-disclaimer reveal" style="margin-top:1.5rem;">
-      El precio y las condiciones exactas se muestran en la pantalla de la máquina antes de confirmar tu renta.
     </div>
   </div>
 </section>
@@ -453,7 +472,7 @@
     <div class="faq-grid">
 
       <div class="faq-visual reveal">
-        <img src="assets/monito-phone.png" alt="Personaje usando la app krga">
+        <img src="assets/monito-phone.png" alt="Personaje usando krga">
       </div>
 
       <div class="faq-list">
@@ -463,7 +482,7 @@
             ¿Necesito descargar una app?
             <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
           </button>
-          <div class="faq-a">No. Solo necesitas escanear el QR que aparece en la pantalla de la máquina con la cámara de tu celular. No hace falta descargar nada.</div>
+          <div class="faq-a">No. Solo necesitas escanear el QR en la pantalla de la máquina con la cámara de tu celular. No hace falta descargar nada.</div>
         </div>
 
         <div class="faq-item reveal">
@@ -471,7 +490,7 @@
             ¿Cuánto dura la batería del powerbank?
             <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
           </button>
-          <div class="faq-a">Nuestros powerbanks tienen capacidad suficiente para cargar un celular completo. El tiempo exacto depende del modelo de tu celular y el porcentaje de batería que tengas.</div>
+          <div class="faq-a">Nuestros powerbanks tienen capacidad para cargar un celular completo. El tiempo exacto depende del modelo de tu celular y tu nivel de batería al momento.</div>
         </div>
 
         <div class="faq-item reveal">
@@ -479,7 +498,7 @@
             ¿Puedo devolver el powerbank en otro lugar?
             <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
           </button>
-          <div class="faq-a">Sí. Puedes devolver el powerbank en cualquier estación krga disponible en Guadalajara. No tienes que regresar al mismo lugar donde lo rentaste.</div>
+          <div class="faq-a">Sí. Puedes devolver el powerbank en cualquier estación krga en Guadalajara. No tienes que regresar al mismo lugar donde lo rentaste.</div>
         </div>
 
         <div class="faq-item reveal">
@@ -487,15 +506,15 @@
             ¿Qué tipo de cable incluye?
             <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
           </button>
-          <div class="faq-a">Cada powerbank krga incluye cable Lightning (iPhone), USB-C y Micro-USB, compatible con prácticamente todos los celulares del mercado.</div>
+          <div class="faq-a">Cada powerbank krga incluye cable Lightning (iPhone), USB-C y Micro-USB. Compatible con prácticamente todos los celulares del mercado.</div>
         </div>
 
         <div class="faq-item reveal">
           <button class="faq-q">
-            ¿Qué pasa si no encuentro una estación para devolver?
+            ¿Cómo pago?
             <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
           </button>
-          <div class="faq-a">Si se acaba el tiempo sin devolver, se aplica el cargo correspondiente según tu renta. Desde la web-app puedes ver las estaciones más cercanas en tiempo real.</div>
+          <div class="faq-a">El pago se realiza desde la web-app con tarjeta. En establecimientos donde el servicio es gratuito, no necesitas pagar nada.</div>
         </div>
 
         <div class="faq-item reveal">
@@ -503,7 +522,7 @@
             ¿Quiero instalar krga en mi negocio, cómo lo hago?
             <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
           </button>
-          <div class="faq-a">Contáctanos por WhatsApp o ve a la sección Negocios. Te explicamos las condiciones y hacemos la instalación sin obra ni inversión de tu parte.</div>
+          <div class="faq-a">Contáctanos por WhatsApp o visita la sección Negocios. Te explicamos los modelos disponibles y hacemos la instalación sin obra ni inversión de tu parte.</div>
         </div>
 
       </div>
@@ -516,12 +535,12 @@
   <div class="container">
     <div class="cta-inner">
       <div class="cta-text reveal">
-        <span class="tag">¿Listo?</span>
+        <span class="tag" style="background:rgba(255,255,255,.15);color:rgba(255,255,255,.8);">¿Listo?</span>
         <h2>Empieza a<br>cargar ahora.</h2>
         <p class="lead">Encuentra la estación krga más cercana y carga tu celular en segundos.</p>
         <div style="display:flex;gap:1rem;flex-wrap:wrap;margin-top:2rem;">
-          <a href="#" class="btn-primary">Ir a la Web-app</a>
-          <a href="contacto.html" class="btn-outline">Contacto</a>
+          <a href="#" class="btn-primary-lime">Ir a la Web-app</a>
+          <a href="contacto.html" style="color:rgba(255,255,255,.6);font-weight:600;font-size:0.95rem;align-self:center;">Contacto →</a>
         </div>
       </div>
       <div class="cta-monito reveal">
@@ -573,13 +592,11 @@ const mobileMenu = document.getElementById('mobileMenu');
 hamburger.addEventListener('click', () => mobileMenu.classList.toggle('open'));
 function closeMobile() { mobileMenu.classList.remove('open'); }
 
-// Reveal on scroll
 const observer = new IntersectionObserver(entries => {
   entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
 }, { threshold: 0.1 });
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-// FAQ accordion
 document.querySelectorAll('.faq-q').forEach(btn => {
   btn.addEventListener('click', () => {
     const item = btn.closest('.faq-item');
