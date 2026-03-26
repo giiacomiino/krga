@@ -6,7 +6,6 @@
 <title>krga® — Para Establecimientos</title>
 <link rel="stylesheet" href="styles.css">
 <style>
-/* ─── PAGE STYLES ─── */
 #hero-estab {
   min-height: 100dvh;
   display: flex; align-items: center;
@@ -18,7 +17,7 @@
 #hero-estab::before {
   content: '';
   position: absolute; inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='600' viewBox='0 0 800 600'%3E%3Cg fill='none' stroke='%23A5A296' stroke-width='1' opacity='0.25'%3E%3Cpath d='M600,0 Q750,100 800,200 Q820,300 750,400 Q680,500 700,600'/%3E%3Cpath d='M650,0 Q800,120 830,240 Q850,350 780,450 Q710,550 730,650'/%3E%3Cpath d='M700,0 Q840,140 860,280 Q870,400 800,500 Q730,600 760,700'/%3E%3C/g%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='900' height='700' viewBox='0 0 900 700'%3E%3Cg fill='none' stroke='%23A5A296' stroke-width='1' opacity='0.22'%3E%3Cpath d='M600,0 Q750,120 820,260 Q870,380 800,480 Q730,580 760,700'/%3E%3Cpath d='M650,0 Q800,140 860,300 Q900,420 830,520 Q760,620 790,750'/%3E%3Cpath d='M700,0 Q850,160 900,320 Q930,450 860,550 Q790,650 820,780'/%3E%3Cpath d='M550,0 Q700,100 770,240 Q820,360 750,460 Q680,560 710,680'/%3E%3C/g%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: right center;
   background-size: 65% auto;
@@ -26,60 +25,136 @@
 }
 .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: var(--gap); align-items: center; }
 
-/* ─── FREE CALLOUT ─── */
-.free-callout {
-  background: var(--lime);
+/* ─── MODELO CALLOUT ─── */
+.modelo-callout {
+  background: var(--black);
   border-radius: var(--r-lg);
-  padding: clamp(2rem, 4vw, 3.5rem);
-  text-align: center;
-  margin-top: 0.5rem;
+  padding: clamp(2rem, 4vw, 3rem);
+  color: var(--white);
 }
-.free-callout .small-label {
-  font-size: 0.8rem; font-weight: 700; letter-spacing: .1em;
-  text-transform: uppercase; color: rgba(0,0,0,.5);
-  margin-bottom: 0.75rem;
+.modelo-callout .eyebrow {
+  font-size: 0.72rem; font-weight: 700; letter-spacing: .12em;
+  text-transform: uppercase; color: rgba(255,255,255,.45);
+  margin-bottom: 1rem;
 }
-.free-callout .big-text {
-  font-size: clamp(2rem, 4vw, 3rem);
+.modelo-callout .headline {
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
   font-weight: 900; letter-spacing: -0.03em;
-  line-height: 1.05; color: var(--black);
+  line-height: 1.1; color: var(--white);
+  margin-bottom: 1.25rem;
 }
-.free-callout .big-text span { text-decoration: underline; text-decoration-thickness: 3px; text-underline-offset: 4px; }
+.modelo-callout .headline span { color: var(--lime); }
+.modelo-callout p { color: rgba(255,255,255,.55); font-size: 0.9rem; line-height: 1.65; }
 
-/* ─── BENEFITS ─── */
-#beneficios {
+/* ─── MODELOS DE SERVICIO ─── */
+#modelos {
   padding: var(--section-pad) 0;
   background: var(--taupe-lt);
 }
-.benefits-grid {
+.modelos-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: 1fr 1fr;
   gap: 1.5rem;
   margin-top: 3rem;
 }
-.benefit-big {
+.modelo-card {
   background: var(--taupe-card);
   border-radius: var(--r-lg);
-  padding: 2.2rem 2rem;
+  overflow: hidden;
 }
-.benefit-big-icon { font-size: 2.5rem; margin-bottom: 1.25rem; }
-.benefit-big h3 { font-size: 1.15rem; font-weight: 800; margin-bottom: 0.6rem; color: var(--black); }
-.benefit-big p { font-size: 0.9rem; color: var(--muted); line-height: 1.6; }
-.benefit-big .benefit-tag {
+.modelo-card-header {
+  padding: 2rem 2rem 1.5rem;
+  border-bottom: 1px solid var(--taupe-lt);
+}
+.modelo-label {
+  font-size: 0.68rem; font-weight: 700; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--muted);
+  display: block; margin-bottom: 0.5rem;
+}
+.modelo-card-header h3 {
+  font-size: 1.4rem; font-weight: 900;
+  letter-spacing: -0.02em; color: var(--black);
+  margin-bottom: 0.5rem;
+}
+.modelo-card-header p { font-size: 0.88rem; color: var(--muted); line-height: 1.6; }
+.modelo-card-body { padding: 1.75rem 2rem; }
+.modelo-feature {
+  display: flex; align-items: flex-start; gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+.modelo-feature:last-child { margin-bottom: 0; }
+.mf-dot {
+  width: 6px; height: 6px;
+  background: var(--black);
+  border-radius: 50%;
+  margin-top: 0.45rem; flex-shrink: 0;
+}
+.modelo-feature p { font-size: 0.88rem; color: var(--muted); line-height: 1.55; }
+.modelo-feature strong { color: var(--black); }
+.modelo-badge {
   display: inline-block;
-  margin-top: 1.25rem;
+  margin-top: 1.5rem;
   background: var(--black);
   color: var(--lime);
   font-size: 0.7rem; font-weight: 700;
   letter-spacing: .08em; text-transform: uppercase;
-  padding: 0.3em 0.9em;
+  padding: 0.35em 1em;
+  border-radius: 999px;
+}
+.modelo-badge-lime {
+  display: inline-block;
+  margin-top: 1.5rem;
+  background: var(--lime);
+  color: var(--black);
+  font-size: 0.7rem; font-weight: 700;
+  letter-spacing: .08em; text-transform: uppercase;
+  padding: 0.35em 1em;
   border-radius: 999px;
 }
 
-/* ─── MACHINES SECTION ─── */
-#maquinas {
+/* pricing note */
+.pricing-note {
+  background: var(--taupe-card);
+  border-radius: var(--r-md);
+  padding: 1.5rem 2rem;
+  margin-top: 1.5rem;
+  display: flex; align-items: center; gap: 1.5rem;
+}
+.pricing-note-icon { font-size: 1.8rem; flex-shrink: 0; }
+.pricing-note p { font-size: 0.9rem; color: var(--muted); line-height: 1.6; }
+.pricing-note strong { color: var(--black); }
+
+/* ─── BENEFICIOS ─── */
+#beneficios {
   padding: var(--section-pad) 0;
   background: var(--taupe);
+}
+.benefits-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+  margin-top: 3rem;
+}
+.benefit-card-pro {
+  background: var(--taupe-card);
+  border-radius: var(--r-lg);
+  padding: 2rem 1.75rem;
+}
+.benefit-card-pro .bc-icon {
+  width: 48px; height: 48px;
+  background: var(--black);
+  border-radius: 14px;
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 1.25rem;
+}
+.benefit-card-pro .bc-icon svg { width: 22px; height: 22px; fill: var(--lime); }
+.benefit-card-pro h3 { font-size: 1rem; font-weight: 800; margin-bottom: 0.5rem; color: var(--black); }
+.benefit-card-pro p { font-size: 0.88rem; color: var(--muted); line-height: 1.6; }
+
+/* ─── MACHINES ─── */
+#maquinas {
+  padding: var(--section-pad) 0;
+  background: var(--taupe-lt);
 }
 .machines-compare {
   display: grid;
@@ -105,183 +180,77 @@
 .machine-compare-body { padding: 2rem; }
 .machine-visual-area {
   display: flex; justify-content: center; align-items: flex-end;
-  padding: 1.5rem 0 0.5rem;
-  min-height: 200px;
+  padding: 1.5rem 0 0.5rem; min-height: 180px;
 }
 .spec-row {
   display: flex; align-items: center; gap: 0.75rem;
   padding: 0.7rem 0;
   border-bottom: 1px solid var(--taupe-lt);
-  font-size: 0.9rem;
+  font-size: 0.88rem;
 }
 .spec-row:last-child { border-bottom: none; }
-.spec-icon { font-size: 1rem; width: 1.5rem; text-align: center; flex-shrink: 0; }
-.spec-label { font-weight: 600; color: var(--black); }
+.spec-label { font-weight: 600; color: var(--black); min-width: 110px; }
 .spec-val { color: var(--muted); margin-left: auto; font-size: 0.85rem; }
 
-/* ─── SMART MACHINE ILLUSTRATION (landscape) ─── */
-.smart-illus {
-  width: 240px;
-  background: #1a1a18;
-  border-radius: 14px;
-  padding: 10px 10px 14px;
-  box-shadow: 0 20px 60px rgba(0,0,0,.35), 0 0 0 1px rgba(255,255,255,.04);
-}
-.smart-illus-screen {
-  background: var(--taupe-lt);
-  border-radius: 8px;
-  aspect-ratio: 16/10;
-  display: flex; flex-direction: column;
-  align-items: center; justify-content: center;
-  gap: 0.3rem;
-  margin-bottom: 8px;
-  position: relative;
-  overflow: hidden;
-}
-.smart-illus-screen::before {
-  content: '';
-  position: absolute; inset: 0;
-  background: radial-gradient(ellipse at 60% 40%, rgba(232,237,181,.2) 0%, transparent 60%);
-}
-.illus-bolt { font-size: 1.5rem; line-height: 1; }
-.illus-text { font-size: 0.58rem; font-weight: 900; color: var(--black); text-align: center; line-height: 1.2; }
-.illus-sub { font-size: 0.42rem; font-weight: 600; color: var(--muted); letter-spacing: .06em; text-transform: uppercase; }
-.smart-illus-mid {
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 4px 3px 6px; gap: 6px;
-}
-.illus-qr {
-  width: 26px; height: 26px;
-  background: #fff; border-radius: 3px;
-  padding: 2px; flex-shrink: 0;
-}
-.illus-logo { font-size: 0.7rem; font-weight: 900; color: rgba(255,255,255,.7); flex: 1; text-align: center; }
-.smart-illus-slots {
-  display: grid; grid-template-columns: repeat(2, 1fr); gap: 4px;
-}
-.illus-slot {
-  background: #252520; border-radius: 5px; height: 28px;
-  position: relative; overflow: hidden;
-}
-.illus-slot::before {
-  content: '';
-  position: absolute; top: 50%; left: 6px; transform: translateY(-50%);
-  width: 20px; height: 3px;
-  background: #333330; border-radius: 2px;
-}
-.illus-slot::after {
-  content: '';
-  position: absolute; top: 50%; right: 6px; transform: translateY(-50%);
-  width: 5px; height: 5px;
-  background: #3a3a36; border-radius: 50%;
-}
-.illus-slot.on::after { background: var(--lime); box-shadow: 0 0 5px rgba(232,237,181,.5); }
-.illus-slot.ch::after { background: #E8A83A; animation: slotBlink 1.8s ease-in-out infinite; }
+/* SMART machine illustration */
+.smart-illus { width: 220px; background: #1a1a18; border-radius: 14px; padding: 10px 10px 14px; box-shadow: 0 20px 60px rgba(0,0,0,.35); }
+.smart-illus-screen { background: var(--taupe-lt); border-radius: 8px; aspect-ratio: 16/10; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.25rem; margin-bottom: 8px; position: relative; overflow: hidden; }
+.smart-illus-screen::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 60% 40%, rgba(232,237,181,.2) 0%, transparent 60%); }
+.si-bolt { font-size: 1.4rem; line-height: 1; }
+.si-text { font-size: 0.56rem; font-weight: 900; color: var(--black); text-align: center; line-height: 1.2; }
+.si-sub { font-size: 0.4rem; font-weight: 600; color: var(--muted); letter-spacing: .06em; text-transform: uppercase; }
+.smart-illus-mid { display: flex; align-items: center; justify-content: space-between; padding: 4px 3px 6px; gap: 6px; }
+.si-qr { width: 24px; height: 24px; background: #fff; border-radius: 3px; padding: 2px; flex-shrink: 0; }
+.si-logo { font-size: 0.68rem; font-weight: 900; color: rgba(255,255,255,.7); flex: 1; text-align: center; }
+.smart-illus-slots { display: grid; grid-template-columns: repeat(2, 1fr); gap: 4px; }
+.si-slot { background: #252520; border-radius: 5px; height: 26px; position: relative; overflow: hidden; }
+.si-slot::before { content: ''; position: absolute; top: 50%; left: 6px; transform: translateY(-50%); width: 18px; height: 3px; background: #333330; border-radius: 2px; }
+.si-slot::after { content: ''; position: absolute; top: 50%; right: 6px; transform: translateY(-50%); width: 5px; height: 5px; background: #3a3a36; border-radius: 50%; }
+.si-slot.on::after { background: var(--lime); box-shadow: 0 0 5px rgba(232,237,181,.5); }
+.si-slot.ch::after { background: #E8A83A; animation: slotBlink 1.8s ease-in-out infinite; }
 @keyframes slotBlink { 0%,100%{ opacity:1; } 50%{ opacity:.2; } }
-.smart-illus-base {
-  margin: 8px -2px -4px;
-  height: 8px; background: #0e0e0c;
-  border-radius: 0 0 8px 8px;
-}
+.smart-illus-base { margin: 6px -2px -4px; height: 8px; background: #0e0e0c; border-radius: 0 0 8px 8px; }
 
-/* ─── SMART+ MACHINE ILLUSTRATION (tall totem) ─── */
-.smart-plus-illus {
-  width: 130px;
-  display: flex; flex-direction: column;
-}
-.splus-screen-wrap {
-  background: #1a1a18;
-  border-radius: 12px 12px 0 0;
-  padding: 10px 10px 6px;
-  box-shadow: 0 0 0 1px rgba(255,255,255,.04);
-}
-.splus-screen {
-  background: var(--taupe-lt);
-  border-radius: 7px;
-  aspect-ratio: 9/14;
-  display: flex; flex-direction: column;
-  align-items: center; justify-content: center;
-  gap: 0.25rem;
-  overflow: hidden; position: relative;
-}
-.splus-screen::before {
-  content: '';
-  position: absolute; inset: 0;
-  background: radial-gradient(ellipse at 60% 30%, rgba(232,237,181,.25) 0%, transparent 60%);
-}
-.splus-bolt { font-size: 1.2rem; line-height: 1; }
-.splus-text { font-size: 0.45rem; font-weight: 900; color: var(--black); text-align: center; line-height: 1.2; }
-.splus-sub { font-size: 0.35rem; font-weight: 600; color: var(--muted); letter-spacing: .05em; text-transform: uppercase; }
-.splus-body {
-  background: #1a1a18;
-  border-radius: 0 0 10px 10px;
-  padding: 8px 10px 12px;
-  box-shadow: 0 20px 60px rgba(0,0,0,.35), 0 0 0 1px rgba(255,255,255,.04);
-}
-.splus-body-label {
-  display: flex; align-items: center; justify-content: space-between;
-  margin-bottom: 6px;
-}
-.splus-logo { font-size: 0.6rem; font-weight: 900; color: rgba(255,255,255,.6); }
-.splus-model-tag {
-  font-size: 0.45rem; font-weight: 800; letter-spacing: .08em;
-  text-transform: uppercase; color: var(--lime);
-  background: rgba(255,255,255,.1);
-  padding: 1px 5px; border-radius: 999px;
-}
-.splus-slots {
-  display: grid; grid-template-columns: repeat(4, 1fr); gap: 3px;
-}
-.splus-slot {
-  background: #252520; border-radius: 4px;
-  height: 16px; position: relative; overflow: hidden;
-}
-.splus-slot::after {
-  content: '';
-  position: absolute; bottom: 2px; left: 50%; transform: translateX(-50%);
-  width: 4px; height: 4px;
-  background: #3a3a36; border-radius: 50%;
-}
-.splus-slot.on::after { background: var(--lime); box-shadow: 0 0 4px rgba(232,237,181,.5); }
-.splus-slot.ch::after { background: #E8A83A; animation: slotBlink 2s ease-in-out infinite; }
-.splus-base {
-  width: 110%; margin-left: -5%; margin-top: 8px;
-  height: 8px; background: #0e0e0c;
-  border-radius: 0 0 8px 8px;
-}
-.splus-stand {
-  width: 60%; margin: 0 auto;
-  height: 6px; background: #111;
-  border-radius: 0 0 4px 4px;
-}
+/* SMART+ illustration */
+.splus-illus { width: 115px; display: flex; flex-direction: column; }
+.splus-sw { background: #1a1a18; border-radius: 10px 10px 0 0; padding: 8px 8px 5px; }
+.splus-screen { background: var(--taupe-lt); border-radius: 6px; aspect-ratio: 9/14; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.2rem; overflow: hidden; position: relative; }
+.splus-screen::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 60% 30%, rgba(232,237,181,.2) 0%, transparent 60%); }
+.sp-bolt { font-size: 1.1rem; line-height: 1; }
+.sp-text { font-size: 0.42rem; font-weight: 900; color: var(--black); text-align: center; line-height: 1.2; }
+.sp-sub { font-size: 0.34rem; font-weight: 600; color: var(--muted); letter-spacing: .05em; text-transform: uppercase; }
+.splus-body { background: #1a1a18; border-radius: 0 0 8px 8px; padding: 7px 8px 10px; box-shadow: 0 20px 60px rgba(0,0,0,.3); }
+.splus-body-label { display: flex; align-items: center; justify-content: space-between; margin-bottom: 5px; }
+.sp-logo { font-size: 0.55rem; font-weight: 900; color: rgba(255,255,255,.6); }
+.sp-tag { font-size: 0.42rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--lime); background: rgba(255,255,255,.1); padding: 1px 5px; border-radius: 999px; }
+.splus-slots { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; }
+.sp-slot { background: #252520; border-radius: 3px; height: 14px; position: relative; }
+.sp-slot::after { content: ''; position: absolute; bottom: 2px; left: 50%; transform: translateX(-50%); width: 4px; height: 4px; background: #3a3a36; border-radius: 50%; }
+.sp-slot.on::after { background: var(--lime); }
+.splus-base { width: 110%; margin-left: -5%; margin-top: 7px; height: 7px; background: #0e0e0c; border-radius: 0 0 7px 7px; }
+.splus-stand { width: 55%; margin: 0 auto; height: 5px; background: #111; border-radius: 0 0 4px 4px; }
 
-/* ─── CTA SECTION ─── */
+/* ─── CTA ─── */
 #cta-estab {
   padding: var(--section-pad) 0;
   background: var(--black);
   text-align: center;
 }
-#cta-estab h2 { color: var(--white); margin-bottom: 1rem; }
-#cta-estab p { color: rgba(255,255,255,.5); margin-bottom: 2rem; }
 
 @media (max-width: 960px) {
   .two-col { grid-template-columns: 1fr; }
+  .modelos-grid { grid-template-columns: 1fr; }
   .benefits-grid { grid-template-columns: 1fr; }
   .machines-compare { grid-template-columns: 1fr; }
-}
-@media (max-width: 560px) {
-  .benefits-grid { grid-template-columns: 1fr; }
+  .pricing-note { flex-direction: column; gap: 1rem; }
 }
 </style>
 </head>
 <body>
 
-<!-- ══ NAVBAR ══ -->
 <nav id="nav">
   <div class="container nav-inner">
-    <a class="nav-logo" href="index.html">
-      <img src="assets/logo-black.png" alt="krga">
-    </a>
+    <a class="nav-logo" href="index.html"><img src="assets/logo-black.png" alt="krga"></a>
     <ul class="nav-links">
       <li><a href="establecimientos.html" style="opacity:1;font-weight:800;">Establecimientos</a></li>
       <li><a href="marcas.html">Marcas</a></li>
@@ -289,91 +258,185 @@
       <li><a href="contacto.html">Contacto</a></li>
       <li><a href="contacto.html" class="nav-cta">Contáctanos</a></li>
     </ul>
-    <button class="hamburger" id="hamburger" aria-label="Menú">
-      <span></span><span></span><span></span>
-    </button>
+    <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
   </div>
 </nav>
 <div class="mobile-menu" id="mobileMenu">
   <a href="establecimientos.html" onclick="closeMobile()">Establecimientos</a>
-  <a href="marcas.html"           onclick="closeMobile()">Marcas</a>
-  <a href="la-maquina.html"       onclick="closeMobile()">La máquina</a>
-  <a href="contacto.html"         onclick="closeMobile()">Contacto</a>
+  <a href="marcas.html" onclick="closeMobile()">Marcas</a>
+  <a href="la-maquina.html" onclick="closeMobile()">La máquina</a>
+  <a href="contacto.html" onclick="closeMobile()">Contacto</a>
 </div>
 
-<!-- ══ HERO ══ -->
+<!-- HERO -->
 <section id="hero-estab">
   <div class="container">
     <div class="two-col">
-
       <div class="reveal">
         <span class="tag">Para establecimientos</span>
         <h2 style="font-size:clamp(2.4rem,5vw,4.2rem);">Tú te enfocas<br>en tu negocio.<br>Nosotros <em style="font-style:normal;color:var(--taupe-dk);">krgamos</em><br>sus dispositivos.</h2>
         <p class="lead" style="margin-top:1.25rem;">
-          Instala una estación krga en tu negocio sin costo. Tus clientes
-          cargan su celular mientras disfrutan. Tú no haces nada extra.
+          Instala una estación krga en tu negocio con una renta mensual fija.
+          Sin operadores, sin logística, sin complicaciones.
         </p>
         <div style="margin-top:2rem;">
-          <a href="contacto.html" class="btn-primary">Quiero krga en mi negocio</a>
+          <a href="contacto.html" class="btn-primary">Solicitar cotización</a>
         </div>
       </div>
-
       <div class="reveal visual-right">
-        <div class="free-callout">
-          <div class="small-label">y lo mejor de todo...</div>
-          <div class="big-text">No tiene<br><span>ningún costo</span><br>para ti.</div>
-          <p style="font-size:0.85rem;color:rgba(0,0,0,.55);margin-top:1rem;line-height:1.5;">
-            Tus clientes pagan por el tiempo que usan el powerbank. Para el negocio es completamente gratis.
+        <div class="modelo-callout">
+          <div class="eyebrow">Modelo de negocio</div>
+          <div class="headline">Renta mensual fija.<br><span>Condiciones a tu medida.</span></div>
+          <p>
+            Cada negocio es diferente. Por eso pactamos contigo el precio y las
+            condiciones que mejor se adapten a tu volumen, zona y tipo de cliente.
           </p>
         </div>
       </div>
-
     </div>
   </div>
 </section>
 
-<!-- ══ BENEFICIOS ══ -->
+<!-- MODELOS -->
+<section id="modelos">
+  <div class="container">
+    <div class="reveal">
+      <span class="tag">Los modelos disponibles</span>
+      <h2>Elige cómo quieres<br>ofrecer el servicio.</h2>
+      <p class="lead" style="margin-top:1rem;">Tú pagas una renta mensual fija. Lo que cobras a tus clientes, lo acordamos juntos.</p>
+    </div>
+
+    <div class="modelos-grid">
+
+      <div class="modelo-card reveal">
+        <div class="modelo-card-header">
+          <span class="modelo-label">Modelo A</span>
+          <h3>Gratuito para tus clientes</h3>
+          <p>Absorbes el costo como parte de la experiencia que ofreces. Tus clientes cargan gratis, sin fricción.</p>
+        </div>
+        <div class="modelo-card-body">
+          <div class="modelo-feature">
+            <div class="mf-dot"></div>
+            <p>Renta mensual fija negociada con krga.</p>
+          </div>
+          <div class="modelo-feature">
+            <div class="mf-dot"></div>
+            <p><strong>Cero cobros al usuario final.</strong> El cliente toma el powerbank y lo devuelve sin pagar nada.</p>
+          </div>
+          <div class="modelo-feature">
+            <div class="mf-dot"></div>
+            <p>Diferenciador premium: pocos negocios ofrecen esto.</p>
+          </div>
+          <div class="modelo-feature">
+            <div class="mf-dot"></div>
+            <p>Ideal para hoteles, restaurantes de ticket alto y espacios exclusivos.</p>
+          </div>
+          <span class="modelo-badge-lime">Experiencia premium</span>
+        </div>
+      </div>
+
+      <div class="modelo-card reveal" style="transition-delay:.08s;">
+        <div class="modelo-card-header">
+          <span class="modelo-label">Modelo B</span>
+          <h3>Período gratuito + cobro por uso</h3>
+          <p>Se pacta un período inicial gratuito para tus clientes. Después, se cobra por tiempo de uso.</p>
+        </div>
+        <div class="modelo-card-body">
+          <div class="modelo-feature">
+            <div class="mf-dot"></div>
+            <p>Renta mensual fija negociada con krga.</p>
+          </div>
+          <div class="modelo-feature">
+            <div class="mf-dot"></div>
+            <p><strong>Período inicial gratuito</strong> acordado según el establecimiento (p.ej. primeros 30 o 60 minutos).</p>
+          </div>
+          <div class="modelo-feature">
+            <div class="mf-dot"></div>
+            <p>A partir del período pactado: <strong>desde $20 MXN por cada 30 minutos</strong> adicionales de uso.</p>
+          </div>
+          <div class="modelo-feature">
+            <div class="mf-dot"></div>
+            <p>El cobro es directo al usuario a través de la app. Tú no gestionas nada.</p>
+          </div>
+          <span class="modelo-badge">Mayor alcance</span>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="pricing-note reveal">
+      <div class="pricing-note-icon">💬</div>
+      <p>
+        <strong>El precio y las condiciones exactas se pactan contigo.</strong> El costo mensual depende del modelo que elijas,
+        el volumen esperado, la zona y el tipo de establecimiento. Contáctanos para una cotización personalizada sin compromiso.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- BENEFICIOS -->
 <section id="beneficios">
   <div class="container">
     <div class="reveal">
-      <span class="tag">¿Por qué te convendría?</span>
-      <h2>Más tiempo.<br>Más consumo.<br>Cero logística.</h2>
+      <span class="tag">¿Por qué krga?</span>
+      <h2>Más que una estación<br>de carga.</h2>
     </div>
     <div class="benefits-grid">
-      <div class="benefit-big reveal">
-        <div class="benefit-big-icon">⏱️</div>
-        <h3>Tus clientes se quedan más tiempo</h3>
-        <p>Cuando un cliente carga su celular, tiene una razón para quedarse. Más permanencia = más consumo. Sin hacer nada extra.</p>
-        <span class="benefit-tag">+40% permanencia</span>
+      <div class="benefit-card-pro reveal">
+        <div class="bc-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+        </div>
+        <h3>Clientes que se quedan más tiempo</h3>
+        <p>Un cliente cargando su celular tiene una razón concreta para quedarse. Más tiempo en tu espacio es más consumo.</p>
       </div>
-      <div class="benefit-big reveal" style="transition-delay:.07s;">
-        <div class="benefit-big-icon">📺</div>
-        <h3>Publicítate en la pantalla</h3>
-        <p>Usa la pantalla integrada de la máquina para mostrar tu menú, promociones o contenido. Fotos o video en repetición.</p>
-        <span class="benefit-tag">Pantalla propia</span>
+      <div class="benefit-card-pro reveal" style="transition-delay:.07s;">
+        <div class="bc-icon">
+          <svg viewBox="0 0 24 24"><path d="M21 3H3c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h5v2h8v-2h5c1.1 0 1.99-.9 1.99-2L23 5c0-1.1-.9-2-2-2zm0 14H3V5h18v12z"/></svg>
+        </div>
+        <h3>Pantalla para tu propio contenido</h3>
+        <p>Usa la pantalla integrada para mostrar tu menú, promociones o eventos. Tu contenido frente a tus clientes, siempre.</p>
       </div>
-      <div class="benefit-big reveal" style="transition-delay:.14s;">
-        <div class="benefit-big-icon">📍</div>
-        <h3>Aparece en la app krga</h3>
-        <p>Agrega tus horarios, dirección y fotos en nuestra plataforma para que cualquier usuario que busque carga te encuentre a ti.</p>
-        <span class="benefit-tag">Más visibilidad</span>
+      <div class="benefit-card-pro reveal" style="transition-delay:.14s;">
+        <div class="bc-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+        </div>
+        <h3>Presencia en la app krga</h3>
+        <p>Aparece en el mapa de la app con tus horarios, dirección y fotos. Usuarios buscando carga te encuentran a ti.</p>
+      </div>
+      <div class="benefit-card-pro reveal" style="transition-delay:.21s;">
+        <div class="bc-icon">
+          <svg viewBox="0 0 24 24"><path d="M19.43 12.98c.04-.32.07-.64.07-.98s-.03-.66-.07-.98l2.11-1.65c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.3-.61-.22l-2.49 1c-.52-.4-1.08-.73-1.69-.98l-.38-2.65C14.46 2.18 14.25 2 14 2h-4c-.25 0-.46.18-.49.42l-.38 2.65c-.61.25-1.17.59-1.69.98l-2.49-1c-.23-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64l2.11 1.65c-.04.32-.07.65-.07.98s.03.66.07.98l-2.11 1.65c-.19.15-.24.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1c.52.4 1.08.73 1.69.98l.38 2.65c.03.24.24.42.49.42h4c.25 0 .46-.18.49-.42l.38-2.65c.61-.25 1.17-.59 1.69-.98l2.49 1c.23.09.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64l-2.11-1.65zM12 15.5c-1.93 0-3.5-1.57-3.5-3.5s1.57-3.5 3.5-3.5 3.5 1.57 3.5 3.5-1.57 3.5-3.5 3.5z"/></svg>
+        </div>
+        <h3>Sin operación de tu parte</h3>
+        <p>No guardas IDs, no cobras, no reparas nada. krga gestiona todo de forma remota y autónoma.</p>
+      </div>
+      <div class="benefit-card-pro reveal" style="transition-delay:.28s;">
+        <div class="bc-icon">
+          <svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
+        </div>
+        <h3>No inviertas en cargadores</h3>
+        <p>Olvídate de cargadores inalámbricos, cables perdidos y enchufes ocupados. krga resuelve eso con un solo equipo.</p>
+      </div>
+      <div class="benefit-card-pro reveal" style="transition-delay:.35s;">
+        <div class="bc-icon">
+          <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 3c1.93 0 3.5 1.57 3.5 3.5S13.93 13 12 13s-3.5-1.57-3.5-3.5S10.07 6 12 6zm7 13H5v-.23c0-.62.28-1.2.76-1.58C7.47 15.82 9.64 15 12 15s4.53.82 6.24 2.19c.48.38.76.97.76 1.58V19z"/></svg>
+        </div>
+        <h3>Atrae un nuevo perfil de cliente</h3>
+        <p>La app krga dirige a sus usuarios hacia los establecimientos con estaciones activas. Tráfico nuevo sin inversión en marketing.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ══ ELIGE TU MÁQUINA ══ -->
+<!-- ELIGE TU MÁQUINA -->
 <section id="maquinas">
   <div class="container">
     <div class="reveal">
-      <span class="tag">Los modelos</span>
-      <h2>Elige la máquina<br>que se ajusta<br>a tu negocio.</h2>
-      <p class="lead" style="margin-top:1rem;">Ambas son 100% autónomas y gratuitas para ti.</p>
+      <span class="tag">Los modelos de máquina</span>
+      <h2>La que mejor<br>se adapta a ti.</h2>
+      <p class="lead" style="margin-top:1rem;">El modelo de máquina se elige según el volumen y el espacio del establecimiento.</p>
     </div>
-
     <div class="machines-compare">
-
-      <!-- SMART -->
       <div class="machine-compare-card reveal">
         <div class="machine-compare-header">
           <span class="model-label">Modelo compacto</span>
@@ -383,54 +446,34 @@
           <div class="machine-visual-area">
             <div class="smart-illus">
               <div class="smart-illus-screen">
-                <div class="illus-bolt">⚡</div>
-                <div class="illus-text">¿TE QUEDASTE<br>SIN PILA?</div>
-                <div class="illus-sub">Escanea · Toma · Carga</div>
+                <div class="si-bolt">⚡</div>
+                <div class="si-text">¿TE QUEDASTE<br>SIN PILA?</div>
+                <div class="si-sub">Escanea · Toma · Carga</div>
               </div>
               <div class="smart-illus-mid">
-                <div class="illus-qr">
-                  <svg viewBox="0 0 21 21" width="22" height="22" xmlns="http://www.w3.org/2000/svg">
-                    <rect x="0" y="0" width="9" height="9" fill="#111" rx="1"/><rect x="1.5" y="1.5" width="6" height="6" fill="#fff" rx="0.5"/><rect x="3" y="3" width="3" height="3" fill="#111"/>
-                    <rect x="12" y="0" width="9" height="9" fill="#111" rx="1"/><rect x="13.5" y="1.5" width="6" height="6" fill="#fff" rx="0.5"/><rect x="15" y="3" width="3" height="3" fill="#111"/>
-                    <rect x="0" y="12" width="9" height="9" fill="#111" rx="1"/><rect x="1.5" y="13.5" width="6" height="6" fill="#fff" rx="0.5"/><rect x="3" y="15" width="3" height="3" fill="#111"/>
-                    <rect x="12" y="12" width="3" height="3" fill="#111"/><rect x="16" y="12" width="2" height="2" fill="#111"/><rect x="12" y="16" width="2" height="2" fill="#111"/><rect x="15" y="15" width="2" height="2" fill="#111"/><rect x="18" y="15" width="3" height="3" fill="#111"/>
-                  </svg>
-                </div>
-                <div class="illus-logo">krga</div>
-                <div class="illus-qr">
-                  <svg viewBox="0 0 21 21" width="22" height="22" xmlns="http://www.w3.org/2000/svg">
-                    <rect x="0" y="0" width="9" height="9" fill="#111" rx="1"/><rect x="1.5" y="1.5" width="6" height="6" fill="#fff" rx="0.5"/><rect x="3" y="3" width="3" height="3" fill="#111"/>
-                    <rect x="12" y="0" width="9" height="9" fill="#111" rx="1"/><rect x="13.5" y="1.5" width="6" height="6" fill="#fff" rx="0.5"/><rect x="15" y="3" width="3" height="3" fill="#111"/>
-                    <rect x="0" y="12" width="9" height="9" fill="#111" rx="1"/><rect x="1.5" y="13.5" width="6" height="6" fill="#fff" rx="0.5"/><rect x="3" y="15" width="3" height="3" fill="#111"/>
-                    <rect x="12" y="12" width="4" height="2" fill="#111"/><rect x="17" y="12" width="4" height="2" fill="#111"/><rect x="12" y="15" width="2" height="6" fill="#111"/><rect x="15" y="15" width="3" height="3" fill="#111"/>
-                  </svg>
-                </div>
+                <div class="si-qr"><svg viewBox="0 0 21 21" width="20" height="20"><rect x="0" y="0" width="9" height="9" fill="#111" rx="1"/><rect x="1.5" y="1.5" width="6" height="6" fill="#fff" rx=".5"/><rect x="3" y="3" width="3" height="3" fill="#111"/><rect x="12" y="0" width="9" height="9" fill="#111" rx="1"/><rect x="13.5" y="1.5" width="6" height="6" fill="#fff" rx=".5"/><rect x="15" y="3" width="3" height="3" fill="#111"/><rect x="0" y="12" width="9" height="9" fill="#111" rx="1"/><rect x="1.5" y="13.5" width="6" height="6" fill="#fff" rx=".5"/><rect x="3" y="15" width="3" height="3" fill="#111"/></svg></div>
+                <div class="si-logo">krga</div>
+                <div class="si-qr"><svg viewBox="0 0 21 21" width="20" height="20"><rect x="0" y="0" width="9" height="9" fill="#111" rx="1"/><rect x="1.5" y="1.5" width="6" height="6" fill="#fff" rx=".5"/><rect x="3" y="3" width="3" height="3" fill="#111"/><rect x="12" y="0" width="9" height="9" fill="#111" rx="1"/><rect x="13.5" y="1.5" width="6" height="6" fill="#fff" rx=".5"/><rect x="15" y="3" width="3" height="3" fill="#111"/><rect x="0" y="12" width="9" height="9" fill="#111" rx="1"/><rect x="1.5" y="13.5" width="6" height="6" fill="#fff" rx=".5"/><rect x="3" y="15" width="3" height="3" fill="#111"/></svg></div>
               </div>
               <div class="smart-illus-slots">
-                <div class="illus-slot on"></div>
-                <div class="illus-slot ch"></div>
-                <div class="illus-slot on"></div>
-                <div class="illus-slot"></div>
-                <div class="illus-slot ch"></div>
-                <div class="illus-slot on"></div>
+                <div class="si-slot on"></div><div class="si-slot ch"></div>
+                <div class="si-slot on"></div><div class="si-slot"></div>
+                <div class="si-slot ch"></div><div class="si-slot on"></div>
               </div>
               <div class="smart-illus-base"></div>
             </div>
           </div>
-          <div style="margin-top:1.5rem;">
-            <div class="spec-row"><span class="spec-icon">📺</span><span class="spec-label">Pantalla</span><span class="spec-val">10.1" Full HD</span></div>
-            <div class="spec-row"><span class="spec-icon">🔋</span><span class="spec-label">Capacidad</span><span class="spec-val">6 clientes a la vez</span></div>
-            <div class="spec-row"><span class="spec-icon">📡</span><span class="spec-label">Conectividad</span><span class="spec-val">WiFi + 4G</span></div>
-            <div class="spec-row"><span class="spec-icon">📐</span><span class="spec-label">Formato</span><span class="spec-val">Compacto / sobremesa</span></div>
-            <div class="spec-row"><span class="spec-icon">✅</span><span class="spec-label">Costo para ti</span><span class="spec-val" style="color:var(--black);font-weight:800;">$0 MXN</span></div>
+          <div style="margin-top:1.25rem;">
+            <div class="spec-row"><span class="spec-label">Pantalla</span><span class="spec-val">10.1" Full HD</span></div>
+            <div class="spec-row"><span class="spec-label">Capacidad</span><span class="spec-val">6 powerbanks simultáneos</span></div>
+            <div class="spec-row"><span class="spec-label">Conectividad</span><span class="spec-val">WiFi + 4G</span></div>
+            <div class="spec-row"><span class="spec-label">Formato</span><span class="spec-val">Compacto · sobremesa</span></div>
+            <div class="spec-row"><span class="spec-label">Ideal para</span><span class="spec-val">Bares, cafeterías, restaurantes</span></div>
           </div>
-          <div style="margin-top:1.5rem;">
-            <a href="contacto.html" class="btn-primary" style="width:100%;text-align:center;display:block;">Lo quiero</a>
-          </div>
+          <div style="margin-top:1.5rem;"><a href="contacto.html" class="btn-primary" style="width:100%;text-align:center;display:block;">Cotizar</a></div>
         </div>
       </div>
 
-      <!-- SMART+ -->
       <div class="machine-compare-card reveal" style="transition-delay:.08s;">
         <div class="machine-compare-header" style="background:linear-gradient(135deg,#1a1a12,#2a2a20);">
           <span class="model-label">Modelo premium</span>
@@ -438,67 +481,59 @@
         </div>
         <div class="machine-compare-body">
           <div class="machine-visual-area">
-            <div class="smart-plus-illus">
-              <div class="splus-screen-wrap">
+            <div class="splus-illus">
+              <div class="splus-sw">
                 <div class="splus-screen">
-                  <div class="splus-bolt">⚡</div>
-                  <div class="splus-text">¿TE QUEDASTE<br>SIN PILA?</div>
-                  <div class="splus-sub">krga SMART+</div>
+                  <div class="sp-bolt">⚡</div>
+                  <div class="sp-text">¿TE QUEDASTE<br>SIN PILA?</div>
+                  <div class="sp-sub">SMART+</div>
                 </div>
               </div>
               <div class="splus-body">
-                <div class="splus-body-label">
-                  <span class="splus-logo">krga</span>
-                  <span class="splus-model-tag">SMART+</span>
-                </div>
+                <div class="splus-body-label"><span class="sp-logo">krga</span><span class="sp-tag">SMART+</span></div>
                 <div class="splus-slots">
-                  <div class="splus-slot on"></div><div class="splus-slot ch"></div><div class="splus-slot on"></div><div class="splus-slot"></div>
-                  <div class="splus-slot"></div><div class="splus-slot on"></div><div class="splus-slot ch"></div><div class="splus-slot on"></div>
-                  <div class="splus-slot on"></div><div class="splus-slot"></div><div class="splus-slot on"></div><div class="splus-slot ch"></div>
-                  <div class="splus-slot ch"></div><div class="splus-slot on"></div><div class="splus-slot"></div><div class="splus-slot on"></div>
-                  <div class="splus-slot on"></div><div class="splus-slot ch"></div><div class="splus-slot on"></div><div class="splus-slot"></div>
-                  <div class="splus-slot"></div><div class="splus-slot on"></div><div class="splus-slot ch"></div><div class="splus-slot on"></div>
+                  <div class="sp-slot on"></div><div class="sp-slot ch"></div><div class="sp-slot on"></div><div class="sp-slot"></div>
+                  <div class="sp-slot"></div><div class="sp-slot on"></div><div class="sp-slot ch"></div><div class="sp-slot on"></div>
+                  <div class="sp-slot on"></div><div class="sp-slot"></div><div class="sp-slot on"></div><div class="sp-slot ch"></div>
+                  <div class="sp-slot ch"></div><div class="sp-slot on"></div><div class="sp-slot"></div><div class="sp-slot on"></div>
+                  <div class="sp-slot on"></div><div class="sp-slot ch"></div><div class="sp-slot on"></div><div class="sp-slot"></div>
+                  <div class="sp-slot"></div><div class="sp-slot on"></div><div class="sp-slot ch"></div><div class="sp-slot on"></div>
                 </div>
                 <div class="splus-base"></div>
               </div>
               <div class="splus-stand"></div>
             </div>
           </div>
-          <div style="margin-top:1.5rem;">
-            <div class="spec-row"><span class="spec-icon">📺</span><span class="spec-label">Pantalla</span><span class="spec-val">32" Full HD</span></div>
-            <div class="spec-row"><span class="spec-icon">🔋</span><span class="spec-label">Capacidad</span><span class="spec-val">24 clientes a la vez</span></div>
-            <div class="spec-row"><span class="spec-icon">📡</span><span class="spec-label">Conectividad</span><span class="spec-val">WiFi + 4G</span></div>
-            <div class="spec-row"><span class="spec-icon">📐</span><span class="spec-label">Altura</span><span class="spec-val">180 cm (totem)</span></div>
-            <div class="spec-row"><span class="spec-icon">✅</span><span class="spec-label">Costo para ti</span><span class="spec-val" style="color:var(--black);font-weight:800;">$0 MXN</span></div>
+          <div style="margin-top:1.25rem;">
+            <div class="spec-row"><span class="spec-label">Pantalla</span><span class="spec-val">32" Full HD</span></div>
+            <div class="spec-row"><span class="spec-label">Capacidad</span><span class="spec-val">24 powerbanks simultáneos</span></div>
+            <div class="spec-row"><span class="spec-label">Conectividad</span><span class="spec-val">WiFi + 4G</span></div>
+            <div class="spec-row"><span class="spec-label">Formato</span><span class="spec-val">Totem · 180 cm de alto</span></div>
+            <div class="spec-row"><span class="spec-label">Ideal para</span><span class="spec-val">Hoteles, centros comerciales</span></div>
           </div>
-          <div style="margin-top:1.5rem;">
-            <a href="contacto.html" class="btn-primary" style="width:100%;text-align:center;display:block;">Lo quiero</a>
-          </div>
+          <div style="margin-top:1.5rem;"><a href="contacto.html" class="btn-primary" style="width:100%;text-align:center;display:block;">Cotizar</a></div>
         </div>
       </div>
-
     </div>
   </div>
 </section>
 
-<!-- ══ CTA FINAL ══ -->
+<!-- CTA -->
 <section id="cta-estab">
   <div class="container reveal" style="text-align:center;">
-    <span class="tag-outline">Sin riesgo</span>
-    <h2 style="color:var(--white);margin-top:0.5rem;">Tú te enfocas en tu negocio,<br>nosotros <span style="color:var(--lime);">krgamos</span> sus dispositivos.</h2>
-    <p style="color:rgba(255,255,255,.5);max-width:44ch;margin:1rem auto 2rem;">#NoChargingNoBusiness</p>
-    <a href="contacto.html" class="btn-primary-lime">Contáctanos hoy</a>
+    <span class="tag-outline">Sin compromiso</span>
+    <h2 style="color:var(--white);margin-top:0.75rem;">Hablemos de tu negocio.<br>Te armamos una propuesta <span style="color:var(--lime);">a la medida.</span></h2>
+    <p style="color:rgba(255,255,255,.45);max-width:42ch;margin:1rem auto 2rem;">
+      #NoChargingNoBusiness
+    </p>
+    <a href="contacto.html" class="btn-primary-lime">Solicitar cotización</a>
   </div>
 </section>
 
-<!-- ─── FOOTER ─── -->
 <footer>
   <div class="container">
     <div class="footer-inner">
-      <div class="footer-logo">
-        <img src="assets/logo-black.png" alt="krga">
-        <p>Powerbank sharing en Guadalajara.</p>
-      </div>
+      <div class="footer-logo"><img src="assets/logo-black.png" alt="krga"><p>Powerbank sharing en Guadalajara.</p></div>
       <div class="footer-links">
         <h5>Navegar</h5>
         <ul>
@@ -513,7 +548,6 @@
         <ul>
           <li><a href="https://instagram.com/krga.mx" target="_blank">@krga.mx</a></li>
           <li><a href="tel:+523315722663">+52 33 1572 2663</a></li>
-          <li><a href="https://www.krga.mx">www.krga.mx</a></li>
         </ul>
       </div>
     </div>
@@ -527,10 +561,8 @@
 <script>
 const nav = document.getElementById('nav');
 window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 40));
-const hamburger = document.getElementById('hamburger');
-const mobileMenu = document.getElementById('mobileMenu');
-hamburger.addEventListener('click', () => mobileMenu.classList.toggle('open'));
-function closeMobile() { mobileMenu.classList.remove('open'); }
+document.getElementById('hamburger').addEventListener('click', () => document.getElementById('mobileMenu').classList.toggle('open'));
+function closeMobile() { document.getElementById('mobileMenu').classList.remove('open'); }
 const observer = new IntersectionObserver(entries => {
   entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
 }, { threshold: 0.1 });
