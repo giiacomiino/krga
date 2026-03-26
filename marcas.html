@@ -9,75 +9,192 @@
 body { background: var(--dark-bg); color: var(--white); }
 
 #nav { background: transparent; }
-#nav.scrolled {
-  background: rgba(21, 21, 18, 0.9) !important;
-  backdrop-filter: blur(16px);
-  box-shadow: 0 2px 24px rgba(0,0,0,.2);
-}
+#nav.scrolled { background: rgba(21,21,18,.92) !important; backdrop-filter: blur(16px); box-shadow: 0 2px 24px rgba(0,0,0,.2); }
 .nav-links a { color: var(--white) !important; }
 .nav-cta { background: var(--white) !important; color: var(--black) !important; }
-
+.hamburger span { background: var(--white) !important; }
 .mobile-menu { background: var(--dark-bg) !important; }
 .mobile-menu a { color: var(--white) !important; }
-.hamburger span { background: var(--white) !important; }
 
 #hero-marcas {
   min-height: 100dvh;
   display: flex; align-items: center;
-  padding-top: 100px;
+  padding-top: 110px;
   padding-bottom: var(--section-pad);
   background: var(--dark-bg);
 }
-.two-col {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--gap);
-  align-items: center;
-}
-.benefits-list { display: flex; flex-direction: column; gap: 0.85rem; margin-top: 1.75rem; }
-
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: var(--gap); align-items: center; }
 h2 { color: var(--white); }
-p, .lead { color: rgba(255,255,255,.55); }
+.lead { color: rgba(255,255,255,.55); }
 
-.stats-dark {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem;
-  margin-top: 1.5rem;
-}
-.stat-dark {
-  background: var(--dark-card);
+.benefits-list { display: flex; flex-direction: column; gap: 0.85rem; margin-top: 1.75rem; }
+.benefit-dark {
+  display: flex; align-items: flex-start; gap: 1rem;
+  background: #1E1E1B;
   border-radius: var(--r-md);
-  padding: 1.2rem;
-  text-align: center;
+  padding: 1.25rem 1.4rem;
 }
-.stat-dark .snum {
-  font-size: clamp(1.8rem, 3vw, 2.5rem);
-  font-weight: 900; letter-spacing: -0.03em;
-  line-height: 1; margin-bottom: 0.2rem;
-  color: var(--lime);
+.benefit-dark-icon {
+  width: 44px; height: 44px;
+  background: #252520;
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.2rem; flex-shrink: 0;
 }
-.stat-dark p { font-size: 0.78rem; color: rgba(255,255,255,.4); }
+.benefit-dark h4 { font-size: 0.95rem; font-weight: 700; color: var(--white); margin-bottom: 0.2rem; }
+.benefit-dark p { font-size: 0.85rem; color: rgba(255,255,255,.45); }
 
-#reach {
+/* ─── MACHINES SIDE BY SIDE WITH AD MOCKUPS ─── */
+.machines-pair {
+  display: flex; gap: 2rem; align-items: flex-end; justify-content: center;
+}
+
+/* SMART ad display (landscape machine) */
+.smart-ad-illus {
+  width: 200px;
+  background: #1a1a18;
+  border-radius: 12px;
+  padding: 8px 8px 12px;
+  box-shadow: 0 20px 60px rgba(0,0,0,.4);
+}
+.smart-ad-screen {
+  background: var(--lime);
+  border-radius: 7px;
+  aspect-ratio: 16/10;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  padding: 0.75rem;
+  text-align: center;
+  position: relative; overflow: hidden;
+  margin-bottom: 7px;
+}
+.ad-badge-sm {
+  position: absolute; top: 6px; right: 6px;
+  background: rgba(0,0,0,.12);
+  border-radius: 5px;
+  padding: 1px 5px;
+  font-size: 0.45rem; font-weight: 800; letter-spacing: .08em;
+  color: rgba(0,0,0,.5);
+}
+.ad-brand { font-size: 0.55rem; font-weight: 800; text-transform: uppercase; letter-spacing: .08em; color: rgba(0,0,0,.45); margin-bottom: 0.3rem; }
+.ad-title { font-size: 0.75rem; font-weight: 900; color: var(--black); line-height: 1.15; margin-bottom: 0.2rem; }
+.ad-sub { font-size: 0.5rem; color: rgba(0,0,0,.55); }
+.sad-mid { display: flex; align-items: center; justify-content: space-between; padding: 3px 2px 5px; gap: 5px; }
+.sad-qr { width: 22px; height: 22px; background: #fff; border-radius: 2px; padding: 2px; flex-shrink: 0; }
+.sad-logo { font-size: 0.65rem; font-weight: 900; color: rgba(255,255,255,.65); flex: 1; text-align: center; }
+.sad-slots { display: grid; grid-template-columns: repeat(2, 1fr); gap: 3px; }
+.sad-slot { background: #252520; border-radius: 4px; height: 22px; position: relative; overflow: hidden; }
+.sad-slot::after { content: ''; position: absolute; top: 50%; right: 5px; transform: translateY(-50%); width: 4px; height: 4px; background: #3a3a36; border-radius: 50%; }
+.sad-slot.on::after { background: var(--lime); }
+.smart-ad-base { margin: 6px -2px -2px; height: 6px; background: #0e0e0c; border-radius: 0 0 6px 6px; }
+.machine-screen-label { font-size: 0.6rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: rgba(255,255,255,.3); text-align: center; margin-top: 0.75rem; }
+
+/* SMART+ ad display (totem) */
+.splus-ad-illus {
+  width: 110px;
+  display: flex; flex-direction: column;
+}
+.splus-ad-screen-wrap {
+  background: #1a1a18;
+  border-radius: 10px 10px 0 0;
+  padding: 8px 8px 5px;
+}
+.splus-ad-screen {
+  background: var(--lime);
+  border-radius: 6px;
+  aspect-ratio: 9/14;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  padding: 0.75rem 0.5rem;
+  text-align: center;
+  position: relative; overflow: hidden;
+}
+.splus-ad-body {
+  background: #1a1a18;
+  border-radius: 0 0 8px 8px;
+  padding: 6px 8px 10px;
+  box-shadow: 0 20px 60px rgba(0,0,0,.4);
+}
+.splus-ad-slots {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px;
+}
+.splus-ad-slot { background: #252520; border-radius: 3px; height: 12px; }
+.splus-ad-base { width: 110%; margin-left: -5%; margin-top: 6px; height: 6px; background: #0e0e0c; border-radius: 0 0 6px 6px; }
+.splus-ad-stand { width: 55%; margin: 0 auto; height: 5px; background: #111; border-radius: 0 0 3px 3px; }
+
+/* ─── FORMATS SECTION ─── */
+#formatos {
   padding: var(--section-pad) 0;
   background: #0e0e0c;
 }
-.reach-grid {
+.formats-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: var(--gap);
-  margin-top: clamp(2.5rem, 5vw, 4rem);
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-top: 3rem;
 }
-.reach-card {
-  background: var(--dark-card);
+.format-card {
+  background: #1E1E1B;
+  border-radius: var(--r-lg);
+  overflow: hidden;
+}
+.format-card-header {
+  background: #252520;
+  padding: 1.6rem 2rem;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.format-card-header h3 { color: var(--white); font-size: 1.4rem; }
+.format-screen-tag {
+  font-size: 0.68rem; font-weight: 700; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--lime);
+  background: rgba(232,237,181,.1);
+  padding: 0.3em 0.9em; border-radius: 999px;
+}
+.format-card-body { padding: 2rem; }
+.format-spec-row {
+  display: flex; align-items: center; gap: 0.75rem;
+  padding: 0.65rem 0;
+  border-bottom: 1px solid rgba(255,255,255,.06);
+  font-size: 0.88rem;
+}
+.format-spec-row:last-child { border-bottom: none; }
+.format-spec-icon { font-size: 0.95rem; width: 1.5rem; text-align: center; flex-shrink: 0; }
+.format-spec-label { color: rgba(255,255,255,.6); }
+.format-spec-val { color: var(--white); font-weight: 600; margin-left: auto; font-size: 0.85rem; }
+
+/* ─── STATS SECTION ─── */
+#stats-marcas {
+  padding: var(--section-pad) 0;
+  background: var(--dark-bg);
+}
+.stats-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+  margin-top: 3rem;
+}
+.stat-dark-card {
+  background: #1E1E1B;
   border-radius: var(--r-md);
-  padding: clamp(1.5rem, 2.5vw, 2rem);
+  padding: 2rem 1.5rem;
+  text-align: center;
 }
-.reach-card h3 { color: var(--white); margin-bottom: 0.5rem; }
-.reach-card p { color: rgba(255,255,255,.45); font-size: 0.9rem; }
-.reach-icon { font-size: 2rem; margin-bottom: 1rem; }
+.stat-dark-num {
+  font-size: clamp(2.2rem, 4vw, 3rem);
+  font-weight: 900; letter-spacing: -0.04em;
+  color: var(--lime); line-height: 1;
+  margin-bottom: 0.5rem;
+}
+.stat-dark-label { font-size: 0.85rem; color: rgba(255,255,255,.45); line-height: 1.4; }
 
 footer { background: #0a0a08; }
 footer .footer-logo p { color: rgba(255,255,255,.4); }
+
+@media (max-width: 960px) {
+  .two-col { grid-template-columns: 1fr; }
+  .formats-grid { grid-template-columns: 1fr; }
+  .stats-row { grid-template-columns: 1fr; }
+}
 </style>
 </head>
 <body>
@@ -90,7 +207,7 @@ footer .footer-logo p { color: rgba(255,255,255,.4); }
     </a>
     <ul class="nav-links">
       <li><a href="establecimientos.html">Establecimientos</a></li>
-      <li><a href="marcas.html" class="active" style="opacity:1!important;">Marcas</a></li>
+      <li><a href="marcas.html" style="opacity:1!important;font-weight:800;">Marcas</a></li>
       <li><a href="la-maquina.html">La máquina</a></li>
       <li><a href="contacto.html">Contacto</a></li>
       <li><a href="contacto.html" class="nav-cta">Contáctanos</a></li>
@@ -114,32 +231,32 @@ footer .footer-logo p { color: rgba(255,255,255,.4); }
 
       <div class="reveal">
         <span class="tag-outline">Para marcas y anunciantes</span>
-        <h2>Tu marca en el<br>momento exacto.</h2>
+        <h2 style="margin-top:0.5rem;">Tu marca en el<br>momento exacto.</h2>
         <p class="lead" style="margin-top:1rem;">
           Mientras una persona carga su celular, tiene la pantalla
           frente a ella. Es un momento de atención completa, sin
           competencia, en un contexto relajado. Eso es publicidad krga.
         </p>
         <div class="benefits-list">
-          <div class="benefit-card">
-            <div class="benefit-icon">📺</div>
+          <div class="benefit-dark">
+            <div class="benefit-dark-icon">📺</div>
             <div>
-              <h4>Red de pantallas 10.1" en establecimientos premium</h4>
-              <p>Tu contenido aparece en máquinas en restaurantes, bares, centros comerciales y hoteles de Guadalajara.</p>
+              <h4>Red de pantallas en establecimientos premium</h4>
+              <p>Restaurantes, bares, centros comerciales y hoteles en Guadalajara.</p>
             </div>
           </div>
-          <div class="benefit-card">
-            <div class="benefit-icon">🎯</div>
+          <div class="benefit-dark">
+            <div class="benefit-dark-icon">🎯</div>
             <div>
-              <h4>Audiencia cautiva y de alta atención</h4>
-              <p>El usuario está parado frente a la máquina por varios minutos. No hay scroll, no hay competencia. Solo tu anuncio.</p>
+              <h4>Audiencia 100% cautiva</h4>
+              <p>El usuario está parado frente a la máquina varios minutos. Sin scroll. Sin competencia.</p>
             </div>
           </div>
-          <div class="benefit-card">
-            <div class="benefit-icon">📊</div>
+          <div class="benefit-dark">
+            <div class="benefit-dark-icon">📊</div>
             <div>
-              <h4>Reportes de impresiones en tiempo real</h4>
-              <p>Conoce cuántas personas vieron tu anuncio, en qué ubicaciones y a qué hora.</p>
+              <h4>Dos formatos de pantalla</h4>
+              <p>SMART: pantalla 10.1". SMART+: pantalla de 32". Elige según tu necesidad.</p>
             </div>
           </div>
         </div>
@@ -148,32 +265,73 @@ footer .footer-logo p { color: rgba(255,255,255,.4); }
         </div>
       </div>
 
-      <div class="reveal visual-right" style="display:flex; flex-direction:column; align-items:center; gap:1.5rem;">
-        <!-- Ad mockup -->
-        <div class="ad-standalone">
-          <div class="ad-badge">AD</div>
-          <div class="ad-standalone-logo">🚀 Tu Marca</div>
-          <div class="ad-standalone-title">Nueva colección</div>
-          <div class="ad-standalone-sub">Encuéntranos aquí cerca</div>
-        </div>
-        <p class="screen-caption" style="color:rgba(255,255,255,.35);">Pantalla 10.1" · Rotación automática</p>
+      <div class="reveal visual-right" style="display:flex;flex-direction:column;align-items:center;gap:1rem;">
+        <div class="machines-pair">
+          <!-- SMART machine with ad -->
+          <div style="display:flex;flex-direction:column;align-items:center;">
+            <div class="smart-ad-illus">
+              <div class="smart-ad-screen">
+                <div class="ad-badge-sm">AD</div>
+                <div class="ad-brand">🚀 Tu Marca</div>
+                <div class="ad-title">Nueva colección</div>
+                <div class="ad-sub">Encuéntranos aquí cerca</div>
+              </div>
+              <div class="sad-mid">
+                <div class="sad-qr">
+                  <svg viewBox="0 0 21 21" width="18" height="18" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="0" y="0" width="9" height="9" fill="#111" rx="1"/><rect x="1.5" y="1.5" width="6" height="6" fill="#fff" rx="0.5"/><rect x="3" y="3" width="3" height="3" fill="#111"/>
+                    <rect x="12" y="0" width="9" height="9" fill="#111" rx="1"/><rect x="13.5" y="1.5" width="6" height="6" fill="#fff" rx="0.5"/><rect x="15" y="3" width="3" height="3" fill="#111"/>
+                    <rect x="0" y="12" width="9" height="9" fill="#111" rx="1"/><rect x="1.5" y="13.5" width="6" height="6" fill="#fff" rx="0.5"/><rect x="3" y="15" width="3" height="3" fill="#111"/>
+                  </svg>
+                </div>
+                <div class="sad-logo">krga</div>
+                <div class="sad-qr">
+                  <svg viewBox="0 0 21 21" width="18" height="18" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="0" y="0" width="9" height="9" fill="#111" rx="1"/><rect x="1.5" y="1.5" width="6" height="6" fill="#fff" rx="0.5"/><rect x="3" y="3" width="3" height="3" fill="#111"/>
+                    <rect x="12" y="0" width="9" height="9" fill="#111" rx="1"/><rect x="13.5" y="1.5" width="6" height="6" fill="#fff" rx="0.5"/><rect x="15" y="3" width="3" height="3" fill="#111"/>
+                    <rect x="0" y="12" width="9" height="9" fill="#111" rx="1"/><rect x="1.5" y="13.5" width="6" height="6" fill="#fff" rx="0.5"/><rect x="3" y="15" width="3" height="3" fill="#111"/>
+                  </svg>
+                </div>
+              </div>
+              <div class="sad-slots">
+                <div class="sad-slot on"></div><div class="sad-slot"></div>
+                <div class="sad-slot on"></div><div class="sad-slot on"></div>
+                <div class="sad-slot"></div><div class="sad-slot on"></div>
+              </div>
+              <div class="smart-ad-base"></div>
+            </div>
+            <div class="machine-screen-label">SMART · 10.1"</div>
+          </div>
 
-        <div class="stats-dark">
-          <div class="stat-dark">
-            <div class="snum">+5K</div>
-            <p>impresiones diarias en red</p>
-          </div>
-          <div class="stat-dark">
-            <div class="snum">3-5min</div>
-            <p>tiempo promedio frente a pantalla</p>
-          </div>
-          <div class="stat-dark">
-            <div class="snum">10+</div>
-            <p>ubicaciones premium GDL</p>
-          </div>
-          <div class="stat-dark">
-            <div class="snum">100%</div>
-            <p>audiencia captiva, sin scroll</p>
+          <!-- SMART+ machine with ad -->
+          <div style="display:flex;flex-direction:column;align-items:center;">
+            <div class="splus-ad-illus">
+              <div class="splus-ad-screen-wrap">
+                <div class="splus-ad-screen">
+                  <div class="ad-badge-sm">AD</div>
+                  <div class="ad-brand" style="font-size:.45rem;">🚀 Tu Marca</div>
+                  <div class="ad-title" style="font-size:.65rem;">Nueva<br>colección</div>
+                  <div class="ad-sub" style="font-size:.42rem;">Encuéntranos<br>aquí cerca</div>
+                </div>
+              </div>
+              <div class="splus-ad-body">
+                <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:5px;">
+                  <span style="font-size:.55rem;font-weight:900;color:rgba(255,255,255,.55);">krga</span>
+                  <span style="font-size:.42rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--lime);background:rgba(255,255,255,.1);padding:1px 4px;border-radius:999px;">SMART+</span>
+                </div>
+                <div class="splus-ad-slots">
+                  <div class="splus-ad-slot"></div><div class="splus-ad-slot"></div><div class="splus-ad-slot"></div><div class="splus-ad-slot"></div>
+                  <div class="splus-ad-slot"></div><div class="splus-ad-slot"></div><div class="splus-ad-slot"></div><div class="splus-ad-slot"></div>
+                  <div class="splus-ad-slot"></div><div class="splus-ad-slot"></div><div class="splus-ad-slot"></div><div class="splus-ad-slot"></div>
+                  <div class="splus-ad-slot"></div><div class="splus-ad-slot"></div><div class="splus-ad-slot"></div><div class="splus-ad-slot"></div>
+                  <div class="splus-ad-slot"></div><div class="splus-ad-slot"></div><div class="splus-ad-slot"></div><div class="splus-ad-slot"></div>
+                  <div class="splus-ad-slot"></div><div class="splus-ad-slot"></div><div class="splus-ad-slot"></div><div class="splus-ad-slot"></div>
+                </div>
+                <div class="splus-ad-base"></div>
+              </div>
+              <div class="splus-ad-stand"></div>
+            </div>
+            <div class="machine-screen-label">SMART+ · 32"</div>
           </div>
         </div>
       </div>
@@ -182,34 +340,72 @@ footer .footer-logo p { color: rgba(255,255,255,.4); }
   </div>
 </section>
 
-<!-- ══ FORMATOS ══ -->
-<section id="reach">
+<!-- ══ STATS ══ -->
+<section id="stats-marcas">
   <div class="container">
     <div class="reveal" style="text-align:center;">
-      <span class="tag-outline">Formatos</span>
-      <h2>Elige cómo<br>aparecer</h2>
+      <span class="tag-outline">Por qué funciona</span>
+      <h2 style="margin-top:0.5rem;">La pantalla que<br>nadie puede ignorar.</h2>
     </div>
-    <div class="reach-grid">
-      <div class="reach-card reveal">
-        <div class="reach-icon">🖼️</div>
-        <h3>Banner estático</h3>
-        <p>Imagen fija de tu marca en pantalla. Simple, directo, efectivo.</p>
+    <div class="stats-row">
+      <div class="stat-dark-card reveal">
+        <div class="stat-dark-num">3–5 min</div>
+        <div class="stat-dark-label">Tiempo promedio que un usuario permanece frente a la máquina mientras carga</div>
       </div>
-      <div class="reach-card reveal">
-        <div class="reach-icon">🎬</div>
-        <h3>Video corto</h3>
-        <p>Clips de hasta 15 segundos con audio. Máximo impacto en el momento.</p>
+      <div class="stat-dark-card reveal" style="transition-delay:.07s;">
+        <div class="stat-dark-num">0</div>
+        <div class="stat-dark-label">Competencia visual. No hay scroll, no hay otras pantallas. Solo tu anuncio.</div>
       </div>
-      <div class="reach-card reveal">
-        <div class="reach-icon">📍</div>
-        <h3>Segmentación por ubicación</h3>
-        <p>Aparece solo en las zonas que te interesan: Chapultepec, Providencia, Andares y más.</p>
+      <div class="stat-dark-card reveal" style="transition-delay:.14s;">
+        <div class="stat-dark-num">100%</div>
+        <div class="stat-dark-label">Audiencia captiva. El usuario no puede ignorar la pantalla que tiene enfrente.</div>
       </div>
-      <div class="reach-card reveal">
-        <div class="reach-icon">🕐</div>
-        <h3>Segmentación horaria</h3>
-        <p>Elige en qué horario del día quieres aparecer. Happy hour, mediodía, noche.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FORMATOS ══ -->
+<section id="formatos">
+  <div class="container">
+    <div class="reveal">
+      <span class="tag-outline">Formatos disponibles</span>
+      <h2 style="margin-top:0.5rem;">Dos pantallas.<br>Dos audiencias.</h2>
+      <p class="lead" style="margin-top:1rem;max-width:46ch;">Elige el formato que mejor se adapta a tu campaña o combina ambos para mayor alcance.</p>
+    </div>
+    <div class="formats-grid">
+
+      <div class="format-card reveal">
+        <div class="format-card-header">
+          <h3>krga SMART</h3>
+          <span class="format-screen-tag">10.1" · Horizontal</span>
+        </div>
+        <div class="format-card-body">
+          <div class="format-spec-row"><span class="format-spec-icon">📺</span><span class="format-spec-label">Tamaño pantalla</span><span class="format-spec-val">10.1 pulgadas</span></div>
+          <div class="format-spec-row"><span class="format-spec-icon">📐</span><span class="format-spec-icon">Orientación</span><span class="format-spec-val">Horizontal</span></div>
+          <div class="format-spec-row"><span class="format-spec-icon">📍</span><span class="format-spec-label">Ubicación</span><span class="format-spec-val">Bares, cafeterías, restaurantes</span></div>
+          <div class="format-spec-row"><span class="format-spec-icon">🎬</span><span class="format-spec-label">Formatos</span><span class="format-spec-val">Imagen o video en loop</span></div>
+          <div class="format-spec-row"><span class="format-spec-icon">👥</span><span class="format-spec-label">Alcance por máquina</span><span class="format-spec-val">6 usuarios simultáneos</span></div>
+        </div>
       </div>
+
+      <div class="format-card reveal" style="transition-delay:.08s;">
+        <div class="format-card-header" style="background:#2a2a20;">
+          <h3 style="color:var(--lime);">krga SMART<span style="color:var(--white);">+</span></h3>
+          <span class="format-screen-tag">32" · Vertical · Totem</span>
+        </div>
+        <div class="format-card-body">
+          <div class="format-spec-row"><span class="format-spec-icon">📺</span><span class="format-spec-label">Tamaño pantalla</span><span class="format-spec-val">32 pulgadas</span></div>
+          <div class="format-spec-row"><span class="format-spec-icon">📐</span><span class="format-spec-label">Orientación</span><span class="format-spec-val">Vertical (totem 180cm)</span></div>
+          <div class="format-spec-row"><span class="format-spec-icon">📍</span><span class="format-spec-label">Ubicación</span><span class="format-spec-val">Centros comerciales, hoteles</span></div>
+          <div class="format-spec-row"><span class="format-spec-icon">🎬</span><span class="format-spec-label">Formatos</span><span class="format-spec-val">Imagen o video en loop</span></div>
+          <div class="format-spec-row"><span class="format-spec-icon">👥</span><span class="format-spec-label">Alcance por máquina</span><span class="format-spec-val">24 usuarios simultáneos</span></div>
+        </div>
+      </div>
+
+    </div>
+
+    <div style="margin-top:3rem;text-align:center;" class="reveal">
+      <a href="contacto.html" class="btn-primary-lime">Quiero anunciarme</a>
     </div>
   </div>
 </section>
@@ -220,20 +416,23 @@ footer .footer-logo p { color: rgba(255,255,255,.4); }
     <div class="footer-inner">
       <div class="footer-logo">
         <img src="assets/logo-black.png" alt="krga">
-        <p>Powerbank sharing para negocios en Guadalajara.</p>
+        <p>Powerbank sharing en Guadalajara.</p>
       </div>
       <div class="footer-links">
-        <h5>Para ti</h5>
+        <h5>Navegar</h5>
         <ul>
           <li><a href="establecimientos.html">Establecimientos</a></li>
           <li><a href="marcas.html">Marcas</a></li>
           <li><a href="la-maquina.html">La máquina</a></li>
+          <li><a href="contacto.html">Contacto</a></li>
         </ul>
       </div>
       <div class="footer-links">
-        <h5>Empresa</h5>
+        <h5>Contacto</h5>
         <ul>
-          <li><a href="contacto.html">Contacto</a></li>
+          <li><a href="https://instagram.com/krga.mx" target="_blank">@krga.mx</a></li>
+          <li><a href="tel:+523315722663">+52 33 1572 2663</a></li>
+          <li><a href="https://www.krga.mx">www.krga.mx</a></li>
         </ul>
       </div>
     </div>
@@ -253,7 +452,7 @@ hamburger.addEventListener('click', () => mobileMenu.classList.toggle('open'));
 function closeMobile() { mobileMenu.classList.remove('open'); }
 const observer = new IntersectionObserver(entries => {
   entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-}, { threshold: 0.12 });
+}, { threshold: 0.1 });
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 </script>
 </body>
