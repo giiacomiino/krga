@@ -3,56 +3,266 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>krga® — Tu celular, donde sea</title>
+<title>krga® — Powerbank sharing en Guadalajara</title>
 <link rel="stylesheet" href="styles.css">
 <style>
-/* ─── HOME-SPECIFIC ─────────────────────────────────── */
+/* ─── HERO ─────────────────────────────────────────── */
 #hero {
   min-height: 100dvh;
-  display: flex; align-items: center;
-  padding-top: 100px;
-  padding-bottom: var(--section-pad);
   background: var(--taupe);
   position: relative; overflow: hidden;
+  display: flex; align-items: stretch;
 }
-
-/* topographic wave lines background */
-#hero::before {
-  content: '';
-  position: absolute; inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='600' viewBox='0 0 800 600'%3E%3Cg fill='none' stroke='%23A5A296' stroke-width='1' opacity='0.35'%3E%3Cpath d='M600,0 Q750,100 800,200 Q820,300 750,400 Q680,500 700,600'/%3E%3Cpath d='M650,0 Q800,120 830,240 Q850,350 780,450 Q710,550 730,650'/%3E%3Cpath d='M700,0 Q840,140 860,280 Q870,400 800,500 Q730,600 760,700'/%3E%3Cpath d='M550,0 Q700,80 760,180 Q790,280 720,380 Q650,480 680,580'/%3E%3Cpath d='M500,0 Q650,60 720,160 Q760,260 690,360 Q620,460 650,560'/%3E%3C/g%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right center;
-  background-size: 65% auto;
-  pointer-events: none;
-}
-
 .hero-grid {
   display: grid;
-  grid-template-columns: 1.1fr 0.9fr;
-  gap: var(--gap);
-  align-items: center;
+  grid-template-columns: 1fr 1fr;
+  align-items: flex-end;
+  width: 100%;
+  min-height: 100dvh;
 }
-
-.hero-h1 {
-  font-size: clamp(3.2rem, 7.5vw, 6rem);
-  font-weight: 900;
-  letter-spacing: -0.03em;
-  line-height: 1.0;
-  margin-bottom: 1.5rem;
+.hero-left {
+  display: flex; align-items: flex-end;
+  padding-left: clamp(1.5rem, 5vw, 5rem);
 }
-.hero-h1 .white-word { color: var(--white); }
-
-.hero-ctas {
-  display: flex; flex-wrap: wrap; gap: 1rem;
-  margin-top: 2rem;
+.hero-left img {
+  height: clamp(58vh, 72vh, 82vh);
+  width: auto;
+  object-fit: contain;
+  object-position: bottom left;
+  display: block;
 }
-
-.hero-visual {
+.hero-right {
   display: flex; flex-direction: column;
-  align-items: center; justify-content: center;
-  gap: 1rem;
-  position: relative; z-index: 2;
+  justify-content: flex-end; align-items: flex-end;
+  padding-bottom: clamp(3.5rem, 7vw, 7rem);
+  padding-right: clamp(1.5rem, 5vw, 5rem);
+  padding-top: 110px;
+  text-align: right;
+}
+.hero-q {
+  font-size: clamp(3rem, 6.5vw, 6.4rem);
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  line-height: 0.88;
+  color: var(--black);
+  text-transform: uppercase;
+  margin-bottom: 0.65rem;
+}
+.hero-brand-line {
+  display: flex; align-items: baseline; justify-content: flex-end;
+  gap: 0.3em; flex-wrap: wrap;
+}
+.hero-brand {
+  font-size: clamp(3.2rem, 7vw, 6.8rem);
+  font-weight: 900;
+  letter-spacing: -0.05em;
+  line-height: 1;
+  color: var(--black);
+}
+.hero-tagline {
+  font-size: clamp(1.8rem, 3.8vw, 3.7rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: var(--muted);
+}
+.hero-ctas {
+  display: flex; gap: 0.9rem; flex-wrap: wrap;
+  justify-content: flex-end;
+  margin-top: 2.2rem;
+}
+
+/* ─── COMO FUNCIONA ─────────────────────────────────── */
+#como-funciona {
+  padding: var(--section-pad) 0;
+  background: var(--taupe-lt);
+}
+.steps-grid {
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  gap: 1.2rem;
+  margin-top: 3rem;
+}
+.step-card {
+  background: var(--taupe-card);
+  border-radius: var(--r-md);
+  padding: 1.8rem 1.5rem 1.6rem;
+  position: relative;
+}
+.step-num {
+  font-size: 3rem; font-weight: 900;
+  letter-spacing: -0.05em; line-height: 1;
+  color: var(--taupe-lt); margin-bottom: 1rem;
+}
+.step-icon-wrap {
+  width: 42px; height: 42px;
+  background: var(--black); border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 1rem;
+}
+.step-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 0.35rem; }
+.step-card p  { font-size: 0.85rem; color: var(--muted); }
+.step-arrow {
+  position: absolute; top: 1.5rem; right: -0.75rem;
+  width: 22px; height: 22px;
+  background: var(--taupe-dk); border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  z-index: 2;
+}
+.step-arrow svg { width: 10px; height: 10px; }
+
+/* ─── PRECIOS ─────────────────────────────────────────── */
+#precios {
+  padding: var(--section-pad) 0;
+  background: var(--taupe);
+}
+.pricing-wrap {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--gap);
+  align-items: stretch;
+  margin-top: 3rem;
+}
+.price-card {
+  background: var(--taupe-card);
+  border-radius: var(--r-lg);
+  padding: clamp(2rem, 4vw, 2.8rem);
+  display: flex; flex-direction: column;
+}
+.price-card.featured { background: var(--black); }
+.price-label {
+  font-size: 0.72rem; font-weight: 700;
+  letter-spacing: .12em; text-transform: uppercase;
+  color: var(--muted);
+}
+.price-card.featured .price-label { color: rgba(255,255,255,.4); }
+.price-amount-wrap {
+  display: flex; align-items: baseline; gap: 0.3em;
+  margin: 1.2rem 0 0.4rem;
+}
+.price-amount {
+  font-size: clamp(3.5rem, 6vw, 5rem);
+  font-weight: 900; letter-spacing: -0.05em; line-height: 1;
+  color: var(--black);
+}
+.price-card.featured .price-amount { color: var(--lime); }
+.price-unit {
+  font-size: 0.95rem; font-weight: 600; color: var(--muted);
+}
+.price-card.featured .price-unit { color: rgba(255,255,255,.45); }
+.price-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 0.4rem; color: var(--black); }
+.price-card.featured h3 { color: var(--white); }
+.price-card > p { font-size: 0.88rem; color: var(--muted); margin-bottom: 1.8rem; }
+.price-card.featured > p { color: rgba(255,255,255,.5); }
+.price-perks {
+  margin-top: auto;
+  display: flex; flex-direction: column; gap: 0.65rem;
+}
+.price-perk {
+  display: flex; align-items: center; gap: 0.75rem;
+  font-size: 0.88rem; color: var(--black);
+}
+.price-card.featured .price-perk { color: rgba(255,255,255,.75); }
+.perk-dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--black); flex-shrink: 0;
+}
+.price-card.featured .perk-dot { background: var(--lime); }
+.price-disclaimer {
+  margin-top: 2rem;
+  padding: 1.2rem 1.6rem;
+  background: var(--taupe-card);
+  border-radius: var(--r-md);
+  font-size: 0.85rem; color: var(--muted);
+  text-align: center;
+}
+
+/* ─── FAQ ─────────────────────────────────────────────── */
+#faq {
+  padding: var(--section-pad) 0;
+  background: var(--taupe-lt);
+}
+.faq-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: var(--gap);
+  align-items: start;
+  margin-top: 3rem;
+}
+.faq-visual {
+  display: flex; align-items: flex-end; justify-content: center;
+  position: sticky; top: 110px;
+}
+.faq-visual img {
+  height: clamp(200px, 28vw, 360px);
+  width: auto;
+}
+.faq-list {
+  display: flex; flex-direction: column; gap: 0.6rem;
+}
+.faq-item {
+  background: var(--taupe-card);
+  border-radius: var(--r-md);
+  overflow: hidden;
+}
+.faq-q {
+  width: 100%; text-align: left;
+  background: none; border: none; cursor: pointer;
+  padding: 1.3rem 1.5rem;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 1rem; font-family: inherit;
+  font-size: 0.95rem; font-weight: 700; color: var(--black);
+}
+.faq-q svg { flex-shrink: 0; transition: transform .3s; }
+.faq-item.open .faq-q svg { transform: rotate(45deg); }
+.faq-a {
+  max-height: 0; overflow: hidden;
+  transition: max-height .35s ease, padding .3s ease;
+  font-size: 0.88rem; color: var(--muted); line-height: 1.7;
+  padding: 0 1.5rem;
+}
+.faq-item.open .faq-a { max-height: 200px; padding: 0 1.5rem 1.3rem; }
+
+/* ─── CTA FINAL ───────────────────────────────────────── */
+#cta-final {
+  padding: var(--section-pad) 0 0;
+  background: var(--taupe);
+  overflow: hidden;
+}
+.cta-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: flex-end;
+  gap: var(--gap);
+}
+.cta-text { padding-bottom: clamp(3rem, 6vw, 6rem); }
+.cta-text h2 { margin-bottom: 1rem; }
+.cta-text p { margin-bottom: 2rem; }
+.cta-monito {
+  display: flex; justify-content: flex-end; align-items: flex-end;
+}
+.cta-monito img {
+  height: clamp(240px, 32vw, 420px);
+  width: auto;
+}
+
+/* ─── RESPONSIVE ──────────────────────────────────────── */
+@media (max-width: 960px) {
+  .hero-grid { grid-template-columns: 1fr; min-height: unset; }
+  .hero-left { justify-content: center; padding-left: 0; }
+  .hero-left img { height: 44vh; }
+  .hero-right { align-items: center; text-align: center; padding-right: 1.5rem; padding-left: 1.5rem; padding-top: 80px; }
+  .hero-brand-line { justify-content: center; }
+  .hero-ctas { justify-content: center; }
+  .steps-grid { grid-template-columns: repeat(2,1fr); }
+  .step-arrow { display: none; }
+  .pricing-wrap { grid-template-columns: 1fr; }
+  .faq-grid { grid-template-columns: 1fr; }
+  .faq-visual { display: none; }
+  .cta-inner { grid-template-columns: 1fr; }
+  .cta-monito { justify-content: center; }
+}
+@media (max-width: 560px) {
+  .steps-grid { grid-template-columns: 1fr; }
 }
 </style>
 </head>
@@ -65,75 +275,258 @@
       <img src="assets/logo-black.png" alt="krga">
     </a>
     <ul class="nav-links">
-      <li><a href="establecimientos.html">Establecimientos</a></li>
-      <li><a href="marcas.html">Marcas</a></li>
-      <li><a href="la-maquina.html">La máquina</a></li>
+      <li><a href="index.html" style="opacity:1;font-weight:800;">Inicio</a></li>
+      <li><a href="establecimientos.html">Negocios</a></li>
+      <li><a href="#faq">FAQ's</a></li>
       <li><a href="contacto.html">Contacto</a></li>
-      <li><a href="contacto.html" class="nav-cta">Contáctanos</a></li>
+      <li>
+        <a href="https://wa.me/523311148901" target="_blank" class="nav-wa" aria-label="WhatsApp">
+          <svg viewBox="0 0 24 24" width="17" height="17" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        </a>
+      </li>
     </ul>
+    <a href="#" class="nav-webapp">Web-app</a>
     <button class="hamburger" id="hamburger" aria-label="Menú">
       <span></span><span></span><span></span>
     </button>
   </div>
 </nav>
-
-<!-- Mobile menu -->
 <div class="mobile-menu" id="mobileMenu">
-  <a href="establecimientos.html" onclick="closeMobile()">Establecimientos</a>
-  <a href="marcas.html"           onclick="closeMobile()">Marcas</a>
-  <a href="la-maquina.html"       onclick="closeMobile()">La máquina</a>
+  <a href="index.html"           onclick="closeMobile()">Inicio</a>
+  <a href="establecimientos.html" onclick="closeMobile()">Negocios</a>
+  <a href="index.html#faq"        onclick="closeMobile()">FAQ's</a>
   <a href="contacto.html"         onclick="closeMobile()">Contacto</a>
+  <a href="https://wa.me/523311148901" target="_blank" onclick="closeMobile()">WhatsApp</a>
+  <a href="#" onclick="closeMobile()" style="background:var(--black);color:#fff;padding:0.6em 2em;border-radius:10px;margin-top:1rem;">Web-app</a>
 </div>
 
 <!-- ══ HERO ══ -->
 <section id="hero">
-  <div class="container">
-    <div class="hero-grid">
+  <div class="hero-grid">
 
+    <div class="hero-left">
+      <img src="assets/monito-bolt.png" alt="Personaje krga con rayo">
+    </div>
+
+    <div class="hero-right">
       <div class="reveal">
-        <span class="tag">Powerbank Sharing · Guadalajara</span>
-        <h1 class="hero-h1">
-          ¿Tus clientes<br>se quedan<br><span class="white-word">sin pila?</span>
-        </h1>
-        <p class="lead">
-          krga instala estaciones de carga en tu negocio. Tus
-          clientes cargan su celular mientras disfrutan. Tú te
-          enfocas en lo que importa.
-        </p>
+        <h1 class="hero-q">¿TE ESTÁS<br>QUEDANDO<br>SIN PILA?</h1>
+        <div class="hero-brand-line">
+          <span class="hero-brand">krga</span>
+          <span class="hero-tagline">tu celular!</span>
+        </div>
         <div class="hero-ctas">
-          <a href="establecimientos.html" class="btn-primary">Soy un establecimiento</a>
-          <a href="marcas.html" class="btn-outline">Soy una marca</a>
+          <a href="#como-funciona" class="btn-primary">¿Cómo funciona?</a>
+          <a href="#" class="btn-outline">Web-app →</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══ CÓMO FUNCIONA ══ -->
+<section id="como-funciona">
+  <div class="container">
+    <div class="reveal">
+      <span class="tag">Así funciona</span>
+      <h2>Cuatro pasos.<br>Tu celular al 100%.</h2>
+    </div>
+
+    <div class="steps-grid">
+
+      <div class="step-card reveal" style="transition-delay:.05s;">
+        <div class="step-num">01</div>
+        <div class="step-icon-wrap">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/>
+          </svg>
+        </div>
+        <h3>Encuentra una estación</h3>
+        <p>Busca krga en restaurantes, bares, hoteles y centros comerciales de Guadalajara.</p>
+        <span class="step-arrow">
+          <svg viewBox="0 0 12 12" fill="white"><path d="M2 6h8M6 2l4 4-4 4"/></svg>
+        </span>
+      </div>
+
+      <div class="step-card reveal" style="transition-delay:.1s;">
+        <div class="step-num">02</div>
+        <div class="step-icon-wrap">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/>
+          </svg>
+        </div>
+        <h3>Escanea el QR</h3>
+        <p>Usa la cámara de tu celular directo en la pantalla de la máquina. Sin apps, sin descarga.</p>
+        <span class="step-arrow">
+          <svg viewBox="0 0 12 12" fill="white"><path d="M2 6h8M6 2l4 4-4 4"/></svg>
+        </span>
+      </div>
+
+      <div class="step-card reveal" style="transition-delay:.15s;">
+        <div class="step-num">03</div>
+        <div class="step-icon-wrap">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="6" y="2" width="12" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/>
+          </svg>
+        </div>
+        <h3>Toma el powerbank</h3>
+        <p>El slot se abre automáticamente. Conecta el cable incluido y carga en movimiento.</p>
+        <span class="step-arrow">
+          <svg viewBox="0 0 12 12" fill="white"><path d="M2 6h8M6 2l4 4-4 4"/></svg>
+        </span>
+      </div>
+
+      <div class="step-card reveal" style="transition-delay:.2s;">
+        <div class="step-num">04</div>
+        <div class="step-icon-wrap">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/>
+          </svg>
+        </div>
+        <h3>Devuelve y paga</h3>
+        <p>Regresa el powerbank a cualquier estación krga. Solo pagas el tiempo que lo usaste.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ PRECIOS ══ -->
+<section id="precios">
+  <div class="container">
+    <div class="reveal">
+      <span class="tag">Precios</span>
+      <h2>Transparente<br>y sin sorpresas.</h2>
+      <p class="lead" style="margin-top:1rem;">
+        El costo depende del establecimiento donde rentas el powerbank.
+      </p>
+    </div>
+
+    <div class="pricing-wrap">
+
+      <div class="price-card reveal" style="transition-delay:.05s;">
+        <span class="price-label">Opción estándar</span>
+        <div class="price-amount-wrap">
+          <span class="price-amount">$20</span>
+          <span class="price-unit">MXN / 30 min</span>
+        </div>
+        <h3>Cobra por uso</h3>
+        <p>El tiempo inicial puede ser gratuito dependiendo del lugar. Después se cobra por bloques de 30 minutos.</p>
+        <div class="price-perks">
+          <div class="price-perk"><span class="perk-dot"></span>Tiempo gratis inicial (varía por lugar)</div>
+          <div class="price-perk"><span class="perk-dot"></span>Pago desde la web-app</div>
+          <div class="price-perk"><span class="perk-dot"></span>Devuelve en cualquier estación</div>
         </div>
       </div>
 
-      <div class="hero-visual reveal visual-right">
-        <!-- Machine mockup -->
-        <div class="machine-wrap">
-          <div class="machine-body">
-            <div class="machine-screen machine-screen-ad">
-              <div class="ad-card">
-                <div class="ad-badge">AD</div>
-                <div class="ad-card-title">TU RESTAURANTE</div>
-                <div class="ad-card-sub">Menú del día<br>Reserva tu mesa hoy</div>
-              </div>
-            </div>
-            <div class="machine-label">
-              <img src="assets/logo-black.png" alt="krga" class="machine-label-logo">
-              <span class="machine-model-tag">SMART</span>
-            </div>
-            <div class="machine-slots">
-              <div class="slot on"></div>
-              <div class="slot"></div>
-              <div class="slot on"></div>
-              <div class="slot on"></div>
-              <div class="slot"></div>
-              <div class="slot on"></div>
-            </div>
-            <div class="machine-footer"></div>
-          </div>
+      <div class="price-card featured reveal" style="transition-delay:.1s;">
+        <span class="price-label">Establecimientos colaboradores</span>
+        <div class="price-amount-wrap">
+          <span class="price-amount">Gratis</span>
+        </div>
+        <h3 style="color:var(--white);">100% gratuito para ti</h3>
+        <p>En algunos lugares el negocio cubre el costo y tú cargas sin pagar nada.</p>
+        <div class="price-perks">
+          <div class="price-perk"><span class="perk-dot"></span>Sin costo para el usuario</div>
+          <div class="price-perk"><span class="perk-dot"></span>El negocio lo ofrece como cortesía</div>
+          <div class="price-perk"><span class="perk-dot"></span>Misma experiencia, cero pesos</div>
         </div>
       </div>
 
+    </div>
+
+    <div class="price-disclaimer reveal" style="margin-top:1.5rem;">
+      El precio y las condiciones exactas se muestran en la pantalla de la máquina antes de confirmar tu renta.
+    </div>
+  </div>
+</section>
+
+<!-- ══ FAQ ══ -->
+<section id="faq">
+  <div class="container">
+    <div class="reveal">
+      <span class="tag">Preguntas frecuentes</span>
+      <h2>¿Tienes dudas?<br>Te respondemos.</h2>
+    </div>
+
+    <div class="faq-grid">
+
+      <div class="faq-visual reveal">
+        <img src="assets/monito-phone.png" alt="Personaje usando la app krga">
+      </div>
+
+      <div class="faq-list">
+
+        <div class="faq-item reveal">
+          <button class="faq-q">
+            ¿Necesito descargar una app?
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </button>
+          <div class="faq-a">No. Solo necesitas escanear el QR que aparece en la pantalla de la máquina con la cámara de tu celular. No hace falta descargar nada.</div>
+        </div>
+
+        <div class="faq-item reveal">
+          <button class="faq-q">
+            ¿Cuánto dura la batería del powerbank?
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </button>
+          <div class="faq-a">Nuestros powerbanks tienen capacidad suficiente para cargar un celular completo. El tiempo exacto depende del modelo de tu celular y el porcentaje de batería que tengas.</div>
+        </div>
+
+        <div class="faq-item reveal">
+          <button class="faq-q">
+            ¿Puedo devolver el powerbank en otro lugar?
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </button>
+          <div class="faq-a">Sí. Puedes devolver el powerbank en cualquier estación krga disponible en Guadalajara. No tienes que regresar al mismo lugar donde lo rentaste.</div>
+        </div>
+
+        <div class="faq-item reveal">
+          <button class="faq-q">
+            ¿Qué tipo de cable incluye?
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </button>
+          <div class="faq-a">Cada powerbank krga incluye cable Lightning (iPhone), USB-C y Micro-USB, compatible con prácticamente todos los celulares del mercado.</div>
+        </div>
+
+        <div class="faq-item reveal">
+          <button class="faq-q">
+            ¿Qué pasa si no encuentro una estación para devolver?
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </button>
+          <div class="faq-a">Si se acaba el tiempo sin devolver, se aplica el cargo correspondiente según tu renta. Desde la web-app puedes ver las estaciones más cercanas en tiempo real.</div>
+        </div>
+
+        <div class="faq-item reveal">
+          <button class="faq-q">
+            ¿Quiero instalar krga en mi negocio, cómo lo hago?
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </button>
+          <div class="faq-a">Contáctanos por WhatsApp o ve a la sección Negocios. Te explicamos las condiciones y hacemos la instalación sin obra ni inversión de tu parte.</div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CTA FINAL ══ -->
+<section id="cta-final">
+  <div class="container">
+    <div class="cta-inner">
+      <div class="cta-text reveal">
+        <span class="tag">¿Listo?</span>
+        <h2>Empieza a<br>cargar ahora.</h2>
+        <p class="lead">Encuentra la estación krga más cercana y carga tu celular en segundos.</p>
+        <div style="display:flex;gap:1rem;flex-wrap:wrap;margin-top:2rem;">
+          <a href="#" class="btn-primary">Ir a la Web-app</a>
+          <a href="contacto.html" class="btn-outline">Contacto</a>
+        </div>
+      </div>
+      <div class="cta-monito reveal">
+        <img src="assets/monito-sun.png" alt="Personaje krga">
+      </div>
     </div>
   </div>
 </section>
@@ -144,20 +537,24 @@
     <div class="footer-inner">
       <div class="footer-logo">
         <img src="assets/logo-black.png" alt="krga">
-        <p>Powerbank sharing para negocios en Guadalajara.</p>
+        <p>Powerbank sharing en Guadalajara.</p>
       </div>
       <div class="footer-links">
-        <h5>Para ti</h5>
+        <h5>Navegar</h5>
         <ul>
-          <li><a href="establecimientos.html">Establecimientos</a></li>
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="establecimientos.html">Negocios</a></li>
           <li><a href="marcas.html">Marcas</a></li>
           <li><a href="la-maquina.html">La máquina</a></li>
+          <li><a href="contacto.html">Contacto</a></li>
         </ul>
       </div>
       <div class="footer-links">
-        <h5>Empresa</h5>
+        <h5>Contacto</h5>
         <ul>
-          <li><a href="contacto.html">Contacto</a></li>
+          <li><a href="https://instagram.com/krga.mx" target="_blank">@krga.mx</a></li>
+          <li><a href="https://wa.me/523311148901" target="_blank">+52 33 1114 8901</a></li>
+          <li><a href="mailto:krgaenergy@gmail.com">krgaenergy@gmail.com</a></li>
         </ul>
       </div>
     </div>
@@ -169,13 +566,8 @@
 </footer>
 
 <script>
-// Navbar scroll
 const nav = document.getElementById('nav');
-window.addEventListener('scroll', () => {
-  nav.classList.toggle('scrolled', window.scrollY > 40);
-});
-
-// Hamburger
+window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 40));
 const hamburger = document.getElementById('hamburger');
 const mobileMenu = document.getElementById('mobileMenu');
 hamburger.addEventListener('click', () => mobileMenu.classList.toggle('open'));
@@ -184,8 +576,18 @@ function closeMobile() { mobileMenu.classList.remove('open'); }
 // Reveal on scroll
 const observer = new IntersectionObserver(entries => {
   entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-}, { threshold: 0.12 });
+}, { threshold: 0.1 });
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// FAQ accordion
+document.querySelectorAll('.faq-q').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const item = btn.closest('.faq-item');
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  });
+});
 </script>
 </body>
 </html>

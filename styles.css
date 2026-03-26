@@ -128,7 +128,7 @@ p  { font-size: clamp(0.95rem, 1.3vw, 1.1rem); color: var(--muted); }
 .nav-inner {
   display: flex; align-items: center; justify-content: space-between;
 }
-.nav-logo img { height: 30px; }
+.nav-logo img { height: 42px; }
 .nav-links {
   display: flex; gap: 2.2rem; align-items: center;
 }
@@ -147,6 +147,27 @@ p  { font-size: clamp(0.95rem, 1.3vw, 1.1rem); color: var(--muted); }
 }
 .nav-cta:hover { transform: scale(1.04); }
 .nav-dark .nav-cta { background: var(--white); color: var(--black) !important; }
+
+.nav-webapp {
+  background: var(--black); color: var(--white);
+  padding: 0.6em 1.6em; border-radius: 10px;
+  font-weight: 700; font-size: 0.9rem;
+  transition: opacity .2s;
+  white-space: nowrap; flex-shrink: 0;
+}
+.nav-webapp:hover { opacity: 0.82; }
+.nav-dark .nav-webapp { background: var(--white); color: var(--black); }
+
+.nav-wa {
+  display: flex; align-items: center; justify-content: center;
+  width: 34px; height: 34px;
+  background: var(--black); color: var(--white);
+  border-radius: 50%; flex-shrink: 0;
+  transition: transform .2s;
+  opacity: 1 !important;
+}
+.nav-wa:hover { transform: scale(1.08); }
+.nav-dark .nav-wa { background: rgba(255,255,255,.15); }
 
 .hamburger {
   display: none; flex-direction: column; gap: 5px;
