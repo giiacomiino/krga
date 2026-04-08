@@ -224,6 +224,57 @@ html,body{
 .ri-title{font-size:13px;font-weight:700;color:var(--black);margin-bottom:8px;}
 .ri-body{font-size:13px;color:var(--muted);line-height:1.65;}
 .s2-foot{padding:16px 28px 52px;}
+
+/* ─── SCREEN 3: RECEIPT ─── */
+.s3-top{
+  background:var(--black);padding:60px 28px 38px;
+  display:flex;flex-direction:column;align-items:center;gap:12px;
+}
+.check-circle{
+  width:68px;height:68px;border-radius:50%;
+  background:rgba(232,237,181,0.11);border:1.5px solid rgba(232,237,181,0.32);
+  display:flex;align-items:center;justify-content:center;margin-bottom:4px;
+}
+.s3-h{font-size:24px;font-weight:800;color:var(--taupe);letter-spacing:-0.5px;text-align:center;}
+.s3-sub{font-size:13px;color:rgba(255,255,255,0.36);text-align:center;line-height:1.65;font-weight:400;}
+.s3-sub span{color:rgba(255,255,255,0.65);}
+.s3-body{flex:1;padding:22px 28px 0;display:flex;flex-direction:column;gap:12px;}
+.receipt-card{
+  background:var(--taupe-lt);border-radius:var(--radius);
+  border:1px solid var(--taupe-dk);overflow:hidden;
+}
+.rc-header{
+  background:var(--taupe);padding:13px 18px;
+  font-size:10px;font-weight:700;color:var(--muted);
+  text-transform:uppercase;letter-spacing:1.3px;
+}
+.rc-row{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:14px 18px;border-bottom:1px solid var(--taupe);
+}
+.rc-row:last-child{border-bottom:none;}
+.rc-row.total{background:var(--taupe);}
+.rc-l{font-size:13px;color:var(--muted);}
+.rc-r{font-size:13px;font-weight:700;color:var(--black);}
+.rc-r.ok{color:#2d7a4f;}
+.rc-r.big{font-size:20px;letter-spacing:-0.5px;}
+.upsell{
+  background:var(--black);border-radius:var(--radius);
+  padding:20px;display:flex;flex-direction:column;gap:10px;
+}
+.upsell-title{font-size:14px;font-weight:800;color:var(--lime);letter-spacing:-0.2px;}
+.upsell-sub{font-size:12px;color:rgba(255,255,255,0.40);line-height:1.5;}
+.upsell-links{display:flex;gap:8px;}
+.upsell-btn{
+  flex:1;padding:10px;border-radius:10px;
+  background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);
+  font-family:'Outfit',sans-serif;font-size:12px;font-weight:700;
+  color:rgba(255,255,255,0.65);text-align:center;cursor:pointer;
+  text-decoration:none;display:block;
+  transition:background .15s;
+}
+.upsell-btn:active{background:rgba(255,255,255,0.13);}
+.s3-foot{padding:16px 28px 52px;display:flex;flex-direction:column;gap:10px;}
 </style>
 </head>
 <body>
@@ -384,6 +435,64 @@ html,body{
 
     <div class="s2-foot">
       <!-- No return button — auto-detected by backend polling -->
+    </div>
+  </div>
+
+  <!-- ══ SCREEN 3 — Receipt ══ -->
+  <div class="screen" id="s3">
+    <div class="s3-top">
+      <div class="check-circle">
+        <svg width="30" height="30" viewBox="0 0 30 30" fill="none" stroke="#E8EDB5" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M6 15l7 7 11-13"/>
+        </svg>
+      </div>
+      <div class="s3-h" data-i18n="batteryReturned">Battery returned</div>
+      <div class="s3-sub">
+        <span data-i18n="receiptSent">Your receipt was sent to</span><br>
+        <span id="receiptEmail">user@email.com</span>
+      </div>
+    </div>
+
+    <div class="s3-body">
+      <div class="receipt-card">
+        <div class="rc-header" data-i18n="rentalSummary">Rental summary</div>
+        <div class="rc-row">
+          <div class="rc-l" data-i18n="station">Station</div>
+          <div class="rc-r">Andares · K-042</div>
+        </div>
+        <div class="rc-row">
+          <div class="rc-l" data-i18n="duration">Duration</div>
+          <div class="rc-r" id="receiptDuration">—</div>
+        </div>
+        <div class="rc-row">
+          <div class="rc-l" data-i18n="blocks">Blocks</div>
+          <div class="rc-r" id="receiptBlocks">—</div>
+        </div>
+        <div class="rc-row">
+          <div class="rc-l" data-i18n="deposit">Deposit</div>
+          <div class="rc-r ok" data-i18n="depositReleased">$800 MXN released ✓</div>
+        </div>
+        <div class="rc-row total">
+          <div class="rc-l" style="font-weight:700;color:var(--black);" data-i18n="totalCharged">Total charged</div>
+          <div class="rc-r big" id="receiptTotal">—</div>
+        </div>
+      </div>
+
+      <div class="upsell">
+        <div class="upsell-title" data-i18n="upsellTitle">Next time, one tap.</div>
+        <div class="upsell-sub" data-i18n="upsellBody">Download the app and create your account to rent instantly.</div>
+        <div class="upsell-links">
+          <a class="upsell-btn" id="appStoreLink" href="#" target="_blank">App Store</a>
+          <a class="upsell-btn" id="googlePlayLink" href="#" target="_blank">Google Play</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="s3-foot">
+      <button class="btn btn-black" onclick="resetApp()">
+        <span data-i18n="done">Done</span>
+      </button>
+      <button class="btn btn-outline" data-i18n="downloadReceipt">Download receipt as PDF</button>
     </div>
   </div>
 </div>
@@ -576,6 +685,41 @@ function handleBatteryReturned() {
   stopPolling();
   populateReceipt();
   show('s3');
+}
+
+// ── Populate receipt from live data ───────────────────
+function populateReceipt() {
+  // Duration
+  const totalMins = Math.floor(secs / 60);
+  const remSecs = secs % 60;
+  const durationEl = document.getElementById('receiptDuration');
+  if (durationEl) durationEl.textContent = totalMins + 'm ' + remSecs + 's';
+
+  // Blocks and total
+  const demoBlock = 30;
+  const blocks = Math.floor(secs / demoBlock);
+  const cost = Math.min(blocks * KRGA_CONFIG.pricing.blockPriceMXN, KRGA_CONFIG.pricing.dailyCapMXN);
+  const blocksEl = document.getElementById('receiptBlocks');
+  if (blocksEl) blocksEl.textContent = blocks + ' × $' + KRGA_CONFIG.pricing.blockPriceMXN + ' MXN';
+  const totalEl = document.getElementById('receiptTotal');
+  if (totalEl) totalEl.textContent = '$' + cost + ' MXN';
+
+  // Email from the form
+  const emailVal = document.getElementById('emailInput')?.value || 'user@email.com';
+  const emailEl = document.getElementById('receiptEmail');
+  if (emailEl) emailEl.textContent = emailVal;
+
+  // App links from config
+  const asLink = document.getElementById('appStoreLink');
+  const gpLink = document.getElementById('googlePlayLink');
+  if (asLink) asLink.href = KRGA_CONFIG.appLinks.appStore;
+  if (gpLink) gpLink.href = KRGA_CONFIG.appLinks.googlePlay;
+}
+
+// ── Reset to start ─────────────────────────────────────
+function resetApp() {
+  secs = 0;
+  show('s0');
 }
 
 // ── Init ──────────────────────────────────────────────
