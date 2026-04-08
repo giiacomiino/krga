@@ -28,7 +28,30 @@ krga web-app/
 3. Replace each `/api/...` path with your real endpoint URLs
 4. Set `stripe.publishableKey` to your real Stripe publishable key
 5. In `index.html`, the `<script src="https://js.stripe.com/v3/"></script>` tag is already in `<head>`
-6. Replace the `startDemoPolling()` call in `payAndGo()` with `startPolling(rentId)` after getting the rentId from the payment API response
+6. Replace the `payAndGo()` function body to make real API calls. Example pattern:
+
+```js
+async function payAndGo() {
+  const email = document.getElementById('emailInput')?.value;
+  // 1. Init payment and get clientSecret + rentId
+  const payRes = await fetch(KRGA_CONFIG.api.initPayment, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ amount: KRGA_CONFIG.pricing.depositMXN, email, method: 'card' }),
+  });
+  const { rentId } = await payRes.json();
+  // 2. Unlock battery
+  await fetch(KRGA_CONFIG.api.unlockBattery, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ stationId: 'K-042', paymentId: rentId }),
+  });
+  // 3. Transition and start real polling
+  show('s2');
+  startTimer();
+  startPolling(rentId);
+}
+```
 
 ### API Contracts
 
@@ -58,7 +81,7 @@ fetch('/api/ui/payment-notice')
 Default: English. Globe button (bottom-right) switches to Spanish. Choice persists via `localStorage`.
 
 To add a new language:
-1. Add a new top-level key to `KRGA_I18N` in `i18n.js` (e.g. `fr: { ... }`) with all 38 string keys
+1. Add a new top-level key to `KRGA_I18N` in `i18n.js` (e.g. `fr: { ... }`) with all 39 string keys
 2. Add a `.lang-opt` button in the `#langMenu` div in `index.html`
 
 ## Deploying
