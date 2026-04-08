@@ -139,6 +139,59 @@ html,body{
 .ps-cap{font-size:10px;color:rgba(255,255,255,0.28);font-weight:400;}
 .ps-cap-val{font-size:15px;color:rgba(255,255,255,0.6);font-weight:700;margin-top:3px;letter-spacing:-0.3px;}
 .s0-foot{padding:20px 28px 52px;display:flex;flex-direction:column;gap:10px;}
+
+/* ─── SCREEN 1: PAYMENT ─── */
+.s1-top{
+  background:var(--black);padding:60px 28px 28px;
+  display:flex;align-items:center;gap:14px;
+}
+.back-btn{
+  width:40px;height:40px;border-radius:50%;
+  border:1px solid rgba(255,255,255,0.13);background:transparent;
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;flex-shrink:0;-webkit-tap-highlight-color:transparent;
+}
+.s1-lbl{font-size:10px;color:rgba(255,255,255,0.28);text-transform:uppercase;letter-spacing:1.5px;}
+.s1-title{font-size:20px;font-weight:700;color:var(--taupe);letter-spacing:-0.4px;margin-top:3px;}
+.s1-body{flex:1;padding:24px 28px 0;display:flex;flex-direction:column;gap:18px;overflow-y:auto;}
+.field-label{font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:1.3px;margin-bottom:7px;}
+.field-input{
+  background:var(--taupe-lt);border:1.5px solid var(--taupe-dk);
+  border-radius:var(--radius-sm);padding:16px;
+  font-family:'Outfit',sans-serif;font-size:16px;color:var(--black);
+  outline:none;transition:border-color .2s;width:100%;
+}
+.field-input:focus{border-color:var(--black);}
+.field-input::placeholder{color:var(--taupe-dk);}
+.pay-section{display:flex;flex-direction:column;gap:10px;}
+.pay-native-row{display:flex;gap:10px;}
+.pay-native{
+  flex:1;height:56px;border-radius:var(--radius-sm);
+  border:1.5px solid var(--taupe-dk);background:var(--taupe-lt);
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  cursor:pointer;font-family:'Outfit',sans-serif;font-size:14px;font-weight:700;
+  transition:opacity .15s;-webkit-tap-highlight-color:transparent;
+  color:var(--black);
+}
+.pay-native.apple{background:var(--black);color:var(--lime);border-color:var(--black);}
+.pay-native:active{opacity:.75;}
+.or-div{
+  display:flex;align-items:center;gap:12px;
+  font-size:12px;color:var(--muted);font-weight:600;
+}
+.or-div::before,.or-div::after{content:'';flex:1;height:1px;background:var(--taupe-dk);}
+#stripe-card-element{
+  background:var(--taupe-lt);border:1.5px solid var(--taupe-dk);
+  border-radius:var(--radius-sm);padding:16px;
+  transition:border-color .2s;
+}
+#stripe-card-element.focused{border-color:var(--black);}
+.preauth{
+  background:var(--taupe-lt);border-radius:var(--radius-sm);
+  padding:14px 16px;font-size:12px;color:var(--muted);line-height:1.7;
+  border:1px solid var(--taupe-dk);text-align:center;
+}
+.s1-foot{padding:16px 28px 52px;}
 </style>
 </head>
 <body>
@@ -201,6 +254,64 @@ html,body{
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
       </button>
       <button class="btn btn-ghost" data-i18n="nearbyStations">See nearby stations</button>
+    </div>
+  </div>
+
+  <!-- ══ SCREEN 1 — Payment ══ -->
+  <div class="screen" id="s1">
+    <div class="s1-top">
+      <button class="back-btn" onclick="show('s0')">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="2" stroke-linecap="round"><path d="M10 3L5 8l5 5"/></svg>
+      </button>
+      <div>
+        <div class="s1-lbl" data-i18n="confirmRent">Confirm your rental</div>
+        <div class="s1-title" data-i18n="paymentMethod">Payment method</div>
+      </div>
+    </div>
+
+    <div class="s1-body">
+      <div>
+        <div class="field-label" data-i18n="yourPhone">Your phone number</div>
+        <input class="field-input" type="tel" inputmode="tel" autocomplete="tel" placeholder="+52 33 1234 5678">
+      </div>
+      <div>
+        <div class="field-label" data-i18n="yourEmail">Your email</div>
+        <input class="field-input" id="emailInput" type="email" inputmode="email" autocomplete="email" placeholder="name@email.com">
+      </div>
+
+      <div class="pay-section">
+        <div class="field-label" data-i18n="quickPay">Quick pay</div>
+        <div class="pay-native-row">
+          <button class="pay-native apple" onclick="payAndGo()">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.7 9.05 7.4c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.39-1.32 2.76-2.53 3.99zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/>
+            </svg>
+            Apple Pay
+          </button>
+          <button class="pay-native" onclick="payAndGo()">
+            <svg width="17" height="17" viewBox="0 0 24 24">
+              <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+              <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+              <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z"/>
+              <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+            </svg>
+            Google Pay
+          </button>
+        </div>
+      </div>
+
+      <div class="or-div"><span data-i18n="orCard">or pay with card</span></div>
+
+      <!-- Stripe Elements mounts here. In demo mode this is replaced by a placeholder. -->
+      <div id="stripe-card-element"></div>
+
+      <div class="preauth" id="paymentNotice"></div>
+    </div>
+
+    <div class="s1-foot">
+      <button class="btn btn-black" onclick="payAndGo()">
+        <span data-i18n="confirmUnlock">Confirm and unlock battery</span>
+      </button>
     </div>
   </div>
 </div>
@@ -276,6 +387,51 @@ function show(id) {
   window.scrollTo(0, 0);
 }
 
+// ── Payment notice (from config) ──────────────────────
+function initPaymentNotice() {
+  const el = document.getElementById('paymentNotice');
+  if (el) el.innerHTML = KRGA_CONFIG.ui.paymentNotice;
+}
+
+// ── Stripe / demo card element ─────────────────────────
+function initStripe() {
+  const mountEl = document.getElementById('stripe-card-element');
+  if (!mountEl) return;
+
+  if (KRGA_CONFIG.demo) {
+    mountEl.innerHTML = `
+      <div style="font-size:13px;color:var(--muted);text-align:center;padding:4px 0;font-weight:600;">
+        💳 Stripe card form loads here (demo mode)
+      </div>`;
+    return;
+  }
+
+  // Production: initialize Stripe Elements
+  // Requires: <script src="https://js.stripe.com/v3/"></script> in <head>
+  const stripe = Stripe(KRGA_CONFIG.stripe.publishableKey);
+  const elements = stripe.elements();
+  const cardEl = elements.create('card', {
+    style: {
+      base: {
+        fontFamily: "'Outfit', sans-serif",
+        fontSize: '16px',
+        color: '#111111',
+        '::placeholder': { color: '#A5A296' },
+      },
+    },
+  });
+  cardEl.mount('#stripe-card-element');
+  cardEl.on('focus', () => mountEl.classList.add('focused'));
+  cardEl.on('blur', () => mountEl.classList.remove('focused'));
+}
+
+// ── payAndGo (demo) ────────────────────────────────────
+function payAndGo() {
+  show('s2');
+  startTimer();
+  if (KRGA_CONFIG.demo) startDemoPolling();
+}
+
 // ── Init ──────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
   if (typeof KRGA_I18N === 'undefined') {
@@ -283,6 +439,8 @@ document.addEventListener('DOMContentLoaded', () => {
     return;
   }
   setLang(currentLang);
+  initPaymentNotice();
+  initStripe();
 });
 </script>
 </body>
