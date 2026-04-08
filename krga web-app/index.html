@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="theme-color" content="#111111">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<title>krga — rent a battery</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<script src="config.js"></script>
+<script src="i18n.js"></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --black:    #111111;
+  --taupe:    #B8B5A6;
+  --taupe-dk: #A5A296;
+  --taupe-lt: #C8C5B8;
+  --lime:     #E8EDB5;
+  --muted:    #47453D;
+  --white:    #ffffff;
+  --radius:   20px;
+  --radius-sm:12px;
+}
+html,body{
+  font-family:'Outfit',sans-serif;
+  background:var(--taupe);
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  -webkit-font-smoothing:antialiased;
+  overscroll-behavior:none;
+}
+.shell{
+  width:100%;
+  max-width:430px;
+  min-height:100vh;
+  background:var(--taupe);
+  display:flex;
+  flex-direction:column;
+  position:relative;
+  overflow-x:hidden;
+}
+.screen{display:none;flex-direction:column;min-height:100vh;animation:fadeUp .3s ease;}
+.screen.active{display:flex;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:translateY(0);}}
+
+/* BUTTONS */
+.btn{
+  width:100%;height:58px;border-radius:16px;border:none;
+  font-family:'Outfit',sans-serif;font-size:15px;font-weight:700;
+  cursor:pointer;transition:opacity .15s,transform .1s;
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  -webkit-tap-highlight-color:transparent;
+}
+.btn:active{transform:scale(.98);opacity:.85;}
+.btn-black{background:var(--black);color:var(--lime);}
+.btn-outline{
+  background:transparent;color:var(--muted);
+  border:1.5px solid var(--taupe-dk);height:50px;font-size:14px;font-weight:600;
+}
+.btn-ghost{
+  background:transparent;border:none;
+  color:var(--muted);font-size:13px;height:38px;
+  font-family:'Outfit',sans-serif;cursor:pointer;
+  -webkit-tap-highlight-color:transparent;
+}
+
+/* LANG GLOBE */
+.lang-toggle{
+  position:fixed;bottom:28px;right:20px;z-index:999;
+  width:42px;height:42px;border-radius:50%;
+  background:var(--black);border:none;
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;box-shadow:0 4px 16px rgba(0,0,0,0.25);
+  -webkit-tap-highlight-color:transparent;
+  transition:transform .15s;
+}
+.lang-toggle:active{transform:scale(.93);}
+.lang-popup{
+  position:fixed;bottom:78px;right:20px;z-index:998;
+  background:var(--black);border-radius:12px;
+  padding:6px;display:none;flex-direction:column;gap:4px;
+  box-shadow:0 8px 24px rgba(0,0,0,0.3);
+}
+.lang-popup.open{display:flex;}
+.lang-opt{
+  padding:9px 20px;border-radius:8px;font-size:13px;font-weight:700;
+  color:rgba(255,255,255,0.55);background:transparent;border:none;
+  font-family:'Outfit',sans-serif;cursor:pointer;text-align:left;
+  transition:background .15s,color .15s;
+}
+.lang-opt.active{background:var(--lime);color:var(--black);}
+.lang-opt:hover:not(.active){color:var(--white);}
+</style>
+</head>
+<body>
+<div class="shell">
+  <!-- screens inserted in Tasks 4–7 -->
+</div>
+
+<!-- Language toggle -->
+<button class="lang-toggle" onclick="toggleLangMenu()" aria-label="Change language">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#E8EDB5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="12" cy="12" r="10"/>
+    <path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/>
+  </svg>
+</button>
+<div class="lang-popup" id="langMenu">
+  <button class="lang-opt active" data-lang="en" onclick="setLang('en')">English</button>
+  <button class="lang-opt" data-lang="es" onclick="setLang('es')">Español</button>
+</div>
+
+<script>
+// ── i18n ──────────────────────────────────────────────
+let currentLang = localStorage.getItem('krga_lang') || 'en';
+
+function setLang(lang) {
+  currentLang = lang;
+  localStorage.setItem('krga_lang', lang);
+  document.documentElement.lang = lang;
+
+  const strings = KRGA_I18N[lang];
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.dataset.i18n;
+    if (strings[key] !== undefined) el.textContent = strings[key];
+  });
+
+  // update active state on lang buttons
+  document.querySelectorAll('.lang-opt').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.lang === lang);
+  });
+
+  closeLangMenu();
+}
+
+function toggleLangMenu() {
+  document.getElementById('langMenu').classList.toggle('open');
+}
+function closeLangMenu() {
+  document.getElementById('langMenu').classList.remove('open');
+}
+
+// close menu on outside tap
+document.addEventListener('click', e => {
+  if (!e.target.closest('.lang-toggle') && !e.target.closest('.lang-popup')) {
+    closeLangMenu();
+  }
+});
+
+// ── Screen navigation ─────────────────────────────────
+function show(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  window.scrollTo(0, 0);
+}
+
+// ── Init ──────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', () => {
+  setLang(currentLang);
+});
+</script>
+</body>
+</html>
