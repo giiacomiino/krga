@@ -194,6 +194,36 @@ html,body{
 }
 .preauth strong{color:var(--black);}
 .s1-foot{padding:16px 28px 52px;}
+
+/* ─── SCREEN 2: ACTIVE RENTAL ─── */
+.s2-top{
+  background:var(--black);padding:60px 28px 30px;
+  display:flex;flex-direction:column;gap:5px;
+}
+.s2-lbl{font-size:10px;color:rgba(255,255,255,0.28);text-transform:uppercase;letter-spacing:1.5px;}
+.s2-title{font-size:26px;font-weight:800;color:var(--taupe);letter-spacing:-0.5px;}
+.s2-body{flex:1;padding:22px 28px 0;display:flex;flex-direction:column;gap:14px;}
+.active-card{
+  background:var(--black);border-radius:var(--radius);
+  padding:22px;display:flex;flex-direction:column;gap:18px;
+}
+.ac-header{display:flex;align-items:center;justify-content:space-between;}
+.ac-badge{
+  background:rgba(232,237,181,0.12);border:1px solid rgba(232,237,181,0.30);
+  border-radius:20px;padding:5px 13px;font-size:11px;color:var(--lime);font-weight:700;
+}
+.ac-time{font-size:14px;color:rgba(255,255,255,0.26);font-weight:400;font-variant-numeric:tabular-nums;letter-spacing:0.5px;}
+.meters{display:flex;gap:8px;}
+.meter{flex:1;background:rgba(255,255,255,0.05);border-radius:10px;padding:13px;text-align:center;}
+.meter-val{font-size:20px;font-weight:800;color:var(--lime);font-variant-numeric:tabular-nums;letter-spacing:-0.5px;}
+.meter-lbl{font-size:10px;color:rgba(255,255,255,0.26);margin-top:3px;font-weight:400;}
+.return-info{
+  background:var(--taupe-lt);border-radius:var(--radius);
+  border:1px solid var(--taupe-dk);padding:18px 20px;
+}
+.ri-title{font-size:13px;font-weight:700;color:var(--black);margin-bottom:8px;}
+.ri-body{font-size:13px;color:var(--muted);line-height:1.65;}
+.s2-foot{padding:16px 28px 52px;}
 </style>
 </head>
 <body>
@@ -316,6 +346,46 @@ html,body{
       </button>
     </div>
   </div>
+
+  <!-- ══ SCREEN 2 — Active Rental ══ -->
+  <div class="screen" id="s2">
+    <div class="s2-top">
+      <div class="s2-lbl" data-i18n="activeRental">Active rental</div>
+      <div class="s2-title" data-i18n="pickUpBattery">Pick up your battery!</div>
+    </div>
+
+    <div class="s2-body">
+      <div class="active-card">
+        <div class="ac-header">
+          <div class="ac-badge" data-i18n="unlocked">Unlocked</div>
+          <div class="ac-time" id="rentTime">00:00</div>
+        </div>
+        <div class="meters">
+          <div class="meter">
+            <div class="meter-val" id="costMeter">$0</div>
+            <div class="meter-lbl" data-i18n="currentCost">Current cost</div>
+          </div>
+          <div class="meter">
+            <div class="meter-val">$150</div>
+            <div class="meter-lbl" data-i18n="dailyCapLabel">Daily cap</div>
+          </div>
+          <div class="meter">
+            <div class="meter-val" id="nextBlock">30m</div>
+            <div class="meter-lbl" data-i18n="nextCharge">Next charge</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="return-info">
+        <div class="ri-title" data-i18n="returnTitle">How to return the battery?</div>
+        <div class="ri-body" data-i18n="returnBody">Go to any active KRGA station, scan the QR and insert the battery into any free slot. Charge stops instantly.</div>
+      </div>
+    </div>
+
+    <div class="s2-foot">
+      <!-- No return button — auto-detected by backend polling -->
+    </div>
+  </div>
 </div>
 
 <!-- Language toggle -->
@@ -432,6 +502,80 @@ function payAndGo() {
   show('s2');
   startTimer();
   if (KRGA_CONFIG.demo) startDemoPolling();
+}
+
+// ── Timer ──────────────────────────────────────────────
+let timerInt = null;
+let secs = 0;
+
+function startTimer() {
+  stopTimer();
+  secs = 0;
+  timerInt = setInterval(() => {
+    secs++;
+    const m = String(Math.floor(secs / 60)).padStart(2, '0');
+    const s = String(secs % 60).padStart(2, '0');
+    const timeEl = document.getElementById('rentTime');
+    if (timeEl) timeEl.textContent = m + ':' + s;
+
+    const demoBlock = 30; // 30 real seconds = 1 billing block in demo
+    const blocks = Math.floor(secs / demoBlock);
+    const cost = Math.min(blocks * KRGA_CONFIG.pricing.blockPriceMXN, KRGA_CONFIG.pricing.dailyCapMXN);
+    const costEl = document.getElementById('costMeter');
+    if (costEl) costEl.textContent = '$' + cost;
+
+    const secsInBlock = secs % demoBlock;
+    const remaining = demoBlock - secsInBlock;
+    const nextEl = document.getElementById('nextBlock');
+    if (nextEl) nextEl.textContent = remaining + 's';
+  }, 1000);
+}
+
+function stopTimer() {
+  clearInterval(timerInt);
+  timerInt = null;
+}
+
+// ── Auto-return polling ────────────────────────────────
+let pollInt = null;
+
+function startDemoPolling() {
+  // Demo: auto-trigger return after 90 seconds
+  stopPolling();
+  let elapsed = 0;
+  pollInt = setInterval(() => {
+    elapsed += 1000;
+    if (elapsed >= 90000) {
+      handleBatteryReturned();
+    }
+  }, 1000);
+}
+
+function startPolling(rentId) {
+  // Production: replace startDemoPolling() call in payAndGo() with startPolling(rentId)
+  stopPolling();
+  pollInt = setInterval(async () => {
+    try {
+      const url = KRGA_CONFIG.api.pollRentStatus.replace(':id', rentId);
+      const res = await fetch(url);
+      const data = await res.json();
+      if (data.returned) handleBatteryReturned();
+    } catch (e) {
+      // network error — keep polling
+    }
+  }, KRGA_CONFIG.polling.intervalMs);
+}
+
+function stopPolling() {
+  clearInterval(pollInt);
+  pollInt = null;
+}
+
+function handleBatteryReturned() {
+  stopTimer();
+  stopPolling();
+  populateReceipt();
+  show('s3');
 }
 
 // ── Init ──────────────────────────────────────────────
