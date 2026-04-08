@@ -144,11 +144,13 @@ function setLang(lang) {
 function toggleLangMenu() {
   const menu = document.getElementById('langMenu');
   const btn = document.getElementById('langToggleBtn');
+  if (!menu) return;
   const isOpen = menu.classList.toggle('open');
   if (btn) btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
 }
 function closeLangMenu() {
-  document.getElementById('langMenu').classList.remove('open');
+  const menu = document.getElementById('langMenu');
+  if (menu) menu.classList.remove('open');
   const btn = document.getElementById('langToggleBtn');
   if (btn) btn.setAttribute('aria-expanded', 'false');
 }
