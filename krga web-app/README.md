@@ -76,6 +76,8 @@ fetch('/api/ui/payment-notice')
   });
 ```
 
+> **Note:** `config.ui.paymentNotice` is a single string (English by default). If you need localized payment notices, either serve the text from your backend based on the user's language, or add it to `i18n.js` with keys like `paymentNotice_en` and `paymentNotice_es`.
+
 ## Language Support
 
 Default: English. Globe button (bottom-right) switches to Spanish. Choice persists via `localStorage`.

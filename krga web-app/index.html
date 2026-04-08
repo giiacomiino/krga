@@ -283,7 +283,7 @@ html,body{
   <div class="screen active" id="s0">
     <div class="s0-top">
       <div>
-        <img class="logo-img" src="assets/logo-color.png" alt="krga">
+        <img class="logo-img" src="../assets/logo-color.png" alt="krga">
         <div class="logo-tag" data-i18n="tagline">charge your phone, always</div>
       </div>
       <div class="station-chip">
@@ -336,7 +336,7 @@ html,body{
         <span data-i18n="rentBattery">Rent a battery</span>
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
       </button>
-      <button class="btn btn-ghost" data-i18n="nearbyStations">See nearby stations</button>
+      <button class="btn btn-ghost" onclick="nearbyStations()" data-i18n="nearbyStations">See nearby stations</button>
     </div>
   </div>
 
@@ -492,7 +492,7 @@ html,body{
       <button class="btn btn-black" onclick="resetApp()">
         <span data-i18n="done">Done</span>
       </button>
-      <button class="btn btn-outline" data-i18n="downloadReceipt">Download receipt as PDF</button>
+      <button class="btn btn-outline" onclick="downloadReceipt()" data-i18n="downloadReceipt">Download receipt as PDF</button>
     </div>
   </div>
 </div>
@@ -571,7 +571,7 @@ function show(id) {
 // ── Payment notice (from config) ──────────────────────
 function initPaymentNotice() {
   const el = document.getElementById('paymentNotice');
-  if (el) el.innerHTML = KRGA_CONFIG.ui.paymentNotice;
+  if (el) el.textContent = KRGA_CONFIG.ui.paymentNotice;
 }
 
 // ── Stripe / demo card element ─────────────────────────
@@ -719,7 +719,23 @@ function populateReceipt() {
 // ── Reset to start ─────────────────────────────────────
 function resetApp() {
   secs = 0;
+  // Clear form fields for next user (important on shared/kiosk devices)
+  const phone = document.querySelector('input[type="tel"]');
+  const email = document.getElementById('emailInput');
+  if (phone) phone.value = '';
+  if (email) email.value = '';
   show('s0');
+}
+
+// ── Placeholder handlers (wire to real APIs in production) ──
+function nearbyStations() {
+  // TODO: connect to KRGA_CONFIG.api.nearbyStations
+  console.log('[krga] nearbyStations: connect to', KRGA_CONFIG.api.nearbyStations);
+}
+
+function downloadReceipt() {
+  // TODO: connect to KRGA_CONFIG.api.downloadReceipt
+  console.log('[krga] downloadReceipt: connect to', KRGA_CONFIG.api.downloadReceipt);
 }
 
 // ── Init ──────────────────────────────────────────────
